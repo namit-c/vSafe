@@ -1,5 +1,10 @@
 import java.util.Arrays;
 public class BinarySearch{
+	 /*
+     * From Algorithms 4th Edition Textbook by Robert Sedgewick and Kevin Wayne 
+     * on [Pg 9]
+    */
+
     public static int binarySeach(String[] arr, String str){
         int low = 0;
         int hi = arr.length -1;
