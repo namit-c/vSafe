@@ -23,6 +23,5 @@
 * Balanced-Binary Search Tree (BST) ***maybe
 
 ### Graphing Algorithms - map out danger ratings to a map
-
-            
-
+* Graph Coloring Algorithm
+    * Using heatmaps
