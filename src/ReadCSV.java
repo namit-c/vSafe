@@ -35,7 +35,7 @@ import java.util.Arrays;
         csvReader.close();
     }
     public static void parseDates(String[] row, int startYr, int startMth, int startDy, int endYr, int endMth, int endDy){
-        //row[0] = yyyymm (start), row[1] = d (start), row[3] = yyyymm (end), row[4] = d (end)
+        //For stormData_yyyy.csv : row[0] = yyyymm (start), row[1] = d (start), row[3] = yyyymm (end), row[4] = d (end)
         String startYear = row[startYr].substring(0,4);
         String startMonth = row[startMth].substring(3,5);
         String startDay = row[startDy];
