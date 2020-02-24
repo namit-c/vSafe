@@ -21,7 +21,7 @@ import java.util.Arrays;
             String[] data = row.split(",");
             //System.out.println(Arrays.toString(data));
 		    if (count > 0){
-                parseDates(data);
+                parseDates(data,0,0,1,3,3,4);
             }    
             count += 1;
             /***
@@ -34,15 +34,15 @@ import java.util.Arrays;
         }
         csvReader.close();
     }
-    public static void parseDates(String[] row){
-        //row[0] = yyyymm (start), row[1] = d (start), row[2] = yyyymm (end), row[3] = d (end)
-        String startYear = row[0].substring(0,4);
-        String startMonth = row[0].substring(3,5);
-        String startDay = row[1];
+    public static void parseDates(String[] row, int startYr, int startMth, int startDy, int endYr, int endMth, int endDy){
+        //row[0] = yyyymm (start), row[1] = d (start), row[3] = yyyymm (end), row[4] = d (end)
+        String startYear = row[startYr].substring(0,4);
+        String startMonth = row[startMth].substring(3,5);
+        String startDay = row[startDy];
 
-        String endYear = row[3].substring(0,4);
-        String endMonth = row[3].substring(3,5);
-        String endDay = row[4];
+        String endYear = row[endYr].substring(0,4);
+        String endMonth = row[endMth].substring(3,5);
+        String endDay = row[endDy];
 
 
         System.out.println("Start: " + startYear+ "//"+ startMonth+"//"+ startDay+ " - End: " + endYear + "//" + endMonth + "//" + endDay);
