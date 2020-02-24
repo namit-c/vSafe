@@ -22,7 +22,6 @@ import java.util.ArrayList;
         while ((row = csvReader.readLine()) != null) {
             
             String[] data = row.split(",");
-            //System.out.println(Arrays.toString(data));
             if (count > 0){
                 //dataSetDates.add(parseDates(data,0,0,1,3,3,4));
                 //dataSetLocationStates.add(parseLocationsByStateOrProvince(data,8));
@@ -37,11 +36,12 @@ import java.util.ArrayList;
         System.out.println(Arrays.toString(dataSet.get(0)));
         System.out.println("*"+dataSet.get(0)[1]);
         MergeSort.sort(data,8);
+        MergeSort.sort(data,0);
         
         for (int i = 0;i < data.length; i++){
-            //System.out.println(Arrays.toString(data[i]));
-            System.out.println(data[i][8]);
+            System.out.println("Start Date :" + data[i][0] + " State/City: " + data[i][8]);
         }
+        System.out.println(data.length);
     
     }
     /*
@@ -81,7 +81,6 @@ import java.util.ArrayList;
        // System.out.println("Start: " + startYear+ "//"+ startMonth+"//"+ startDay+ " - End: " + endYear + "//" + endMonth + "//" + endDay);
     }
     public static String parseLocationsByStateOrProvince(String[] row,int location){
-        //System.out.println(row[location]);
         return new String(row[location]);
     }
         
