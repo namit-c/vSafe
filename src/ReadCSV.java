@@ -1,11 +1,11 @@
 import java.util.Arrays;
 import java.util.ArrayList;
- import java.io.BufferedReader;
- import java.io.IOException;
- import java.nio.file.Files;
- import java.nio.file.Paths;
- import java.io.FileReader;
- /***
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+/***
   * Notes:
   *     For stormdata_yyyy.csv, the start dates are listed as 
   *     ["BEGIN_YEARMONTH", "BEGIN_DAY", "BEGIN_TIME", "END_YEARMONTH", "END_DAY", "END_TIME",...]
@@ -16,8 +16,8 @@ import java.util.ArrayList;
         BufferedReader csvReader = new BufferedReader(new FileReader(pathToCSV));
         String row = "";
         int count = 0;
-        ArrayList<String[] > dataSetDates = new ArrayList<String[]>();
-        ArrayList<String> dataSetLocationStates = new ArrayList<String>();
+        //ArrayList<String[] > dataSetDates = new ArrayList<String[]>();
+        //ArrayList<String> dataSetLocationStates = new ArrayList<String>();
         ArrayList<String[]> dataSet = new ArrayList<String[]>(); 
         while ((row = csvReader.readLine()) != null) {
             
@@ -35,12 +35,38 @@ import java.util.ArrayList;
         String[][] data = convertArrayListToStringArr(dataSet);
         System.out.println(Arrays.toString(dataSet.get(0)));
         System.out.println("*"+dataSet.get(0)[1]);
-        MergeSort.sort(data,8);
+         
+        long startTime = System.currentTimeMillis();
         MergeSort.sort(data,0);
+        long endTime = System.currentTimeMillis();
         
+        System.out.println("SORTING LOCATION TAKES : " + (endTime - startTime) + " ms");
+        
+        startTime = System.currentTimeMillis(); 
+        //MergeSort.sort(data,2);
+        endTime = System.currentTimeMillis(); 
+        
+        System.out.println("SORTING now by time : " + (endTime - startTime) + " ms");    
+        
+        for (int i = 0; i < data.length; i++){
+            System.out.println(Arrays.toString(data[i]));
+        }
+        /*
+        FileWriter csvWriter = new FileWriter("new1.csv"); 
+        for (int i = 0; i < data.length; i++){
+            for (int j = 0; j < data[0].length; j++){
+                csvWriter.append(data[i][j]);
+           ghlight GitGutterAdd    guifg=#009900 guibg=<X> ctermfg=2 ctermbg=<Y> }
+            csvWriter.append("\n");
+        }
+        csvWriter.flush();
+        csvWriter.close(); 
+        */
+        /***
         for (int i = 0;i < data.length; i++){
             System.out.println("Start Date :" + data[i][0] + " State/City: " + data[i][8]);
         }
+        ***/
         System.out.println(data.length);
     
     }
@@ -57,12 +83,15 @@ import java.util.ArrayList;
     
      private static String[][] convertArrayListToStringArr(ArrayList<String[]> arr){
         String[][] newArr = new String[arr.size()][arr.get(0).length];
+        //System.out.println(newArr.length + " " + newArr[0].length);
         for (int i = 0;i < arr.size(); i++){
-            for (int j = 0; j < arr.get(0).length;j++){
-
+            for (int j = 0; j < arr.get(i).length ;j++){
+                //System.out.println(i + " " + j);
+            
                 newArr[i][j] = arr.get(i)[j];
             }   
         }
+        System.out.println(convertArrayListToStringArr)
         return newArr;
     }
     
@@ -80,11 +109,21 @@ import java.util.ArrayList;
         return dateArray;
        // System.out.println("Start: " + startYear+ "//"+ startMonth+"//"+ startDay+ " - End: " + endYear + "//" + endMonth + "//" + endDay);
     }
+    
     public static String parseLocationsByStateOrProvince(String[] row,int location){
         return new String(row[location]);
     }
-        
+
+    public static String parseDisasterName(String[] row, int index){
+        return new String(row[index]);
+    }
+    public static String parseDamageCol(String[] row, int index){
+        return new String(row[index]);
+    }
+
     public static void  main(String[] args) throws IOException{
-       readFile("../Data_Sets/stormdata_2013.csv");
+       //readFile("../Data_Sets/stormdata_2013.csv");
+       readFile("../Data_Sets/eqarchive-en.csv");
+       
     }
  }
