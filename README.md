@@ -4,6 +4,9 @@
  information about different areas of safety. vSafe provides statistics for different types of safety threats for the desired location. vSaf
  e uses datasets of a variety of safety concerns to determine the safety of the target location.
 
+# Tasks
+[Tasks Link](https://docs.google.com/document/d/1UuQRNvHot9qUcUW73xj3seQ_x9bgf0hTRcsuqTb-cmk/edit)
+
 ## Installation
 
  Clone the following [github](https://gitlab.cas.mcmaster.ca/choprn9/final-project.git) to install vSafe.
