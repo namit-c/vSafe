@@ -47,7 +47,7 @@ import java.io.FileWriter;
         MergeSort.sort(data,dateCol);
         endTime = System.currentTimeMillis();
 
-        System.out.println(data.length);
+        System.out.println(pathToCSV + " = " +data.length);
         /*
         for (int i = 0; i < data.length; i++){
             System.out.println(data[i][8]+ " "+ data[i][19]);
@@ -59,10 +59,20 @@ import java.io.FileWriter;
         String[][] newArr = new String[arr.size()][arr.get(0).length];
         //System.out.println(newArr.length + " " + newArr[0].length);
         for (int i = 0;i < arr.size(); i++){
-            for (int j = 0; j < arr.get(0).length ;j++){
+            int j;
+            for (j = 0; j < arr.get(0).length && j < arr.get(i).length;j++){
                 //System.out.println(i + " " + j);
-                newArr[i][j] = arr.get(i)[j];
+                if (arr.get(i)[j].length() == 0){
+                    newArr[i][j] = " ";
+                }else{
+
+                    newArr[i][j] = arr.get(i)[j];
+                }
             }
+            while (j < arr.get(0).length){
+                newArr[i][j++] = " ";
+            }
+
         }
         //System.out.println(convertArrayListToStringArr);
         return newArr;
@@ -100,7 +110,24 @@ import java.io.FileWriter;
     }
 
     public static void  main(String[] args) throws IOException{
+       long startTime = System.currentTimeMillis();
+        
+       
+
+ 
        readFile("../Data_Sets/stormdata_2013.csv",8,19);
+       readFile("../Data_Sets/stormdata_2012.csv",8,19);
+       readFile("../Data_Sets/stormdata_2011.csv",8,19);
+       readFile("../Data_Sets/stormdata_2010.csv",8,19);
+       readFile("../Data_Sets/stormdata_2009.csv",8,19);
+       readFile("../Data_Sets/stormdata_2008.csv",8,19);
+       readFile("../Data_Sets/stormdata_2007.csv",8,19);
+       readFile("../Data_Sets/stormdata_2006.csv",8,19);
+       readFile("../Data_Sets/stormdata_2005.csv",8,19);
+       readFile("../Data_Sets/stormdata_2004.csv",8,19);
+       readFile("../Data_Sets/stormdata_2003.csv",8,19);
        readFile("../Data_Sets/eqarchive-en.csv",0,6);
+       long endTime = System.currentTimeMillis();
+       System.out.println("\n\nThis took = " + (endTime - startTime) + " ms"); 
     }
  }
