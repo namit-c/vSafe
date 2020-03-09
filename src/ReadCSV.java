@@ -16,7 +16,7 @@ import java.io.FileWriter;
 
 
  public class ReadCSV{
-    public static void readFile(String pathToCSV, int cityCol, int dateCol) throws IOException{
+    public static String[][] readFile(String pathToCSV, int cityCol, int dateCol) throws IOException{
         BufferedReader csvReader = new BufferedReader(new FileReader(pathToCSV));
         String row = "";
         int count = 0;
@@ -44,7 +44,7 @@ import java.io.FileWriter;
         
        
         startTime = System.currentTimeMillis();
-        MergeSort.sort(data,dateCol);
+        //MergeSort.sort(data,dateCol);
         endTime = System.currentTimeMillis();
 
         System.out.println(pathToCSV + " = " +data.length);
@@ -53,6 +53,8 @@ import java.io.FileWriter;
             System.out.println(data[i][8]+ " "+ data[i][19]);
         }
         */
+
+        return data;
 
     }
     private static String[][] convertArrayListToStringArr(ArrayList<String[]> arr){
@@ -108,13 +110,10 @@ import java.io.FileWriter;
     public static String parseDamageCol(String[] row, int index){
         return new String(row[index]);
     }
+ 
 
     public static void  main(String[] args) throws IOException{
        long startTime = System.currentTimeMillis();
-        
-       
-
- 
        readFile("../Data_Sets/stormdata_2013.csv",8,19);
        readFile("../Data_Sets/stormdata_2012.csv",8,19);
        readFile("../Data_Sets/stormdata_2011.csv",8,19);
@@ -128,6 +127,7 @@ import java.io.FileWriter;
        readFile("../Data_Sets/stormdata_2003.csv",8,19);
        readFile("../Data_Sets/eqarchive-en.csv",0,6);
        long endTime = System.currentTimeMillis();
-       System.out.println("\n\nThis took = " + (endTime - startTime) + " ms"); 
+       System.out.println("\n\nThis took = " + (endTime - startTime) + " ms");
+       System.out.println("DONE"); 
     }
  }
