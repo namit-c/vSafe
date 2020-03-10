@@ -12,7 +12,10 @@ import java.io.FileWriter;
   *
  ***/
 
-
+/*
+ * NOTE* Right now each entry/element in the 2D matrix that is returned in the CSV file will start and end with a quote
+ *  i.e "\"some-String-\"" (this is how you would write a this specific string in java to include quotes)
+*/
 
 
  public class ReadCSV{
@@ -95,11 +98,11 @@ import java.io.FileWriter;
        // System.out.println("Start: " + startYear+ "//"+ startMonth+"//"+ startDay+ " - End: " + endYear + "//" + endMonth + "//" + endDay);
     }
     public static String[] parseDate(String[] row, int col){
-        String[] dateArray = row[col].substring(0,10).split("/"); //splits from dd/mm/yyyy
+        String[] dateArray = row[col].substring(0,11).split("/"); //splits from dd/mm/yyyy
         return dateArray; 
     }
 
-
+    
     public static String parseLocationsByStateOrProvince(String[] row,int location){
         return new String(row[location]);
     }
