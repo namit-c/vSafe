@@ -19,12 +19,12 @@
 
 ### Sorting Algorithms - sort locations then sort by starting dates:
 * Merge Sort  
-* Shell Sort
 
 ### Searching Algorithms - find specific natural disasters that occur in a specific in a similar time frame
 * Binary search
-* Balanced-Binary Search Tree (BST) ***maybe
 
 ### Graphing Algorithms - map out danger ratings to a map
 * Graph Coloring Algorithm
     * Using heatmaps
+* Using Depth-First Search (DFS)
+* Graph construction
