@@ -1,0 +1,1043 @@
+SORTING LOCATION TAKES : 458 ms
+../Data_Sets/stormdata_2013.csv = 51932
+[MICHIGAN, AMERICAN SAMOA, PUERTO RICO, WASHINGTON, ALASKA, RHODE ISLAND, WEST VIRGINIA, NEVADA, NORTH CAROLINA, PENNSYLVANIA, LAKE MICHIGAN, LAKE ONTARIO, OREGON, WYOMING, FLORIDA, OHIO, CONNECTICUT, HAWAII WATERS, DISTRICT OF COLUMBIA, UTAH, LOUISIANA, MISSOURI, MISSISSIPPI, NEBRASKA, GEORGIA, IDAHO, INDIANA, GULF OF MEXICO, TENNESSEE, NEW MEXICO, VIRGIN ISLANDS, CALIFORNIA, KANSAS, MASSACHUSETTS, TEXAS, GUAM, COLORADO, LAKE ST CLAIR, E PACIFIC, NEW JERSEY, GULF OF ALASKA, MINNESOTA, MONTANA, ALABAMA, IOWA, VERMONT, NEW HAMPSHIRE, LAKE HURON, MARYLAND, ARKANSAS, VIRGINIA, ILLINOIS, NORTH DAKOTA, NEW YORK, LAKE SUPERIOR, LAKE ERIE, ATLANTIC SOUTH, ARIZONA, MAINE, WISCONSIN, ATLANTIC NORTH, DELAWARE, HAWAII, OKLAHOMA, KENTUCKY, SOUTH DAKOTA, SOUTH CAROLINA]
+INDIANA-Tornado: 0.0
+LAKE SUPERIOR-High Wind: 0.0
+NORTH DAKOTA-Hail: 0.0
+WEST VIRGINIA-Funnel Cloud: 0.0
+ALASKA-Waterspout: 0.0
+MAINE-Funnel Cloud: 0.0
+MAINE-Flood: 0.0
+FLORIDA-Lake-Effect Snow: 280000.0
+PENNSYLVANIA-Rip Current: 0.0
+WASHINGTON-Dust Devil: 0.0
+NORTH DAKOTA-Flood: 0.0
+WISCONSIN-Waterspout: 0.0
+ILLINOIS-Flash Flood: 0.0
+TEXAS-Astronomical Low Tide: 0.0
+NEW JERSEY-Heat: 0.0
+GEORGIA-Strong Wind: 40000.0
+HAWAII-Drought: 0.0
+INDIANA-Marine High Wind: 0.0
+LOUISIANA-Heavy Rain: 0.0
+WEST VIRGINIA-Flash Flood: 0.0
+NEW HAMPSHIRE-Hail: 0.0
+WASHINGTON-Dust Storm: 0.0
+NEVADA-Lightning: 0.0
+NEW MEXICO-High Surf: 0.0
+MAINE-High Wind: 0.0
+OHIO-Tornado: 0.0
+MARYLAND-Tornado: 5000.0
+KANSAS-Thunderstorm Wind: 1306500.0
+ALABAMA-High Wind: 0.0
+GULF OF MEXICO-Heavy Rain: 0.0
+ATLANTIC NORTH-High Wind: 0.0
+KANSAS-Funnel Cloud: 0.0
+NEW JERSEY-Wildfire: 0.0
+RHODE ISLAND-Heat: 0.0
+NORTH DAKOTA-Flash Flood: 0.0
+OREGON-Wildfire: 0.0
+NEW MEXICO-Hail: 0.0
+NEW MEXICO-Tsunami: 0.0
+HAWAII WATERS-Winter Storm: 0.0
+OKLAHOMA-Strong Wind: 0.0
+COLORADO-Lake-Effect Snow: 0.0
+NEW YORK-Thunderstorm Wind: 2138100.0
+CONNECTICUT-Extreme Cold/Wind Chill: 0.0
+LAKE HURON-High Wind: 0.0
+ATLANTIC NORTH-Ice Storm: 0.0
+LAKE MICHIGAN-Marine Hail: 0.0
+MONTANA-Tornado: 9827000.0
+WASHINGTON-Tornado: 0.0
+NEVADA-Thunderstorm Wind: 0.0
+IOWA-Rip Current: 0.0
+NORTH CAROLINA-High Wind: 0.0
+ATLANTIC NORTH-Frost/Freeze: 0.0
+KENTUCKY-Heavy Snow: 0.0
+NEBRASKA-Lightning: 80000.0
+PUERTO RICO-Tornado: 0.0
+WEST VIRGINIA-Dust Storm: 0.0
+SOUTH CAROLINA-Thunderstorm Wind: 0.0
+MARYLAND-Avalanche: 0.0
+MICHIGAN-Hail: 239000.0
+KENTUCKY-Winter Storm: 9.0E7
+GULF OF MEXICO-Tornado: 50000.0
+ATLANTIC NORTH-Dense Fog: 2000000.0
+LOUISIANA-Winter Weather: 0.0
+TEXAS-Hail: 24000.0
+ALABAMA-Dense Fog: 0.0
+MARYLAND-Frost/Freeze: 0.0
+NEW MEXICO-Thunderstorm Wind: 0.0
+UTAH-Wildfire: 0.0
+CONNECTICUT-Marine Thunderstorm Wind: 0.0
+ATLANTIC NORTH-Tropical Storm: 0.0
+ALABAMA-Cold/Wind Chill: 0.0
+TEXAS-Rip Current: 0.0
+COLORADO-Heavy Rain: 0.0
+KENTUCKY-Strong Wind: 0.0
+MISSISSIPPI-Hail: 583000.0
+ILLINOIS-Avalanche: 0.0
+LOUISIANA-Tornado: 0.0
+KANSAS-Flash Flood: 0.0
+KENTUCKY-Winter Weather: 1000000.0
+VERMONT-Flash Flood: 0.0
+ARKANSAS-Winter Weather: 8510000.0
+WISCONSIN-Marine Thunderstorm Wind: 0.0
+MICHIGAN-High Wind: 10000.0
+NEBRASKA-Hail: 12000.0
+GEORGIA-Tornado: 1.32615E8
+DELAWARE-Flood: 0.0
+MONTANA-Strong Wind: 28100.0
+WISCONSIN-Funnel Cloud: 0.0
+IOWA-Flood: 0.0
+IOWA-Thunderstorm Wind: 4525800.0
+GEORGIA-Lake-Effect Snow: 0.0
+NEW JERSEY-Lightning: 0.0
+INDIANA-High Wind: 76000.0
+CONNECTICUT-Heavy Snow: 0.0
+OREGON-Lightning: 0.0
+ARIZONA-Funnel Cloud: 0.0
+IDAHO-Heavy Snow: 0.0
+KENTUCKY-Flash Flood: 50000.0
+LOUISIANA-Lightning: 0.0
+LAKE MICHIGAN-Hail: 0.0
+NORTH CAROLINA-Waterspout: 0.0
+MISSOURI-Flash Flood: 8533500.0
+TEXAS-Tornado: 0.0
+NEBRASKA-Heavy Snow: 0.0
+LAKE SUPERIOR-Hail: 0.0
+NEW YORK-Hail: 2371000.0
+CALIFORNIA-Blizzard: 0.0
+KANSAS-Debris Flow: 0.0
+TENNESSEE-Dust Devil: 0.0
+WYOMING-Tornado: 0.0
+LAKE MICHIGAN-Waterspout: 0.0
+PUERTO RICO-Heat: 0.0
+MARYLAND-Winter Storm: 0.0
+FLORIDA-Drought: 0.0
+ILLINOIS-Heavy Rain: 0.0
+MISSISSIPPI-Flood: 3000000.0
+MISSOURI-Waterspout: 0.0
+GEORGIA-Heavy Snow: 0.0
+PENNSYLVANIA-Heat: 0.0
+INDIANA-Hail: 0.0
+PENNSYLVANIA-Drought: 0.0
+MONTANA-Heavy Rain: 20000.0
+WASHINGTON-Frost/Freeze: 0.0
+OKLAHOMA-Debris Flow: 10000.0
+MINNESOTA-Strong Wind: 58500.0
+LAKE ERIE-Marine High Wind: 0.0
+SOUTH CAROLINA-Waterspout: 0.0
+MICHIGAN-Dense Fog: 0.0
+FLORIDA-Heavy Snow: 0.0
+MISSOURI-Strong Wind: 25500.0
+IOWA-Hail: 2.78749E8
+SOUTH CAROLINA-Marine Hail: 0.0
+WEST VIRGINIA-Heat: 0.0
+GEORGIA-Cold/Wind Chill: 0.0
+IOWA-Lake-Effect Snow: 385000.0
+ATLANTIC NORTH-Winter Weather: 0.0
+MICHIGAN-Wildfire: 2000000.0
+MONTANA-Marine Thunderstorm Wind: 0.0
+DELAWARE-Strong Wind: 475000.0
+FLORIDA-Winter Weather: 0.0
+LAKE HURON-Thunderstorm Wind: 0.0
+WASHINGTON-Flash Flood: 0.0
+VIRGINIA-Wildfire: 0.0
+WYOMING-Dense Fog: 0.0
+WEST VIRGINIA-Strong Wind: 0.0
+VIRGINIA-Funnel Cloud: 0.0
+IOWA-High Surf: 0.0
+LAKE HURON-Marine Thunderstorm Wind: 0.0
+OKLAHOMA-Flood: 2792000.0
+MINNESOTA-High Surf: 0.0
+ILLINOIS-Strong Wind: 128000.0
+NEW JERSEY-Marine Dense Fog: 0.0
+TEXAS-Coastal Flood: 0.0
+PENNSYLVANIA-Heavy Rain: 0.0
+MAINE-Heavy Rain: 0.0
+NEVADA-Dense Fog: 0.0
+TEXAS-Debris Flow: 60000.0
+NEBRASKA-Flash Flood: 1452000.0
+DELAWARE-Heavy Snow: 0.0
+TEXAS-Drought: 0.0
+WEST VIRGINIA-Winter Weather: 0.0
+ARIZONA-Frost/Freeze: 1.5725E8
+NORTH CAROLINA-Thunderstorm Wind: 0.0
+ARKANSAS-Heavy Rain: 400000.0
+ATLANTIC NORTH-Lake-Effect Snow: 272000.0
+IOWA-Frost/Freeze: 0.0
+NORTH CAROLINA-Hail: 0.0
+HAWAII-Thunderstorm Wind: 0.0
+MASSACHUSETTS-Lightning: 1064000.0
+PENNSYLVANIA-Hail: 1000.0
+GEORGIA-Dust Storm: 0.0
+TEXAS-Marine Hail: 0.0
+KENTUCKY-Avalanche: 0.0
+INDIANA-Winter Weather: 0.0
+NEW JERSEY-Dust Storm: 0.0
+NEVADA-High Wind: 0.0
+GULF OF MEXICO-High Surf: 0.0
+GEORGIA-High Surf: 0.0
+NEVADA-Flash Flood: 0.0
+IOWA-Flash Flood: 72000.0
+SOUTH DAKOTA-Flood: 0.0
+MINNESOTA-Debris Flow: 1040000.0
+NEW HAMPSHIRE-Storm Surge/Tide: 0.0
+NEW JERSEY-Tropical Storm: 0.0
+OHIO-Marine Hail: 0.0
+SOUTH DAKOTA-Thunderstorm Wind: 309800.0
+ALABAMA-Drought: 1.0E8
+IDAHO-Lightning: 0.0
+GEORGIA-Winter Storm: 0.0
+GULF OF MEXICO-Hail: 26000.0
+HAWAII-Dense Fog: 0.0
+MICHIGAN-Flash Flood: 1.2742E7
+TEXAS-Dense Smoke: 0.0
+MISSOURI-Frost/Freeze: 0.0
+GEORGIA-Sleet: 0.0
+COLORADO-Thunderstorm Wind: 5845900.0
+MISSISSIPPI-Lightning: 300000.0
+RHODE ISLAND-Heavy Rain: 0.0
+WYOMING-High Wind: 0.0
+WYOMING-Funnel Cloud: 0.0
+OKLAHOMA-Avalanche: 0.0
+ARKANSAS-Coastal Flood: 0.0
+KENTUCKY-Flood: 60000.0
+WEST VIRGINIA-High Wind: 0.0
+CALIFORNIA-Heavy Snow: 0.0
+LAKE ONTARIO-Lightning: 0.0
+GUAM-Hail: 0.0
+NEW JERSEY-Marine Thunderstorm Wind: 0.0
+MAINE-Lightning: 0.0
+DISTRICT OF COLUMBIA-High Wind: 3750000.0
+GEORGIA-Extreme Cold/Wind Chill: 0.0
+ILLINOIS-Rip Current: 0.0
+INDIANA-Lightning: 0.0
+MISSOURI-Wildfire: 2000.0
+LOUISIANA-Marine Thunderstorm Wind: 0.0
+KENTUCKY-Wildfire: 0.0
+ARIZONA-Flood: 23000.0
+DELAWARE-Marine Thunderstorm Wind: 0.0
+ATLANTIC SOUTH-Lake-Effect Snow: 0.0
+OREGON-Tornado: 0.0
+OHIO-Excessive Heat: 0.0
+MISSOURI-Dust Devil: 30000.0
+PENNSYLVANIA-Dense Fog: 0.0
+ATLANTIC SOUTH-Avalanche: 0.0
+HAWAII-High Wind: 0.0
+CALIFORNIA-Winter Storm: 2050000.0
+NEW JERSEY-Funnel Cloud: 0.0
+WASHINGTON-Rip Current: 0.0
+OREGON-Heavy Rain: 0.0
+ARIZONA-Extreme Cold/Wind Chill: 0.0
+DISTRICT OF COLUMBIA-Marine Thunderstorm Wind: 0.0
+PENNSYLVANIA-Marine Hail: 0.0
+SOUTH DAKOTA-Dust Storm: 0.0
+VERMONT-Funnel Cloud: 0.0
+ARIZONA-Tornado: 160000.0
+MARYLAND-Winter Weather: 0.0
+KANSAS-Lake-Effect Snow: 0.0
+WYOMING-Flash Flood: 0.0
+ALASKA-High Wind: 0.0
+IOWA-Avalanche: 0.0
+ALASKA-Winter Storm: 5000.0
+DELAWARE-Winter Weather: 0.0
+MICHIGAN-Strong Wind: 6000.0
+TENNESSEE-High Surf: 0.0
+NORTH DAKOTA-Waterspout: 0.0
+IDAHO-Dense Fog: 0.0
+TENNESSEE-Strong Wind: 0.0
+COLORADO-Blizzard: 0.0
+LAKE HURON-Heavy Rain: 0.0
+NEW HAMPSHIRE-Tropical Storm: 0.0
+TENNESSEE-Rip Current: 0.0
+NEVADA-Heavy Rain: 0.0
+TENNESSEE-Flash Flood: 0.0
+TEXAS-Thunderstorm Wind: 2616750.0
+WASHINGTON-Flood: 0.0
+PUERTO RICO-Marine Thunderstorm Wind: 0.0
+DELAWARE-Extreme Cold/Wind Chill: 0.0
+LOUISIANA-High Wind: 0.0
+GULF OF MEXICO-Avalanche: 0.0
+NEVADA-Flood: 0.0
+HAWAII-Astronomical Low Tide: 0.0
+NEW YORK-High Wind: 0.0
+WEST VIRGINIA-Dense Fog: 0.0
+DELAWARE-Thunderstorm Wind: 212000.0
+WISCONSIN-Frost/Freeze: 0.0
+ALABAMA-Flood: 4000.0
+MISSISSIPPI-Tornado: 734000.0
+WISCONSIN-Drought: 0.0
+NEBRASKA-Rip Current: 0.0
+COLORADO-Winter Storm: 0.0
+LAKE HURON-Winter Storm: 0.0
+ARKANSAS-Sleet: 0.0
+WASHINGTON-Wildfire: 0.0
+WEST VIRGINIA-Lightning: 0.0
+WASHINGTON-Thunderstorm Wind: 0.0
+LOUISIANA-Heavy Snow: 0.0
+ILLINOIS-Marine Hail: 0.0
+NEBRASKA-Dust Storm: 0.0
+MONTANA-Drought: 0.0
+WYOMING-Lightning: 0.0
+CONNECTICUT-High Wind: 1.1672E7
+MARYLAND-Thunderstorm Wind: 378500.0
+NORTH CAROLINA-Frost/Freeze: 0.0
+WISCONSIN-Winter Storm: 0.0
+TEXAS-High Surf: 0.0
+WYOMING-Lake-Effect Snow: 0.0
+NEW MEXICO-Waterspout: 0.0
+GEORGIA-Waterspout: 0.0
+NEW JERSEY-Hail: 0.0
+ATLANTIC SOUTH-Dense Fog: 0.0
+GEORGIA-Marine Thunderstorm Wind: 0.0
+VERMONT-Flood: 0.0
+WYOMING-Hail: 0.0
+ARIZONA-Winter Storm: 8000.0
+TEXAS-Waterspout: 0.0
+GULF OF MEXICO-Funnel Cloud: 0.0
+NEW YORK-Heavy Rain: 0.0
+LAKE ERIE-Winter Weather: 0.0
+TEXAS-Strong Wind: 10000.0
+CONNECTICUT-Thunderstorm Wind: 32400.0
+GULF OF MEXICO-Heavy Snow: 0.0
+WYOMING-Hurricane: 0.0
+LAKE ONTARIO-Hail: 0.0
+OKLAHOMA-High Wind: 0.0
+OREGON-Rip Current: 0.0
+TEXAS-Heat: 0.0
+MASSACHUSETTS-Drought: 0.0
+MINNESOTA-Winter Storm: 0.0
+KANSAS-Flood: 0.0
+PUERTO RICO-Lightning: 0.0
+VIRGINIA-Marine Hail: 0.0
+ATLANTIC NORTH-Heavy Rain: 0.0
+KENTUCKY-Ice Storm: 0.0
+MAINE-Hail: 0.0
+VIRGIN ISLANDS-Flash Flood: 0.0
+KENTUCKY-Blizzard: 0.0
+PUERTO RICO-Funnel Cloud: 0.0
+IOWA-Wildfire: 500.0
+MINNESOTA-Hail: 1992000.0
+COLORADO-Strong Wind: 84000.0
+ALASKA-Flood: 1.45055E9
+MARYLAND-Funnel Cloud: 0.0
+MISSOURI-Marine Thunderstorm Wind: 0.0
+CALIFORNIA-Strong Wind: 182000.0
+OREGON-Flood: 0.0
+ALABAMA-Funnel Cloud: 0.0
+MARYLAND-Wildfire: 600.0
+IOWA-Funnel Cloud: 0.0
+MARYLAND-Marine Thunderstorm Wind: 0.0
+NEBRASKA-Thunderstorm Wind: 674550.0
+NEBRASKA-Wildfire: 0.0
+LAKE ST CLAIR-Thunderstorm Wind: 0.0
+OREGON-Funnel Cloud: 0.0
+WISCONSIN-Tornado: 0.0
+NEW YORK-Dense Fog: 0.0
+ARKANSAS-Dense Fog: 0.0
+ARKANSAS-High Wind: 7.619E7
+OKLAHOMA-Rip Current: 0.0
+ILLINOIS-Waterspout: 0.0
+NEW MEXICO-Rip Current: 0.0
+MONTANA-Wildfire: 250.0
+SOUTH CAROLINA-Marine Thunderstorm Wind: 0.0
+WASHINGTON-Hail: 0.0
+ARKANSAS-Drought: 0.0
+NEBRASKA-Marine Thunderstorm Wind: 0.0
+PENNSYLVANIA-Funnel Cloud: 0.0
+HAWAII-Hail: 0.0
+KANSAS-Frost/Freeze: 0.0
+MICHIGAN-Cold/Wind Chill: 0.0
+WEST VIRGINIA-Heavy Snow: 0.0
+LAKE MICHIGAN-Marine Thunderstorm Wind: 0.0
+CALIFORNIA-Ice Storm: 800000.0
+INDIANA-Thunderstorm Wind: 1064500.0
+MISSOURI-Heavy Rain: 0.0
+NEW HAMPSHIRE-Heavy Rain: 0.0
+SOUTH DAKOTA-High Wind: 0.0
+ARKANSAS-Cold/Wind Chill: 0.0
+KANSAS-Dust Devil: 0.0
+WASHINGTON-Drought: 0.0
+ARKANSAS-Ice Storm: 2145000.0
+KANSAS-Winter Storm: 0.0
+NEW YORK-Waterspout: 0.0
+KANSAS-Marine Hail: 0.0
+MICHIGAN-Lightning: 40000.0
+KENTUCKY-Marine Thunderstorm Wind: 0.0
+KANSAS-Winter Weather: 0.0
+SOUTH DAKOTA-Dense Fog: 0.0
+LOUISIANA-Thunderstorm Wind: 0.0
+UTAH-Thunderstorm Wind: 0.0
+PUERTO RICO-Excessive Heat: 0.0
+SOUTH CAROLINA-Flash Flood: 0.0
+MONTANA-Waterspout: 0.0
+HAWAII-Lake-Effect Snow: 132000.0
+TEXAS-Dust Devil: 0.0
+CALIFORNIA-Winter Weather: 0.0
+NEBRASKA-Heavy Rain: 9000.0
+GEORGIA-Heavy Rain: 0.0
+MASSACHUSETTS-Flood: 188000.0
+ARIZONA-Heavy Rain: 10000.0
+LAKE MICHIGAN-Tornado: 0.0
+CALIFORNIA-High Surf: 0.0
+NEW MEXICO-Heat: 0.0
+NORTH DAKOTA-High Wind: 0.0
+ARKANSAS-Marine High Wind: 0.0
+GEORGIA-Lightning: 500000.0
+NEVADA-Frost/Freeze: 0.0
+ARKANSAS-Avalanche: 0.0
+ATLANTIC SOUTH-Extreme Cold/Wind Chill: 0.0
+HAWAII-Frost/Freeze: 0.0
+GEORGIA-Flash Flood: 1000.0
+ALASKA-Thunderstorm Wind: 705000.0
+ALASKA-Heavy Snow: 0.0
+NEW YORK-Flood: 4036000.0
+VERMONT-Wildfire: 0.0
+MINNESOTA-Cold/Wind Chill: 0.0
+MAINE-Marine Thunderstorm Wind: 0.0
+OKLAHOMA-Hail: 18000.0
+TEXAS-Wildfire: 0.0
+ATLANTIC NORTH-Cold/Wind Chill: 0.0
+MINNESOTA-Rip Current: 0.0
+MINNESOTA-Marine Thunderstorm Wind: 3000.0
+WEST VIRGINIA-Winter Storm: 0.0
+HAWAII-Blizzard: 0.0
+SOUTH DAKOTA-Tornado: 200000.0
+OKLAHOMA-Drought: 0.0
+IDAHO-Thunderstorm Wind: 0.0
+WISCONSIN-Dust Storm: 0.0
+ARKANSAS-Astronomical Low Tide: 0.0
+OREGON-Hail: 0.0
+WEST VIRGINIA-Hail: 0.0
+CALIFORNIA-Tornado: 7400000.0
+MINNESOTA-Tornado: 4.14337E8
+PENNSYLVANIA-Tornado: 0.0
+GEORGIA-Blizzard: 3.0602E7
+SOUTH DAKOTA-Debris Flow: 0.0
+ARIZONA-Winter Weather: 3000000.0
+NORTH DAKOTA-Drought: 0.0
+MICHIGAN-Marine Thunderstorm Wind: 0.0
+NEW HAMPSHIRE-Lightning: 0.0
+IDAHO-Tornado: 0.0
+NEBRASKA-Debris Flow: 0.0
+FLORIDA-High Wind: 5000.0
+PUERTO RICO-Wildfire: 0.0
+SOUTH DAKOTA-Marine Hail: 0.0
+COLORADO-Marine Thunderstorm Wind: 0.0
+MINNESOTA-Thunderstorm Wind: 3777700.0
+ILLINOIS-High Surf: 0.0
+WYOMING-Thunderstorm Wind: 0.0
+VIRGINIA-Lightning: 4136000.0
+MASSACHUSETTS-Flash Flood: 9.015E7
+OKLAHOMA-Funnel Cloud: 0.0
+ARKANSAS-Heavy Snow: 0.0
+E PACIFIC-Drought: 0.0
+MASSACHUSETTS-Hail: 1.6884E7
+NEW JERSEY-Tornado: 0.0
+FLORIDA-Dense Fog: 0.0
+NEW MEXICO-Heavy Rain: 0.0
+ILLINOIS-Tornado: 200000.0
+TEXAS-Dust Storm: 0.0
+VIRGINIA-Drought: 0.0
+NEW MEXICO-Excessive Heat: 0.0
+NORTH CAROLINA-Marine Thunderstorm Wind: 0.0
+WYOMING-Winter Weather: 0.0
+WISCONSIN-Heavy Rain: 0.0
+ILLINOIS-Winter Storm: 90000.0
+ILLINOIS-Marine High Wind: 0.0
+WEST VIRGINIA-Tornado: 0.0
+ALASKA-Winter Weather: 0.0
+ILLINOIS-Flood: 8000.0
+WISCONSIN-Lightning: 0.0
+IOWA-Winter Weather: 65000.0
+TENNESSEE-Dust Storm: 0.0
+WISCONSIN-Wildfire: 0.0
+NEW MEXICO-Tornado: 0.0
+NEW JERSEY-Excessive Heat: 0.0
+SOUTH DAKOTA-Funnel Cloud: 0.0
+COLORADO-High Wind: 0.0
+WEST VIRGINIA-Marine Thunderstorm Wind: 0.0
+KANSAS-High Surf: 0.0
+COLORADO-Flash Flood: 1504000.0
+LAKE ST CLAIR-Winter Storm: 0.0
+IOWA-Ice Storm: 570000.0
+MISSOURI-Funnel Cloud: 0.0
+MISSOURI-Hail: 1379000.0
+ARIZONA-Flash Flood: 525000.0
+OKLAHOMA-Cold/Wind Chill: 0.0
+HAWAII-Rip Current: 0.0
+TENNESSEE-Wildfire: 0.0
+TEXAS-Flash Flood: 1.3832E7
+WISCONSIN-Winter Weather: 0.0
+MISSOURI-Flood: 1.2405E7
+MONTANA-Flash Flood: 1.3171E7
+SOUTH DAKOTA-Marine Thunderstorm Wind: 0.0
+FLORIDA-Flood: 0.0
+GEORGIA-Coastal Flood: 1.3811E8
+NEW YORK-Marine Thunderstorm Wind: 5000.0
+ARKANSAS-Blizzard: 0.0
+ILLINOIS-Coastal Flood: 0.0
+NEW JERSEY-Rip Current: 0.0
+GULF OF MEXICO-Flash Flood: 211000.0
+GULF OF MEXICO-Strong Wind: 0.0
+OKLAHOMA-Thunderstorm Wind: 1426850.0
+OKLAHOMA-Wildfire: 1050000.0
+E PACIFIC-High Wind: 0.0
+NEW YORK-Tornado: 0.0
+SOUTH CAROLINA-Excessive Heat: 0.0
+ARIZONA-High Wind: 20000.0
+ATLANTIC SOUTH-Sleet: 0.0
+NEW JERSEY-High Surf: 0.0
+MONTANA-Funnel Cloud: 0.0
+AMERICAN SAMOA-Winter Weather: 0.0
+MISSOURI-Tornado: 2345000.0
+MISSOURI-Dust Storm: 0.0
+NEW HAMPSHIRE-Dust Storm: 0.0
+SOUTH CAROLINA-Heat: 0.0
+NEW HAMPSHIRE-Flood: 0.0
+CALIFORNIA-Flood: 0.0
+TEXAS-Heavy Rain: 221000.0
+MASSACHUSETTS-Cold/Wind Chill: 0.0
+COLORADO-Extreme Cold/Wind Chill: 0.0
+COLORADO-Hail: 0.0
+NORTH DAKOTA-Marine Thunderstorm Wind: 0.0
+NEW JERSEY-Thunderstorm Wind: 0.0
+VIRGINIA-Debris Flow: 400000.0
+MONTANA-Dust Devil: 500.0
+KENTUCKY-Thunderstorm Wind: 4064500.0
+VIRGINIA-Excessive Heat: 0.0
+HAWAII-Heavy Snow: 0.0
+NEW YORK-Wildfire: 0.0
+NEW YORK-Dust Devil: 0.0
+IDAHO-Winter Weather: 0.0
+OHIO-Hail: 1650000.0
+MASSACHUSETTS-Strong Wind: 16000.0
+NEBRASKA-Tornado: 375000.0
+PENNSYLVANIA-Wildfire: 0.0
+NEW MEXICO-Marine Thunderstorm Wind: 0.0
+NEW YORK-Funnel Cloud: 0.0
+MAINE-Cold/Wind Chill: 0.0
+NEBRASKA-High Wind: 0.0
+UTAH-Drought: 0.0
+ILLINOIS-Extreme Cold/Wind Chill: 0.0
+MARYLAND-Heavy Rain: 0.0
+MARYLAND-Waterspout: 0.0
+GEORGIA-Frost/Freeze: 0.0
+GULF OF MEXICO-Winter Weather: 20000.0
+TENNESSEE-Waterspout: 0.0
+GULF OF MEXICO-Lake-Effect Snow: 0.0
+WASHINGTON-Waterspout: 0.0
+MISSISSIPPI-Funnel Cloud: 0.0
+TEXAS-Funnel Cloud: 0.0
+OHIO-Flash Flood: 1.057E7
+ARIZONA-Dense Fog: 140000.0
+INDIANA-Blizzard: 0.0
+KANSAS-Lightning: 200000.0
+GUAM-Thunderstorm Wind: 49000.0
+WASHINGTON-Heavy Rain: 0.0
+ALABAMA-Marine Thunderstorm Wind: 0.0
+ALASKA-Ice Storm: 0.0
+UTAH-Lightning: 0.0
+TENNESSEE-Heavy Rain: 0.0
+KENTUCKY-Frost/Freeze: 0.0
+OKLAHOMA-Marine Thunderstorm Wind: 0.0
+ARIZONA-Lake-Effect Snow: 0.0
+MINNESOTA-Flood: 7074000.0
+NORTH DAKOTA-Funnel Cloud: 0.0
+NORTH CAROLINA-Heavy Rain: 0.0
+NEW MEXICO-High Wind: 0.0
+ALABAMA-High Surf: 0.0
+LAKE MICHIGAN-Winter Storm: 0.0
+ILLINOIS-Lightning: 40000.0
+COLORADO-Tornado: 3.02383E8
+OKLAHOMA-Heat: 0.0
+SOUTH DAKOTA-Coastal Flood: 0.0
+MICHIGAN-Drought: 0.0
+COLORADO-Flood: 61000.0
+KENTUCKY-Tornado: 0.0
+SOUTH CAROLINA-Funnel Cloud: 0.0
+KANSAS-Heavy Snow: 0.0
+VIRGINIA-Flash Flood: 1.219072E7
+WISCONSIN-Strong Wind: 0.0
+OHIO-Strong Wind: 0.0
+ARIZONA-Strong Wind: 60000.0
+FLORIDA-Winter Storm: 4800000.0
+RHODE ISLAND-Thunderstorm Wind: 0.0
+KANSAS-Tornado: 0.0
+NEW YORK-Rip Current: 0.0
+MAINE-Wildfire: 0.0
+OHIO-High Wind: 0.0
+ATLANTIC NORTH-Heavy Snow: 0.0
+VERMONT-Marine Thunderstorm Wind: 0.0
+OHIO-Marine Thunderstorm Wind: 0.0
+NEW JERSEY-Flash Flood: 0.0
+ALASKA-Tornado: 2000000.0
+CONNECTICUT-Debris Flow: 1000000.0
+IOWA-Tornado: 2370000.0
+MINNESOTA-Heavy Snow: 0.0
+OHIO-Wildfire: 0.0
+OHIO-Flood: 9000000.0
+ARKANSAS-Tornado: 600000.0
+MICHIGAN-Frost/Freeze: 0.0
+PENNSYLVANIA-Waterspout: 0.0
+GULF OF MEXICO-Marine Thunderstorm Wind: 0.0
+MISSOURI-Lightning: 362000.0
+WYOMING-Heavy Snow: 0.0
+WISCONSIN-Coastal Flood: 0.0
+GEORGIA-Marine High Wind: 0.0
+MINNESOTA-Lightning: 3970400.0
+CONNECTICUT-Flash Flood: 120000.0
+ILLINOIS-Winter Weather: 0.0
+LOUISIANA-Dust Storm: 0.0
+VIRGINIA-High Wind: 0.0
+ALABAMA-Marine High Wind: 0.0
+SOUTH DAKOTA-Hail: 116000.0
+VERMONT-Lightning: 0.0
+MARYLAND-Cold/Wind Chill: 0.0
+NORTH DAKOTA-Thunderstorm Wind: 0.0
+INDIANA-Marine Thunderstorm Wind: 0.0
+KENTUCKY-Lightning: 750000.0
+MICHIGAN-High Surf: 0.0
+FLORIDA-Blizzard: 0.0
+GEORGIA-Hail: 515000.0
+SOUTH DAKOTA-Lightning: 657000.0
+GULF OF MEXICO-Frost/Freeze: 25000.0
+PENNSYLVANIA-Marine Thunderstorm Wind: 0.0
+LOUISIANA-Waterspout: 0.0
+SOUTH CAROLINA-Lightning: 0.0
+WASHINGTON-High Wind: 0.0
+LOUISIANA-Winter Storm: 0.0
+NEW MEXICO-Flood: 0.0
+MONTANA-Lightning: 230000.0
+MASSACHUSETTS-Heavy Rain: 83000.0
+MICHIGAN-Winter Weather: 0.0
+WASHINGTON-Marine Thunderstorm Wind: 0.0
+MARYLAND-Lightning: 20000.0
+HAWAII WATERS-Ice Storm: 0.0
+IOWA-Heavy Snow: 150000.0
+GEORGIA-Winter Weather: 0.0
+LAKE MICHIGAN-Heavy Rain: 0.0
+GULF OF MEXICO-Thunderstorm Wind: 811200.0
+INDIANA-High Surf: 0.0
+NEW HAMPSHIRE-Waterspout: 0.0
+MINNESOTA-Frost/Freeze: 0.0
+MONTANA-High Wind: 85000.0
+NEW HAMPSHIRE-Flash Flood: 0.0
+NEW MEXICO-Wildfire: 0.0
+ARIZONA-Coastal Flood: 0.0
+KANSAS-Marine Thunderstorm Wind: 0.0
+GULF OF MEXICO-Lightning: 250000.0
+ARIZONA-Heavy Snow: 0.0
+MISSOURI-Heavy Snow: 4500.0
+MARYLAND-Blizzard: 0.0
+INDIANA-Frost/Freeze: 0.0
+ALABAMA-Heavy Snow: 0.0
+ALASKA-Heavy Rain: 0.0
+UTAH-Flash Flood: 0.0
+GULF OF MEXICO-Wildfire: 0.0
+GULF OF MEXICO-Flood: 4005000.0
+HAWAII WATERS-Winter Weather: 0.0
+MICHIGAN-Heavy Snow: 4140000.0
+LAKE SUPERIOR-Winter Storm: 0.0
+WEST VIRGINIA-Heavy Rain: 0.0
+WYOMING-Winter Storm: 0.0
+VIRGINIA-Marine Thunderstorm Wind: 0.0
+MONTANA-Hail: 4.99586E8
+IOWA-Lightning: 60000.0
+MINNESOTA-Marine Hail: 0.0
+PUERTO RICO-Flood: 0.0
+CALIFORNIA-Avalanche: 0.0
+IOWA-Marine High Wind: 0.0
+MICHIGAN-Thunderstorm Wind: 1340000.0
+NEBRASKA-Funnel Cloud: 0.0
+PUERTO RICO-Debris Flow: 0.0
+TENNESSEE-Hail: 0.0
+UTAH-Debris Flow: 0.0
+TEXAS-Lightning: 7009300.0
+ILLINOIS-Blizzard: 4.772E7
+NEVADA-High Surf: 0.0
+OKLAHOMA-Marine Hail: 0.0
+INDIANA-Strong Wind: 490400.0
+MINNESOTA-High Wind: 0.0
+WYOMING-High Surf: 0.0
+GULF OF MEXICO-High Wind: 0.0
+FLORIDA-Extreme Cold/Wind Chill: 0.0
+IOWA-High Wind: 68000.0
+TENNESSEE-Thunderstorm Wind: 0.0
+TENNESSEE-Tornado: 0.0
+IOWA-Blizzard: 0.0
+MASSACHUSETTS-Frost/Freeze: 0.0
+IOWA-Astronomical Low Tide: 0.0
+INDIANA-Avalanche: 0.0
+LAKE MICHIGAN-Frost/Freeze: 0.0
+KANSAS-Wildfire: 150000.0
+CALIFORNIA-Flash Flood: 0.0
+NEBRASKA-Waterspout: 0.0
+NEW HAMPSHIRE-Marine Thunderstorm Wind: 0.0
+MASSACHUSETTS-Thunderstorm Wind: 1752500.0
+VIRGINIA-Heat: 0.0
+ILLINOIS-Heavy Snow: 0.0
+OREGON-Waterspout: 0.0
+IOWA-Dust Devil: 0.0
+SOUTH DAKOTA-Heavy Rain: 62000.0
+INDIANA-Flood: 8000.0
+TENNESSEE-Lightning: 0.0
+NORTH DAKOTA-Lightning: 0.0
+NEVADA-Hail: 0.0
+WISCONSIN-Thunderstorm Wind: 0.0
+MINNESOTA-Dense Fog: 0.0
+VIRGIN ISLANDS-Thunderstorm Wind: 0.0
+NORTH DAKOTA-Heavy Rain: 0.0
+ATLANTIC NORTH-Strong Wind: 10000.0
+GULF OF ALASKA-Thunderstorm Wind: 27000.0
+NEW YORK-Lightning: 1020500.0
+GEORGIA-Thunderstorm Wind: 942000.0
+INDIANA-Winter Storm: 40000.0
+ARKANSAS-Flood: 20000.0
+PENNSYLVANIA-Lightning: 40000.0
+CONNECTICUT-Flood: 80000.0
+GEORGIA-Dense Fog: 3600000.0
+LAKE ONTARIO-Thunderstorm Wind: 0.0
+SOUTH CAROLINA-Debris Flow: 0.0
+SOUTH CAROLINA-Flood: 0.0
+ILLINOIS-Ice Storm: 1600000.0
+MISSISSIPPI-Flash Flood: 8717000.0
+ILLINOIS-Astronomical Low Tide: 0.0
+NEBRASKA-Flood: 959000.0
+LAKE MICHIGAN-Ice Storm: 0.0
+NORTH CAROLINA-Strong Wind: 0.0
+NEW HAMPSHIRE-Rip Current: 0.0
+SOUTH DAKOTA-Drought: 0.0
+OKLAHOMA-Tornado: 5089000.0
+MINNESOTA-Coastal Flood: 0.0
+NORTH CAROLINA-Rip Current: 0.0
+CALIFORNIA-Thunderstorm Wind: 1.1905E7
+OREGON-Thunderstorm Wind: 0.0
+VIRGINIA-Thunderstorm Wind: 1079750.0
+MAINE-Tornado: 0.0
+ALABAMA-Sneakerwave: 0.0
+ARIZONA-Dust Storm: 0.0
+MONTANA-Astronomical Low Tide: 0.0
+KANSAS-Hail: 1.9027E7
+MAINE-Winter Storm: 0.0
+NORTH CAROLINA-Funnel Cloud: 0.0
+TEXAS-Flood: 105200.0
+ARIZONA-Ice Storm: 0.0
+TENNESSEE-Marine Thunderstorm Wind: 0.0
+PUERTO RICO-Heavy Rain: 0.0
+VERMONT-Hail: 0.0
+WYOMING-Marine High Wind: 0.0
+ATLANTIC NORTH-Extreme Cold/Wind Chill: 0.0
+TENNESSEE-Drought: 0.0
+OKLAHOMA-Lightning: 78000.0
+KENTUCKY-High Wind: 451000.0
+INDIANA-Heavy Snow: 150000.0
+NEW HAMPSHIRE-Tornado: 0.0
+SOUTH DAKOTA-Rip Current: 0.0
+HAWAII-High Surf: 0.0
+RHODE ISLAND-Wildfire: 0.0
+GEORGIA-High Wind: 253400.0
+SOUTH CAROLINA-Hail: 0.0
+WISCONSIN-Marine Strong Wind: 0.0
+NORTH CAROLINA-Flash Flood: 0.0
+HAWAII-Winter Weather: 0.0
+MICHIGAN-Dust Storm: 0.0
+SOUTH DAKOTA-Excessive Heat: 0.0
+SOUTH DAKOTA-Wildfire: 0.0
+INDIANA-Coastal Flood: 40000.0
+LAKE SUPERIOR-Marine Thunderstorm Wind: 0.0
+COLORADO-Winter Weather: 0.0
+NEVADA-Funnel Cloud: 0.0
+LOUISIANA-Hail: 0.0
+MARYLAND-Heavy Snow: 0.0
+MISSOURI-High Wind: 145000.0
+PENNSYLVANIA-Dust Storm: 0.0
+MONTANA-Thunderstorm Wind: 6.549E7
+HAWAII-Heavy Rain: 0.0
+LAKE ONTARIO-High Wind: 0.0
+ILLINOIS-Hail: 1440000.0
+MINNESOTA-Funnel Cloud: 0.0
+MICHIGAN-Winter Storm: 100000.0
+NEW JERSEY-Heavy Rain: 0.0
+NEW YORK-Strong Wind: 35000.0
+GULF OF ALASKA-Winter Weather: 0.0
+NEW YORK-Flash Flood: 2.0704E7
+OHIO-Heat: 0.0
+NEW YORK-Dust Storm: 0.0
+IDAHO-Winter Storm: 0.0
+HAWAII-Funnel Cloud: 0.0
+WYOMING-Strong Wind: 0.0
+PENNSYLVANIA-Tropical Storm: 0.0
+NEBRASKA-Frost/Freeze: 0.0
+MASSACHUSETTS-Tornado: 1520000.0
+DELAWARE-High Wind: 2590000.0
+ILLINOIS-Funnel Cloud: 0.0
+WYOMING-Marine Thunderstorm Wind: 0.0
+ATLANTIC SOUTH-Heavy Rain: 0.0
+NEW HAMPSHIRE-Thunderstorm Wind: 0.0
+SOUTH DAKOTA-Flash Flood: 1426000.0
+ARKANSAS-Frost/Freeze: 0.0
+MISSISSIPPI-Thunderstorm Wind: 1631500.0
+LAKE MICHIGAN-Thunderstorm Wind: 0.0
+ARKANSAS-Debris Flow: 4.002E7
+NEW JERSEY-Waterspout: 0.0
+PUERTO RICO-Drought: 0.0
+LAKE ST CLAIR-Marine Thunderstorm Wind: 0.0
+NEBRASKA-Dust Devil: 0.0
+WASHINGTON-Coastal Flood: 0.0
+KANSAS-Marine High Wind: 0.0
+IDAHO-Ice Storm: 0.0
+NEW YORK-Drought: 0.0
+GULF OF MEXICO-Blizzard: 0.0
+IOWA-Waterspout: 0.0
+MISSISSIPPI-Heavy Rain: 0.0
+LAKE MICHIGAN-Flash Flood: 0.0
+ARKANSAS-Extreme Cold/Wind Chill: 0.0
+ATLANTIC SOUTH-Winter Storm: 80000.0
+OKLAHOMA-Sneakerwave: 0.0
+MONTANA-Rip Current: 0.0
+INDIANA-Astronomical Low Tide: 0.0
+UTAH-Heavy Rain: 0.0
+TEXAS-Marine Thunderstorm Wind: 0.0
+ATLANTIC NORTH-Flood: 300000.0
+OHIO-Waterspout: 0.0
+MICHIGAN-Tornado: 112000.0
+ALASKA-Debris Flow: 60000.0
+IOWA-Strong Wind: 35500.0
+KENTUCKY-Heavy Rain: 0.0
+ALABAMA-Flash Flood: 6.4E7
+MINNESOTA-Waterspout: 0.0
+VIRGIN ISLANDS-Hail: 0.0
+RHODE ISLAND-Hail: 0.0
+MASSACHUSETTS-High Wind: 0.0
+KANSAS-Heavy Rain: 0.0
+ARKANSAS-Flash Flood: 196000.0
+INDIANA-Drought: 24000.0
+OHIO-Thunderstorm Wind: 2791250.0
+NEBRASKA-Excessive Heat: 0.0
+GEORGIA-Drought: 0.0
+LAKE ERIE-Marine Thunderstorm Wind: 0.0
+ARKANSAS-Marine Strong Wind: 0.0
+WYOMING-Frost/Freeze: 0.0
+TEXAS-Dense Fog: 0.0
+VERMONT-Waterspout: 0.0
+ARKANSAS-Winter Storm: 600000.0
+DELAWARE-Cold/Wind Chill: 0.0
+WYOMING-Freezing Fog: 0.0
+HAWAII-Winter Storm: 800000.0
+SOUTH DAKOTA-Heat: 0.0
+WYOMING-Heavy Rain: 0.0
+NEW JERSEY-Flood: 0.0
+TEXAS-Excessive Heat: 0.0
+LOUISIANA-Frost/Freeze: 0.0
+OKLAHOMA-Waterspout: 0.0
+TENNESSEE-Heat: 0.0
+SOUTH DAKOTA-Waterspout: 0.0
+MICHIGAN-Waterspout: 0.0
+PENNSYLVANIA-Flood: 0.0
+WEST VIRGINIA-Frost/Freeze: 0.0
+LAKE HURON-Winter Weather: 0.0
+ALASKA-Strong Wind: 48400.0
+NEW MEXICO-Funnel Cloud: 0.0
+COLORADO-Heavy Snow: 0.0
+ILLINOIS-Cold/Wind Chill: 0.0
+ARIZONA-Blizzard: 0.0
+OHIO-Funnel Cloud: 0.0
+WEST VIRGINIA-Wildfire: 0.0
+ALASKA-Flash Flood: 4.98179E8
+INDIANA-Wildfire: 0.0
+LAKE MICHIGAN-Heavy Snow: 0.0
+MINNESOTA-Heavy Rain: 4000.0
+MINNESOTA-Flash Flood: 585000.0
+KANSAS-Strong Wind: 0.0
+MINNESOTA-Drought: 6000.0
+VIRGINIA-Waterspout: 0.0
+WISCONSIN-Blizzard: 0.0
+WISCONSIN-Flood: 0.0
+WISCONSIN-Heavy Snow: 0.0
+LAKE ERIE-Thunderstorm Wind: 0.0
+PUERTO RICO-Hail: 0.0
+MISSOURI-Coastal Flood: 17500.0
+GEORGIA-Flood: 0.0
+CALIFORNIA-Hail: 0.0
+DISTRICT OF COLUMBIA-Strong Wind: 50000.0
+HAWAII-Tornado: 80000.0
+ALABAMA-Heavy Rain: 0.0
+LOUISIANA-Cold/Wind Chill: 0.0
+NORTH DAKOTA-Tornado: 0.0
+TENNESSEE-Tropical Storm: 0.0
+IDAHO-Hail: 0.0
+CALIFORNIA-Drought: 0.0
+UTAH-Flood: 0.0
+NEW MEXICO-Lightning: 0.0
+MICHIGAN-Heavy Rain: 0.0
+WEST VIRGINIA-Flood: 0.0
+ILLINOIS-Frost/Freeze: 0.0
+MONTANA-Flood: 2.0708E7
+OHIO-Lightning: 197000.0
+WYOMING-Cold/Wind Chill: 0.0
+MINNESOTA-Marine Strong Wind: 0.0
+WISCONSIN-Avalanche: 0.0
+CALIFORNIA-High Wind: 10000.0
+COLORADO-Drought: 0.0
+MICHIGAN-Flood: 2.383615E8
+KENTUCKY-Funnel Cloud: 0.0
+TEXAS-High Wind: 0.0
+IOWA-Drought: 0.0
+OKLAHOMA-Flash Flood: 9491500.0
+UTAH-Hail: 0.0
+WEST VIRGINIA-Waterspout: 0.0
+WISCONSIN-High Wind: 0.0
+ARKANSAS-High Surf: 0.0
+SOUTH CAROLINA-Heavy Rain: 0.0
+ARKANSAS-Thunderstorm Wind: 0.0
+NEW YORK-Heat: 0.0
+KANSAS-Dust Storm: 0.0
+PENNSYLVANIA-Thunderstorm Wind: 1.328975E7
+ATLANTIC SOUTH-Heavy Snow: 0.0
+MONTANA-Frost/Freeze: 0.0
+CALIFORNIA-Heavy Rain: 0.0
+IDAHO-Extreme Cold/Wind Chill: 0.0
+NORTH CAROLINA-Lightning: 0.0
+ARIZONA-Thunderstorm Wind: 282500.0
+IOWA-Marine Thunderstorm Wind: 0.0
+NEW HAMPSHIRE-Funnel Cloud: 0.0
+MISSOURI-Thunderstorm Wind: 6967700.0
+VIRGINIA-Tornado: 0.0
+NORTH CAROLINA-Wildfire: 0.0
+MINNESOTA-Winter Weather: 0.0
+WYOMING-Flood: 0.0
+SOUTH CAROLINA-Wildfire: 0.0
+OKLAHOMA-Excessive Heat: 0.0
+MASSACHUSETTS-Waterspout: 0.0
+IOWA-Cold/Wind Chill: 0.0
+GULF OF ALASKA-Winter Storm: 0.0
+PUERTO RICO-Flash Flood: 0.0
+WASHINGTON-Debris Flow: 0.0
+CALIFORNIA-Funnel Cloud: 0.0
+MAINE-Winter Weather: 0.0
+LOUISIANA-Flood: 0.0
+VIRGINIA-Coastal Flood: 0.0
+CONNECTICUT-Strong Wind: 324000.0
+PUERTO RICO-High Wind: 0.0
+LAKE MICHIGAN-High Wind: 0.0
+NEW MEXICO-Flash Flood: 0.0
+VIRGINIA-Heavy Rain: 20000.0
+FLORIDA-Cold/Wind Chill: 0.0
+LAKE ERIE-Winter Storm: 0.0
+LAKE ST CLAIR-Hail: 0.0
+VIRGINIA-Hail: 2438600.0
+ILLINOIS-High Wind: 70000.0
+LAKE MICHIGAN-Blizzard: 0.0
+KANSAS-Dense Fog: 0.0
+PUERTO RICO-Thunderstorm Wind: 0.0
+TENNESSEE-Flood: 0.0
+KANSAS-High Wind: 116000.0
+ARIZONA-Hail: 0.0
+MICHIGAN-Debris Flow: 150000.0
+CONNECTICUT-Winter Weather: 0.0
+LAKE MICHIGAN-Strong Wind: 0.0
+UTAH-Funnel Cloud: 0.0
+GULF OF ALASKA-Heavy Snow: 0.0
+DELAWARE-Lake-Effect Snow: 50000.0
+OHIO-Rip Current: 0.0
+NEBRASKA-Drought: 0.0
+ALABAMA-Frost/Freeze: 0.0
+IOWA-Heavy Rain: 0.0
+OREGON-Flash Flood: 0.0
+ALABAMA-Extreme Cold/Wind Chill: 0.0
+FLORIDA-High Surf: 0.0
+WISCONSIN-Cold/Wind Chill: 0.0
+COLORADO-Funnel Cloud: 0.0
+WISCONSIN-Flash Flood: 0.0
+NORTH CAROLINA-Flood: 0.0
+WYOMING-Wildfire: 0.0
+ALASKA-Blizzard: 0.0
+OKLAHOMA-Heavy Rain: 0.0
+ARKANSAS-Strong Wind: 1843000.0
+HAWAII-Strong Wind: 44000.0
+ILLINOIS-Marine Thunderstorm Wind: 0.0
+MINNESOTA-Dust Devil: 0.0
+VERMONT-Heavy Rain: 0.0
+MARYLAND-High Wind: 0.0
+IDAHO-Flash Flood: 0.0
+MAINE-Flash Flood: 0.0
+TENNESSEE-Funnel Cloud: 0.0
+NEW JERSEY-Strong Wind: 0.0
+WYOMING-Waterspout: 0.0
+ILLINOIS-Drought: 224000.0
+MINNESOTA-Wildfire: 6000.0
+UTAH-Tornado: 0.0
+NEW JERSEY-High Wind: 0.0
+E PACIFIC-High Surf: 0.0
+SOUTH CAROLINA-Dust Storm: 0.0
+GULF OF MEXICO-Winter Storm: 0.0
+SOUTH CAROLINA-Tornado: 0.0
+VIRGINIA-Dust Storm: 0.0
+WEST VIRGINIA-Astronomical Low Tide: 0.0
+HAWAII-Extreme Cold/Wind Chill: 0.0
+NEVADA-Tornado: 0.0
+NEVADA-Wildfire: 0.0
+HAWAII-Ice Storm: 1100000.0
+ALABAMA-Debris Flow: 20000.0
+WYOMING-Coastal Flood: 0.0
+PENNSYLVANIA-Flash Flood: 6.3196E7
+RHODE ISLAND-Lightning: 0.0
+WASHINGTON-Lightning: 0.0
+KANSAS-Blizzard: 0.0
+MAINE-Strong Wind: 0.0
+ARIZONA-High Surf: 0.0
+ILLINOIS-Thunderstorm Wind: 0.0
+LOUISIANA-Flash Flood: 0.0
+MINNESOTA-Excessive Heat: 0.0
+TENNESSEE-Debris Flow: 0.0
+KANSAS-Drought: 0.0
+LAKE ONTARIO-Marine Thunderstorm Wind: 0.0
+MICHIGAN-Funnel Cloud: 0.0
+OHIO-Heavy Rain: 0.0
+ATLANTIC SOUTH-Winter Weather: 0.0
+KENTUCKY-Hail: 85000.0
+CONNECTICUT-Winter Storm: 0.0
+LAKE ERIE-Blizzard: 0.0
+VERMONT-Heat: 0.0
+ALABAMA-Winter Weather: 0.0
+COLORADO-Lightning: 0.0
+HAWAII-Flash Flood: 0.0
+MARYLAND-Hail: 0.0
+ARKANSAS-Lake-Effect Snow: 60000.0
+VIRGINIA-Flood: 71000.0
+MARYLAND-Flood: 8.7147E7
+MAINE-Thunderstorm Wind: 0.0
+MASSACHUSETTS-Rip Current: 0.0
+NORTH CAROLINA-Tornado: 0.0
+GULF OF ALASKA-Blizzard: 0.0
+GUAM-Blizzard: 0.0
+MONTANA-Coastal Flood: 17000.0
+WYOMING-Dust Storm: 0.0
+GULF OF MEXICO-Waterspout: 0.0
+ILLINOIS-Lake-Effect Snow: 0.0
+IOWA-Winter Storm: 562500.0
+NORTH DAKOTA-Strong Wind: 0.0
+GUAM-Flash Flood: 30000.0
+RHODE ISLAND-Marine Thunderstorm Wind: 0.0
+IOWA-Coastal Flood: 1720000.0
+VERMONT-Drought: 0.0
+NEW MEXICO-Drought: 0.0
+WISCONSIN-Hail: 0.0
+MASSACHUSETTS-Marine Thunderstorm Wind: 0.0
+WEST VIRGINIA-Drought: 0.0
+ATLANTIC NORTH-Winter Storm: 700000.0
+LOUISIANA-Drought: 0.0
+OKLAHOMA-Dust Storm: 0.0
+WEST VIRGINIA-Thunderstorm Wind: 0.0
+KENTUCKY-Dust Storm: 480000.0
+MASSACHUSETTS-Wildfire: 0.0
+NEW HAMPSHIRE-Excessive Heat: 0.0
+ALASKA-Marine Thunderstorm Wind: 0.0
+VERMONT-Thunderstorm Wind: 0.0
+PENNSYLVANIA-Excessive Heat: 0.0
+ATLANTIC SOUTH-Ice Storm: 3300000.0
+OREGON-Marine Thunderstorm Wind: 0.0
+ILLINOIS-Wildfire: 30000.0
