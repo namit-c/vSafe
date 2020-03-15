@@ -17,26 +17,27 @@ public class DangerRating{
                                                                               //i.e "ARKANSAS" - "Winter Weather"        
         HashMap<String,Double> deathDict = new HashMap<String,Double>();
         HashMap<String,Double> damageDict = new HashMap<String,Double>();
-        for (int i = 0; i < dataSet.length; i++){
+        for (int i = 0; i < dataSet.length; i++){ //collecting all unique city-event and setting the key values to 0.0
             city_set.add(dataSet[i][cityIndex]);
             injuryDict.put(dataSet[i][cityIndex]+"-"+dataSet[i][eventIndex], 0.0);
             deathDict.put(dataSet[i][cityIndex]+"-"+dataSet[i][eventIndex], 0.0);
             damageDict.put(dataSet[i][cityIndex]+"-"+dataSet[i][eventIndex], 0.0);
         }
         
-        String[] cityLst = new String[city_set.size()];
+        String[] cityLst = new String[city_set.size()]; //converting the city_set into an array
         city_set.toArray(cityLst);
 
 
         System.out.println(city_set);
         ArrayList<String[]> listArr = convertTwoDToArrayList(dataSet);
+
         int index = 0;
-        for (int i = 0; i < cityLst.length; i++){
+        for (int i = 0; i < cityLst.length; i++){ //itterating through all cities
             while (index >= 0){
                 index = BinarySearch.binarySearch(listArr,cityLst[i],cityIndex); 
                 if (index >=0){ //Current City is found
                     
-                    String tempStr = dataSet[index][cityIndex]+"-"+dataSet[index][eventIndex]; //string would be SOUTH CAROLINA-Heavy Rain
+                    String tempStr = dataSet[index][cityIndex]+"-"+dataSet[index][eventIndex]; //string would be "SOUTH CAROLINA-Heavy Rain"
                     double injury_counter = injuryDict.get(tempStr);
                     double death_counter = deathDict.get(tempStr);
                     double damage_counter = damageDict.get(tempStr);
@@ -44,7 +45,6 @@ public class DangerRating{
                    
                     if (dataSet[index][injuryIndex].length() != 0 && dataSet[index][deathIndex].length() != 0 && dataSet[index][damageIndex].length() != 0){
                         
-                        //System.out.println("INJURY");
                         try{
 
                             injury_counter += Double.parseDouble(dataSet[index][injuryIndex]) ;
@@ -68,7 +68,7 @@ public class DangerRating{
                     deathDict.put(tempStr,death_counter);
                     damageDict.put(tempStr,damage_counter);
                      
-                    listArr.remove(index);
+                    listArr.remove(index); //removing the current row will prevent binarySearch from searching the same row again
                 }
                 
             }
@@ -90,9 +90,7 @@ public class DangerRating{
 
     public static void main(String[] args) throws IOException{
         String[][] data1 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv",8,19);
-        //System.out.println(data1[0][8]);
 
-        //MergeSort.sort(data1,8);
         findDangerStatsStormData(8,12,20,22,24,data1);
     }
 }
