@@ -19,6 +19,9 @@ latex/
 .coverage
 bin/
 
+# IntelliJ IDEA
+.idea/
+final-project.iml
 
 
 # Created by https://www.gitignore.io/api/java,latex,python,eclipse,visualstudio,visualstudiocode
