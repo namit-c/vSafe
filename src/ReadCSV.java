@@ -19,19 +19,22 @@ import java.io.FileWriter;
 
 
  public class ReadCSV{
+
+    /**
+     * @param pathToCSV path to CSV file
+     * @param cityCol column index for city
+     * @param dateCol column index for date
+     */
     public static String[][] readFile(String pathToCSV, int cityCol, int dateCol) throws IOException{
         BufferedReader csvReader = new BufferedReader(new FileReader(pathToCSV));
         String row = "";
         int count = 0;
-        //ArrayList<String[] > dataSetDates = new ArrayList<String[]>();
-        //ArrayList<String> dataSetLocationStates = new ArrayList<String>();
         ArrayList<String[]> dataSet = new ArrayList<String[]>();
         while ((row = csvReader.readLine()) != null) {
 
             String[] data = row.split(",");
-            if (count > 0){
-                //dataSetDates.add(parseDates(data,0,0,1,3,3,4));
-                //dataSetLocationStates.add(parseLocationsByStateOrProvince(data,8));
+            if (count > 0){ //used to skip the first line
+
                 dataSet.add(data);
             }
             count += 1;
@@ -51,22 +54,16 @@ import java.io.FileWriter;
         endTime = System.currentTimeMillis();
 
         System.out.println(pathToCSV + " = " +data.length);
-        /*
-        for (int i = 0; i < data.length; i++){
-            System.out.println(data[i][8]+ " "+ data[i][19]);
-        }
-        */
 
         return data;
 
     }
     private static String[][] convertArrayListToStringArr(ArrayList<String[]> arr){
         String[][] newArr = new String[arr.size()][arr.get(0).length];
-        //System.out.println(newArr.length + " " + newArr[0].length);
+        
         for (int i = 0;i < arr.size(); i++){
             int j;
             for (j = 0; j < arr.get(0).length && j < arr.get(i).length;j++){
-                //System.out.println(i + " " + j);
                 if (arr.get(i)[j].length() == 0){
                     newArr[i][j] = " ";
                 }else{
@@ -79,7 +76,6 @@ import java.io.FileWriter;
             }
 
         }
-        //System.out.println(convertArrayListToStringArr);
         return newArr;
     }
 
@@ -129,6 +125,7 @@ import java.io.FileWriter;
        readFile("../Data_Sets/stormdata_2004.csv",8,19);
        readFile("../Data_Sets/stormdata_2003.csv",8,19);
        readFile("../Data_Sets/eqarchive-en.csv",0,6);
+       String[][] city = readFile("../Data_Sets/Canada_Cities.csv",0,1);
        long endTime = System.currentTimeMillis();
        System.out.println("\n\nThis took = " + (endTime - startTime) + " ms");
        System.out.println("DONE"); 
