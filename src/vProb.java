@@ -11,6 +11,8 @@ public class vProb {
 		String location;
 		int date;
 		int month;
+		
+		// Load Stormdata datasets (2003 - 2013)
 		String[][] array0 = ReadCSV.readFile("../Data_Sets/stormdata_2003.csv", 8, 19);
 		String[][] array1 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv", 8, 19);
 		String[][] array2 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv", 8, 19);
@@ -25,27 +27,21 @@ public class vProb {
 		String[][][] dataSet0 = new String[][][] { array1, array2, array3, array4, array5, array6, array7,
 				array8, array9, array10 };
 
+		// Creates HashMap
 		HashMap<String, Integer> set = new HashMap<>();
 		String key;
-		
-		for (int j = 0; j < dataSet0[0].length; j++) {
-			key = dataSet0[0][j][8] + dataSet0[0][j][19] + dataSet0[0][j][12];
-			if (!set.containsKey(key)) {
-				set.put(key, 1);
-			} else {
-				set.replace(key, set.get(key) + 1); 
-			}
-		}
-		
 		for (int i = 0; i < dataSet0.length; i++) {
 			for (int j = 1; j < dataSet0[i].length; j++) {
 				String input = dataSet0[i][j][3].replaceAll("\"", "").replaceAll("/", "");
-				key = dataSet0[i][j][8] + ' ' + input + ' ' + dataSet0[i][j][12];
-				if (!set.containsKey(key)) {
-					set.put(key, 1);
-				} else {
-					set.replace(key, set.get(key) + 1); 
+				if (input.length() > 5) {
+					key = dataSet0[i][j][8] + ' ' + String.valueOf(input.charAt(4)) + String.valueOf(input.charAt(5)) + "/" + dataSet0[i][j][1] + ' ' + dataSet0[i][j][12]; // Input
+					if (!set.containsKey(key)) {
+						set.put(key, 1);
+					} else {
+						set.replace(key, set.get(key) + 1);
+					}
 				}
+
 			}
 		}
 
@@ -53,13 +49,14 @@ public class vProb {
 			System.out.println(keys + " : " + set.get(keys));
 		} 
 		
+		// User inputs
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter the location: ");
 		location = scanner.nextLine();
 		System.out.print("Enter date (mm/dd/yyyy): ");
 		month = Integer.parseInt(scanner.nextLine().substring(0,2));
 		date = Integer.parseInt(scanner.nextLine().substring(3, 5));
-		System.out.println(location + " " + month + " " date);
+		System.out.println(location + " " + month + " " + date);
 
 		scanner.close();
 	}
