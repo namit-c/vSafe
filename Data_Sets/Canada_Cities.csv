@@ -12,7 +12,7 @@ Oshawa,43.9,-78.866667,Canada,CA,Ontario,,450963,247989
 Kitchener,43.446976,-80.472484,Canada,CA,Ontario,,417001,409112
 Halifax,44.65,-63.6,Canada,CA,Nova Scotia,admin,359111,222874
 London,42.983333,-81.25,Canada,CA,Ontario,,346765,335035
-Windsor,42.301649,-83.030744,Canada,CA,Ontario,,319246,210891
+Windsor Ontario,42.301649,-83.030744,Canada,CA,Ontario,,319246,210891
 Victoria,48.450234,-123.343529,Canada,CA,British Columbia,admin,289625,251358
 Saskatoon,52.133333,-106.666667,Canada,CA,Saskatchewan,,198958,189193
 Barrie,44.383333,-79.7,Canada,CA,Ontario,,182041,119732
@@ -30,7 +30,7 @@ Moncton,46.09652,-64.79757,Canada,CA,New Brunswick,,90635,87467
 Saint John,45.230798,-66.095316,Canada,CA,New Brunswick,,87857,54449
 Nanaimo,49.15,-123.916667,Canada,CA,British Columbia,,84905,80491
 Peterborough,44.3,-78.333333,Canada,CA,Ontario,,83627,75877
-Saint-Jérôme,45.766667,-74.0,Canada,CA,Québec,,78439,54948
+Saint-Jérôme,45.766667,-74,Canada,CA,Québec,,78439,54948
 Red Deer,52.266667,-113.8,Canada,CA,Alberta,,74857,73593
 Lethbridge,49.7,-112.833333,Canada,CA,Alberta,,70617,58571
 Kamloops,50.666667,-120.333333,Canada,CA,British Columbia,,68714,68628
@@ -55,7 +55,7 @@ Rimouski,48.433333,-68.516667,Canada,CA,Québec,,35584,35584
 Timmins,48.466667,-81.333333,Canada,CA,Ontario,,34974,32901
 Prince Albert,53.2,-105.75,Canada,CA,Saskatchewan,,34609,24678
 Campbell River,50.016667,-125.25,Canada,CA,British Columbia,,33430,26453
-Courtenay,49.683333,-125.0,Canada,CA,British Columbia,,32793,25099
+Courtenay,49.683333,-125,Canada,CA,British Columbia,,32793,25099
 Orangeville,43.916366,-80.096671,Canada,CA,Ontario,,32640,28984
 Moose Jaw,50.4,-105.55,Canada,CA,Saskatchewan,,32166,30707
 Brandon,49.833333,-99.95,Canada,CA,Manitoba,,28418,26234
@@ -102,7 +102,7 @@ Amherst,45.830019,-64.210024,Canada,CA,Nova Scotia,,9336,7927
 Kapuskasing,49.416667,-82.433333,Canada,CA,Ontario,,9240,8224
 Dauphin,51.15,-100.05,Canada,CA,Manitoba,,9077,8418
 Dryden,49.783333,-92.833333,Canada,CA,Ontario,,7862,7862
-Revelstoke,51.0,-118.183333,Canada,CA,British Columbia,,7668,7533
+Revelstoke,51,-118.183333,Canada,CA,British Columbia,,7668,7533
 Happy Valley,53.3,-60.3,Canada,CA,Newfoundland and Labrador,,7572,1047
 Banff,51.166667,-115.566667,Canada,CA,Alberta,,7502,6292
 Yarmouth,43.833965,-66.113926,Canada,CA,Nova Scotia,,7500,7366
@@ -130,14 +130,14 @@ Kindersley,51.466667,-109.133333,Canada,CA,Saskatchewan,,4383,4249
 Liverpool,44.038414,-64.718433,Canada,CA,Nova Scotia,,4331,4331
 Melville,50.933333,-102.8,Canada,CA,Saskatchewan,,4279,4173
 Channel-Port aux Basques,47.566667,-59.15,Canada,CA,Newfoundland and Labrador,,4220,2244
-Deer Lake,49.183333,-57.433333,Canada,CA,Newfoundland and Labrador,,4163,3743
+Deer Lake Newfoundland,49.183333,-57.433333,Canada,CA,Newfoundland and Labrador,,4163,3743
 Saint-Augustin,51.233333,-58.65,Canada,CA,Québec,,3961,3961
 Digby,44.578466,-65.783525,Canada,CA,Nova Scotia,,3949,2052
 Jasper,52.883333,-118.083333,Canada,CA,Alberta,,3907,3102
 Hay River,60.85,-115.7,Canada,CA,Northwest Territories,,3900,3648
-Windsor,44.958995,-64.144786,Canada,CA,Nova Scotia,,3864,3654
+Windsor Nova Scotia,44.958995,-64.144786,Canada,CA,Nova Scotia,,3864,3654
 La Ronge,55.1,-105.3,Canada,CA,Saskatchewan,,3783,3071
-Deer Lake,52.616667,-94.066667,Canada,CA,Ontario,,3743,3743
+Deer Lake Ontario,52.616667,-94.066667,Canada,CA,Ontario,,3743,3743
 Gaspé,48.833333,-64.483333,Canada,CA,Québec,,3677,3331
 Atikokan,48.75,-91.616667,Canada,CA,Ontario,,3625,3625
 Gander,48.95,-54.55,Canada,CA,Newfoundland and Labrador,,3345,3345
@@ -148,7 +148,7 @@ Lac La Biche,54.771944,-111.964722,Canada,CA,Alberta,,2986,2919
 Lillooet,50.683333,-121.933333,Canada,CA,British Columbia,,2893,2893
 Chapleau,47.833333,-83.4,Canada,CA,Ontario,,2663,2663
 Burns Lake,54.216667,-125.766667,Canada,CA,British Columbia,,2635,2631
-Gimli,50.633333,-97.0,Canada,CA,Manitoba,,2623,2009
+Gimli,50.633333,-97,Canada,CA,Manitoba,,2623,2009
 Athabasca,54.716667,-113.266667,Canada,CA,Alberta,,2539,2260
 Nelson House,55.8,-98.85,Canada,CA,Manitoba,,2500,2500
 Rankin Inlet,62.816667,-92.083333,Canada,CA,Nunavut,,2472,2334
@@ -167,7 +167,7 @@ Igloolik,69.4,-81.8,Canada,CA,Nunavut,,1612,1612
 Inukjuak,58.45334,-78.102493,Canada,CA,Québec,,1597,1597
 Little Current,45.966667,-81.933333,Canada,CA,Ontario,,1595,1595
 Baker Lake,64.316667,-96.016667,Canada,CA,Nunavut,,1584,1584
-Pond Inlet,72.7,-78.0,Canada,CA,Nunavut,,1549,1549
+Pond Inlet,72.7,-78,Canada,CA,Nunavut,,1549,1549
 Cap-Chat,49.083333,-66.683333,Canada,CA,Québec,,1484,1466
 Cambridge Bay,69.116667,-105.033333,Canada,CA,Nunavut,,1477,1477
 Thessalon,46.25,-83.55,Canada,CA,Ontario,,1464,1369
@@ -185,7 +185,7 @@ Nipigon,49.016667,-88.25,Canada,CA,Ontario,,1204,1204
 Nain,56.55,-61.683333,Canada,CA,Newfoundland and Labrador,,1151,1151
 Gjoa Haven,68.633333,-95.916667,Canada,CA,Nunavut,,1109,1109
 Fort McPherson,67.433333,-134.866667,Canada,CA,Northwest Territories,,1069,1069
-Argentia,47.3,-54.0,Canada,CA,Newfoundland and Labrador,,1063,1063
+Argentia,47.3,-54,Canada,CA,Newfoundland and Labrador,,1063,1063
 Norman Wells,65.283333,-126.85,Canada,CA,Northwest Territories,,1027,273
 Churchill,58.766667,-94.166667,Canada,CA,Manitoba,,1000,923
 Repulse Bay,66.516667,-86.233333,Canada,CA,Nunavut,,1000,748
@@ -206,7 +206,7 @@ Mingan,50.3,-64.016667,Canada,CA,Québec,,588,588
 Kangirsuk,60.016667,-70.033333,Canada,CA,Québec,,549,549
 Sandspit,53.239111,-131.818769,Canada,CA,British Columbia,,538,538
 Délįne,65.183333,-123.416667,Canada,CA,Northwest Territories,,525,262
-Fort Smith,60.0,-111.883333,Canada,CA,Northwest Territories,,518,518
+Fort Smith,60,-111.883333,Canada,CA,Northwest Territories,,518,518
 Cartwright,53.7,-57.016667,Canada,CA,Newfoundland and Labrador,,505,505
 Holman,70.733333,-117.75,Canada,CA,Northwest Territories,,500,398
 Lynn Lake,56.85,-101.05,Canada,CA,Manitoba,,482,482
@@ -241,7 +241,7 @@ Lansdowne House,52.216667,-87.883333,Canada,CA,Ontario,,120,120
 Salluit,62.2,-75.633333,Canada,CA,Québec,,106,106
 Łutselk’e,62.4,-110.733333,Canada,CA,Northwest Territories,,102,102
 Uranium City,59.566667,-108.616667,Canada,CA,Saskatchewan,,89,89
-Burwash Landing,61.35,-139.0,Canada,CA,Yukon,,73,73
+Burwash Landing,61.35,-139,Canada,CA,Yukon,,73,73
 Grise Fiord,76.416667,-82.95,Canada,CA,Nunavut,,23,23
 Big Beaverhouse,52.95,-89.883333,Canada,CA,Ontario,,10,10
 Island Lake,53.966667,-94.766667,Canada,CA,Manitoba,,10,10
