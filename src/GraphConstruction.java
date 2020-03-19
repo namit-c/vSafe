@@ -3,15 +3,15 @@ import java.util.*;
 import java.lang.Math;
 
 public class GraphConstruction {
-	public static void CloseCitiesHashTable() throws IOException{
+	public static Hashtable<String, ArrayList<String>> CloseCitiesHashTable() throws IOException{
 		
 		String[][] data = ReadCSV.readFile("../Data_Sets/Canada_Cities.csv",0,1);
         
         // Now data has all rows of cities sorted by alphabetical order.
         
-        for (int i = 0; i < data.length; i++) {
+        /*for (int i = 0; i < data.length; i++) {
         	System.out.println(data[i][0]);
-        }
+        }*/
         
         Hashtable<String, ArrayList<String>> closeCities = new Hashtable<String, ArrayList<String>>();
         ArrayList<String> close = new ArrayList<String>();
@@ -19,28 +19,41 @@ public class GraphConstruction {
         
         // Create hash key, value, for all cities
         for (int i = 0; i < data.length; i++) {
-        	System.out.println("Examining: " + data[i][0] + "Lon: " + data[i][1] + "Lat:" + data[i][2]);
+        	//System.out.println("Examining: " + data[i][0] + "Lon: " + data[i][1] + "Lat:" + data[i][2]);
         	
         	// Check all cities to see if nearby
         	for (int j = 0; j < data.length; j++) {
         		if (i != j) { // If not at same row as the one being examined
         			distance = distance(Double.parseDouble(data[i][2]), Double.parseDouble(data[i][1]),
-        					Double.parseDouble(data[j][2]), Double.parseDouble(data[i][1]));
+        					Double.parseDouble(data[j][2]), Double.parseDouble(data[j][1]));
         			//System.out.println(data[i][0] + " to " + data[j][0] + distance);
+        			
+        			// ADJUST DEFINITION OF "CLOSE" HERE
+        			if (distance <= 200) { // If this city is "close", add to array list
+        				close.add(data[j][0]);
+        				//System.out.println(close);
+        			}
+        			
         		}
         	}
         	
-        	
         	closeCities.put(data[i][0], close); // Adds the current examined city to hashtable + its nearby cities
+        	close= new ArrayList<String>(); // Clear "close" cities to initialize for next check
         }
         
-        /*
-        test.add("Close city");
-        test.add("Close city 2");
-        closeCities.put("Ontario", test);
+        int count = 0;
+        ArrayList<String> empty = new ArrayList<String>();
+        for (int i = 0; i < closeCities.size(); i++) {
+        	System.out.println(data[i][0] + ": " + closeCities.get(data[i][0]));
+        	if (closeCities.get(data[i][0]).size() == 0) {
+        		empty.add(data[i][0]);
+        		count++;
+        	}
+        }
+        System.out.println(empty);
+        System.out.println(count);
 
-        System.out.println(closeCities);
-        */
+        return closeCities;
 	}
 	
 	private static double distance(double lon1, double lat1, double lon2, double lat2) {
@@ -56,7 +69,7 @@ public class GraphConstruction {
 		
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-		return R * c;
+		return R * c / 1000; // Converted to km
 	}
 	
     public static void main(String[] args) throws IOException{
