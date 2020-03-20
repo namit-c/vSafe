@@ -67,8 +67,11 @@ import java.io.FileWriter;
                 if (arr.get(i)[j].length() == 0){
                     newArr[i][j] = " ";
                 }else{
-
-                    newArr[i][j] = arr.get(i)[j];
+                    if (arr.get(i)[j].startsWith("\"")){
+                        newArr[i][j] = arr.get(i)[j].substring(1,arr.get(i)[j].length());
+                    }else{
+                        newArr[i][j] = arr.get(i)[j];
+                    }
                 }
             }
             while (j < arr.get(0).length){
