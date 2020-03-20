@@ -10,7 +10,17 @@ public class FrontendText {
 	
 	//This module takes care of everything after the input
 	public static void frontend(String cityname, String vacationDate) {
+		//call the sorting module
 		
+		//call the searching module
+		
+		//calculate possibilities
+		
+		//assign danger rating
+		
+		//graph construction 
+		
+		//heat map
 		
 	}
 	
@@ -18,21 +28,30 @@ public class FrontendText {
 		
 		System.out.println("Loading..");
 		//Sorting the data set
-		MergeSort.main(null);
+		ReadCSV.main(null);
 		System.out.println("Loading complete.\n");
 		
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-		System.out.println("Enter the city name and date(mm/dd/yyyy) separated by a space: ");
-		//Reading the input information, city and date
-		String inputString = reader.readLine();
+		String flag = "y";
 		
-		//Reading the string with city and date and splitting the city and date
-		//Index 0 there is the city name
-		String[] input = inputString.split(" ");
-		
-		//calling the rest of the front end stuff to display information
-		frontend(input[0], input[1]);
+		//Loop so multiple cities can be entered
+		while(flag.equals("y")) {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	
+			System.out.println("Enter the city name and date(mm/dd/yyyy) separated by a space. ");
+			//Reading the input information, city and date
+			String inputString = reader.readLine();
+			
+			//Reading the string with city and date and splitting the city and date
+			//Index 0 there is the city name
+			String[] input = inputString.split(" ");
+			
+			//calling the rest of the front end stuff to display information
+			frontend(input[0], input[1]);
+			
+			//Flag to trigger the loop to enter multiple cities
+			System.out.println("Enter y to enter a new city, n otherwise: ");
+			flag = reader.readLine();
+		}
 		
 		
 	}
