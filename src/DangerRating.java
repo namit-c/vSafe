@@ -7,16 +7,13 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class DangerRating{
-
+   public static  HashMap<String,Double > injuryDict = new HashMap<String, Double>();
+   public static HashMap<String,Double> deathDict = new HashMap<String,Double>();
+   public static  HashMap<String,Double > damageDict = new HashMap<String, Double>();
    public static void findDangerStatsStormData(int cityIndex, int eventIndex, int injuryIndex, int deathIndex, int damageIndex, String[][][] dataSet ){
 
 
         Set<String> city_set = new HashSet<String>(); //city_set contains all unique cities in the csv file
-        HashMap<String,Double > injuryDict = new HashMap<String, Double>(); //injuryDict will store all unique city with its events such as 
-                                                                              //such as "cityName-eventName"
-                                                                              //i.e "ARKANSAS" - "Winter Weather"        
-        HashMap<String,Double> deathDict = new HashMap<String,Double>();
-        HashMap<String,Double> damageDict = new HashMap<String,Double>();
         for (int z = 0; z < dataSet.length; z++){
 
             for (int i = 0; i < dataSet[z].length; i++){ //collecting all unique city-event and setting the key values to 0.0
@@ -31,8 +28,7 @@ public class DangerRating{
         city_set.toArray(cityLst);
 
 
-        System.out.println(city_set);
-        //ArrayList<String[]> listArr = convertTwoDToArrayList(dataSet);
+        //System.out.println(city_set);
 
         int index = 0;
         for (int z = 0; z < dataSet.length; z++){
@@ -61,6 +57,8 @@ public class DangerRating{
 
                                 injury_counter += Double.parseDouble(dataSet[z][index][injuryIndex]) ;
                                 death_counter += Double.parseDouble(dataSet[z][index][deathIndex]) ;
+                                
+                                //the following conditions are use to consider cells that have either "K" or "M"
                                 if (dataSet[z][index][damageIndex].contains("K")){ //if the cell contains a K
                                     damage_counter += Double.parseDouble(dataSet[z][index][damageIndex].substring(0,dataSet[z][index][damageIndex].indexOf("K"))) *1000;
                                 
@@ -89,7 +87,12 @@ public class DangerRating{
         }
 
         //System.out.println(Arrays.asList(damageDict));
+        dataSet = null;
+        System.gc();
         damageDict.forEach((key, value) -> System.out.println(key + ": " + value));
+        System.out.println(damageDict.size());
+        System.out.println(injuryDict.size());
+        System.out.println(deathDict.size());
    }
 
     private static ArrayList<String[]> convertTwoDToArrayList (String[][] arr){
@@ -124,5 +127,32 @@ public class DangerRating{
         //String[][] data11= ReadCSV.readFile("../Data_Sets/stormdata_2003.csv",8,19);
         String[][][] allDataSets = {data1,data2,data3,data4};
         findDangerStatsStormData(8,12,20,22,24,allDataSets);
+        data1 = null;
+        data2 = null;
+        data3 = null;
+        data4 = null;
+        allDataSets = null;
+        System.gc(); //calling system gargbage collector *Doesnt always free memory
+                     //https://stackoverflow.com/questions/1567979/how-to-free-memory-in-java
+        String[][]data5 = ReadCSV.readFile("../Data_Sets/stormdata_2009.csv",8,19);
+        String[][] data6 = ReadCSV.readFile("../Data_Sets/stormdata_2008.csv",8,19);
+        String[][] data7 = ReadCSV.readFile("../Data_Sets/stormdata_2007.csv",8,19);
+        String[][] data8 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv",8,19);
+        String[][][] newData = {data5,data6,data7,data8};
+        findDangerStatsStormData(8,12,20,22,24,newData);
+
+        data5 = null;
+        data6 = null;
+        data7 = null;
+        data8 = null;
+        newData = null;
+        
+        String[][] data9 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv",8,19);
+        String[][] data10 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv",8,19);
+        String[][] data11 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv",8,19);
+        String[][][] newData1 = {data9,data10,data11};
+        findDangerStatsStormData(8,12,20,22,24,newData1);
+
+
     }
 }
