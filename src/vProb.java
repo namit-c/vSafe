@@ -32,8 +32,9 @@ public class vProb {
 		String key;
 		for (int i = 0; i < dataSet0.length; i++) {
 			for (int j = 1; j < dataSet0[i].length; j++) {
-				String input = dataSet0[i][j][3].replaceAll("\"", "").replaceAll("/", "");
+				String input = dataSet0[i][j][0].replaceAll("\"", "").replaceAll("/", "");
 				if (input.length() > 5) {
+					//  key = State (Col 9) + Begin Year (Col 4) + Begin Day (Col 1) + Event (Col 13)
 					key = dataSet0[i][j][8] + ' ' + String.valueOf(input.charAt(4)) + String.valueOf(input.charAt(5)) + "/" + dataSet0[i][j][1] + ' ' + dataSet0[i][j][12]; // Input
 					if (!set.containsKey(key)) {
 						set.put(key, 1);
@@ -49,7 +50,7 @@ public class vProb {
 			System.out.println(keys + " : " + set.get(keys));
 		} 
 		
-		// User inputs
+		// User inputs   
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter the location: ");
 		location = scanner.nextLine();
