@@ -175,15 +175,58 @@ public class DangerRating{
             } 
 
             listOfAllCitiesHash.put(key,currentIndexRating);
-            // Add some bonus marks 
-            // to all the students and print it 
-            //int value = ((int)mapElement.getValue() + 10); 
-  
+            //int value = ((int)mapElement.getValue() + 10);  
             //System.out.println(key + " : " + value); 
         } 
 
         //listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value)); 
          
+    }
+
+    public static void determineDangerRatingStormRelated(){
+         int index = 0;
+         Iterator<Map.Entry<String, String>> injury = injuryDict.entrySet().iterator(); 
+         Iterator<Map.Entry<String, String>> death = deathDict.entrySet().iterator();
+         Iterator<Map.Entry<String, String>> damage = damageDict.entrySet().iterator();
+
+         while(injury.hasNext() && death.hasNext() && damage.hasNext()){
+            //Iterator<Map.Entry<String, String>> index = injuryDict.entrySet().iterator();
+            Map.Entry<String, String> entryInj = injury.next();
+            Map.Entry<String, String> entryDeat = death.next();
+            Map.Entry<String, String> entryDamg = damage.next();
+            
+            String key = (String)entryInj.getKey();     
+            String currentEvent = (String)entryInj.getKey().substring((String)entryInj.getKey().indexOf("-") + 1);
+            String currentCity = (String)entryInj.getKey().substring(0,(String)entryInj.getKey().indexOf("-") );
+            
+            double cityIndexVal = listOfAllCitiesHash.get(currentCity);
+            
+            if (currentEvent.contains("Heat") || currentEvent.contains("Drought")){
+                //deaths
+                if (entryDeat.getKey() > 5){
+                    cityIndexVal += 20;
+
+                }
+                if (entryInj.getKey() < 25){
+                    cityIndexVal += 10;
+                }
+                else if (25 < entryInj.getKey() && entryInj.getKey() < 50){
+                    cityIndexVal += 20;
+                }else{
+                    cityIndexVal += 50;
+                }
+
+
+
+
+            }   
+         }
+         
+
+ 
+
+
+
     }
     public static void main(String[] args) throws IOException{
         /*
