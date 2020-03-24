@@ -5,19 +5,63 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.Map;
 
 public class DangerRating{
-   public static  HashMap<String,Double > injuryDict = new HashMap<String, Double>();
-   public static HashMap<String,Double> deathDict = new HashMap<String,Double>();
-   public static  HashMap<String,Double > damageDict = new HashMap<String, Double>();
+   private static  HashMap<String,Double > injuryDict = new HashMap<String, Double>();
+   private static HashMap<String,Double> deathDict = new HashMap<String,Double>();
+   private static  HashMap<String,Double > damageDict = new HashMap<String, Double>();
+   private static Set<String> city_set = new HashSet<String>(); //city_set contains all unique cities in the csv file
+   private static HashMap<String,Double> earthquakeDict = new HashMap<String,Double>();
+
+   
+   private static HashMap<String,Double> listOfAllCitiesHash = new HashMap<String,Double>();
+
+   public static void findEarthQuakeData(int magIndex, int cityCol, String[][] dataSet){
+        for (int z = 0; z < dataSet.length; z++){
+            try{
+                //System.out.println(dataSet[z][cityCol]);
+
+                earthquakeDict.put(dataSet[z][cityCol], 0.0); //usually each city will have DISTANCE km from CITYNAME
+                listOfAllCitiesHash.put(dataSet[z][cityCol],0.0);
+            }catch(StringIndexOutOfBoundsException e){
+            }
+        }
+
+        for (int z = 0; z < dataSet.length; z++){
+            try{
+
+                double currentCityMag = earthquakeDict.get(dataSet[z][cityCol]);
+                currentCityMag += Double.parseDouble(dataSet[z][magIndex]);
+                earthquakeDict.put(dataSet[z][cityCol], currentCityMag);
+
+
+            }catch(NullPointerException | StringIndexOutOfBoundsException e){
+
+            }
+        
+        }
+        
+        //earthquakeDict.forEach((key, value) -> System.out.println(key + ": " + value));
+        //
+        for (Map.Entry mapElement : earthquakeDict.entrySet()){
+            String key = (String)mapElement.getKey();  
+            double value = ((double)mapElement.getValue()/(2019-1985));
+            
+            earthquakeDict.put(key,value); 
+                        
+        }
+        System.out.println(earthquakeDict.size());
+
+   }
+
    public static void findDangerStatsStormData(int cityIndex, int eventIndex, int injuryIndex, int deathIndex, int damageIndex, String[][][] dataSet ){
-
-
-        Set<String> city_set = new HashSet<String>(); //city_set contains all unique cities in the csv file
+        //Set<String> city_set = new HashSet<String>(); //city_set contains all unique cities in the csv file
         for (int z = 0; z < dataSet.length; z++){
 
             for (int i = 0; i < dataSet[z].length; i++){ //collecting all unique city-event and setting the key values to 0.0
                 city_set.add(dataSet[z][i][cityIndex]);
+                listOfAllCitiesHash.put(dataSet[z][i][cityIndex],0.0);
                 injuryDict.put(dataSet[z][i][cityIndex]+"-"+dataSet[z][i][eventIndex], 0.0);
                 deathDict.put(dataSet[z][i][cityIndex]+"-"+dataSet[z][i][eventIndex], 0.0);
                 damageDict.put(dataSet[z][i][cityIndex]+"-"+dataSet[z][i][eventIndex], 0.0);
@@ -26,7 +70,7 @@ public class DangerRating{
         
         String[] cityLst = new String[city_set.size()]; //converting the city_set into an array
         city_set.toArray(cityLst);
-
+        //listOfAllCities.addAll(Arrays.asList(cityLst));
 
         //System.out.println(city_set);
 
@@ -89,7 +133,7 @@ public class DangerRating{
         //System.out.println(Arrays.asList(damageDict));
         dataSet = null;
         System.gc();
-        damageDict.forEach((key, value) -> System.out.println(key + ": " + value));
+        //damageDict.forEach((key, value) -> System.out.println(key + ": " + value));
         System.out.println(damageDict.size());
         System.out.println(injuryDict.size());
         System.out.println(deathDict.size());
@@ -113,20 +157,49 @@ public class DangerRating{
         return convert;
     }
 
+    private static void determineDangerRatingEarthQuake(){
+        for (Map.Entry mapElement : earthquakeDict.entrySet()) { 
+            String key = (String)mapElement.getKey(); 
+            
+            double getCurrentMag = earthquakeDict.get(key);
+            //System.out.println(getCurrentMag);
+            double currentIndexRating = 0.0;
+            if (getCurrentMag < 2.5){
+                currentIndexRating += 0.0;
+            } else if (2.5 < getCurrentMag && getCurrentMag < 4.9){
+                currentIndexRating += 5;
+            }else if (5 < getCurrentMag && getCurrentMag < 5.9){
+                currentIndexRating += 10;
+            }else{
+               currentIndexRating += 50;
+            } 
+
+            listOfAllCitiesHash.put(key,currentIndexRating);
+            // Add some bonus marks 
+            // to all the students and print it 
+            //int value = ((int)mapElement.getValue() + 10); 
+  
+            //System.out.println(key + " : " + value); 
+        } 
+
+        //listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value)); 
+         
+    }
     public static void main(String[] args) throws IOException{
-        String[][] data1 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv",8,19);
-        String[][] data2 = ReadCSV.readFile("../Data_Sets/stormdata_2012.csv",8,19);
-        String[][] data3 = ReadCSV.readFile("../Data_Sets/stormdata_2011.csv",8,19);
-        String[][] data4 = ReadCSV.readFile("../Data_Sets/stormdata_2010.csv",8,19);
-        //String[][] data5 = ReadCSV.readFile("../Data_Sets/stormdata_2009.csv",8,19);
-        //String[][] data6 = ReadCSV.readFile("../Data_Sets/stormdata_2008.csv",8,19);
-        //String[][] data7 = ReadCSV.readFile("../Data_Sets/stormdata_2007.csv",8,19);
-        //String[][] data8 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv",8,19);
-        //String[][] data9 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv",8,19);
-        //String[][] data10 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv",8,19);
-        //String[][] data11= ReadCSV.readFile("../Data_Sets/stormdata_2003.csv",8,19);
+        /*
+        String[][] data1 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv",15,19);
+        String[][] data2 = ReadCSV.readFile("../Data_Sets/stormdata_2012.csv",15,19);
+        String[][] data3 = ReadCSV.readFile("../Data_Sets/stormdata_2011.csv",15,19);
+        String[][] data4 = ReadCSV.readFile("../Data_Sets/stormdata_2010.csv",15,19);
+        //String[][] data5 = ReadCSV.readFile("../Data_Sets/stormdata_2009.csv",15,19);
+        //String[][] data6 = ReadCSV.readFile("../Data_Sets/stormdata_20015.csv",15,19);
+        //String[][] data7 = ReadCSV.readFile("../Data_Sets/stormdata_2007.csv",15,19);
+        //String[][] data15 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv",15,19);
+        //String[][] data9 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv",15,19);
+        //String[][] data10 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv",15,19);
+        //String[][] data11= ReadCSV.readFile("../Data_Sets/stormdata_2003.csv",15,19);
         String[][][] allDataSets = {data1,data2,data3,data4};
-        findDangerStatsStormData(8,12,20,22,24,allDataSets);
+        findDangerStatsStormData(15,12,20,22,24,allDataSets);
         data1 = null;
         data2 = null;
         data3 = null;
@@ -134,12 +207,12 @@ public class DangerRating{
         allDataSets = null;
         System.gc(); //calling system gargbage collector *Doesnt always free memory
                      //https://stackoverflow.com/questions/1567979/how-to-free-memory-in-java
-        String[][]data5 = ReadCSV.readFile("../Data_Sets/stormdata_2009.csv",8,19);
-        String[][] data6 = ReadCSV.readFile("../Data_Sets/stormdata_2008.csv",8,19);
-        String[][] data7 = ReadCSV.readFile("../Data_Sets/stormdata_2007.csv",8,19);
-        String[][] data8 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv",8,19);
+        String[][]data5 = ReadCSV.readFile("../Data_Sets/stormdata_2009.csv",15,19);
+        String[][] data6 = ReadCSV.readFile("../Data_Sets/stormdata_2008.csv",15,19);
+        String[][] data7 = ReadCSV.readFile("../Data_Sets/stormdata_2007.csv",15,19);
+        String[][] data8 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv",15,19);
         String[][][] newData = {data5,data6,data7,data8};
-        findDangerStatsStormData(8,12,20,22,24,newData);
+        findDangerStatsStormData(15,12,20,22,24,newData);
 
         data5 = null;
         data6 = null;
@@ -147,12 +220,15 @@ public class DangerRating{
         data8 = null;
         newData = null;
         
-        String[][] data9 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv",8,19);
-        String[][] data10 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv",8,19);
-        String[][] data11 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv",8,19);
+        String[][] data9 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv",15,19);
+        String[][] data10 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv",15,19);
+        String[][] data11 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv",15,19);
         String[][][] newData1 = {data9,data10,data11};
-        findDangerStatsStormData(8,12,20,22,24,newData1);
+        findDangerStatsStormData(15,12,20,22,24,newData1);
+        */
 
-
+        String[][] data12 = ReadCSV.readFile("../Data_Sets/eqarchive-en.csv",1,6);
+        findEarthQuakeData(4,6,data12); 
+        determineDangerRatingEarthQuake();
     }
 }
