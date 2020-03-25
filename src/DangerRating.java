@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Map;
-
+import java.util.Iterator;
 public class DangerRating{
    private static  HashMap<String,Double > injuryDict = new HashMap<String, Double>();
    private static HashMap<String,Double> deathDict = new HashMap<String,Double>();
@@ -17,8 +17,9 @@ public class DangerRating{
    
    private static HashMap<String,Double> listOfAllCitiesHash = new HashMap<String,Double>();
 
-   public static void findEarthQuakeData(int magIndex, int cityCol, String[][] dataSet){
-        for (int z = 0; z < dataSet.length; z++){
+   //Calculating the average magintude per city from 2019 to 1985
+   public static void findEarthQuakeData(int magIndex, int cityCol, String[][] dataSet){ 
+       for (int z = 0; z < dataSet.length; z++){
             try{
                 //System.out.println(dataSet[z][cityCol]);
 
@@ -55,6 +56,7 @@ public class DangerRating{
 
    }
 
+   //Sum up all injuries, deaths and damage values that occur for each city and it's corresponding event for data over 10 years
    public static void findDangerStatsStormData(int cityIndex, int eventIndex, int injuryIndex, int deathIndex, int damageIndex, String[][][] dataSet ){
         //Set<String> city_set = new HashSet<String>(); //city_set contains all unique cities in the csv file
         for (int z = 0; z < dataSet.length; z++){
@@ -185,51 +187,178 @@ public class DangerRating{
 
     public static void determineDangerRatingStormRelated(){
          int index = 0;
-         Iterator<Map.Entry<String, String>> injury = injuryDict.entrySet().iterator(); 
-         Iterator<Map.Entry<String, String>> death = deathDict.entrySet().iterator();
-         Iterator<Map.Entry<String, String>> damage = damageDict.entrySet().iterator();
+         Iterator<Map.Entry<String, Double>> injury = injuryDict.entrySet().iterator(); 
+         Iterator<Map.Entry<String, Double>> death = deathDict.entrySet().iterator();
+         Iterator<Map.Entry<String, Double>> damage = damageDict.entrySet().iterator();
 
          while(injury.hasNext() && death.hasNext() && damage.hasNext()){
             //Iterator<Map.Entry<String, String>> index = injuryDict.entrySet().iterator();
-            Map.Entry<String, String> entryInj = injury.next();
-            Map.Entry<String, String> entryDeat = death.next();
-            Map.Entry<String, String> entryDamg = damage.next();
+            Map.Entry<String, Double> entryInj = injury.next();
+            Map.Entry<String, Double> entryDeat = death.next();
+            Map.Entry<String, Double> entryDamg = damage.next();
             
             String key = (String)entryInj.getKey();     
-            String currentEvent = (String)entryInj.getKey().substring((String)entryInj.getKey().indexOf("-") + 1);
-            String currentCity = (String)entryInj.getKey().substring(0,(String)entryInj.getKey().indexOf("-") );
+            String currentEvent = (String)entryInj.getKey().substring(((String)entryInj.getKey()).indexOf("-") + 1);
+            String currentCity = (String)entryInj.getKey().substring(0,((String)entryInj.getKey()).indexOf("-") );
             
-            double cityIndexVal = listOfAllCitiesHash.get(currentCity);
+            //System.out.println(currentCity);
+            double cityIndexVal = 0.0; 
+            try{
+                cityIndexVal = listOfAllCitiesHash.get(currentCity);
+            }catch(NullPointerException e){
+            }
             
             if (currentEvent.contains("Heat") || currentEvent.contains("Drought")){
                 //deaths
-                if (entryDeat.getKey() > 5){
+                if (deathDict.get(key) > 5.0){
                     cityIndexVal += 20;
 
                 }
-                if (entryInj.getKey() < 25){
+                if (injuryDict.get(key) < 25.0){
                     cityIndexVal += 10;
                 }
-                else if (25 < entryInj.getKey() && entryInj.getKey() < 50){
+                else if (25.0 < injuryDict.get(key) && injuryDict.get(key) < 50.0){
                     cityIndexVal += 20;
                 }else{
                     cityIndexVal += 50;
                 }
+            }
 
+            else if (currentEvent.contains("Avalach")){
+                if (deathDict.get(key) > 5.0){
+                    cityIndexVal += 20;
+                }
 
+                if (injuryDict.get(key) < 10.0){
+                    cityIndexVal += 5;
+                }
+                else if (injuryDict.get(key) >= 10.0){
+                    cityIndexVal += 10;
+                }
 
+            }
 
-            }   
+            else if (currentEvent.contains("Torn")){
+                if (deathDict.get(key) > 0){
+                    cityIndexVal += 20;
+                }
+
+                if (injuryDict.get(key) < 10){
+                    cityIndexVal += 5;
+                }
+                else if (injuryDict.get(key) >= 10){
+                    cityIndexVal += 10;
+                }
+                
+                if (damageDict.get(key) < 10000.0){
+                    cityIndexVal += 5;
+                }
+                else if (100000 <= damageDict.get(key) && damageDict.get(key) < 250000){
+                    cityIndexVal += 10;
+                }else{
+                    cityIndexVal += 20;
+                }
+            }
+
+            else if (currentEvent.contains("Wild")){
+               if (deathDict.get(key) > 0){
+                    cityIndexVal += 25;
+                }
+
+                if (injuryDict.get(key) < 10){
+                    cityIndexVal += 5;
+                }
+                else if (injuryDict.get(key) >= 10){
+                    cityIndexVal += 15;
+                }
+                
+                if (damageDict.get(key) < 10000.0){
+                    cityIndexVal += 10;
+                }
+                else if (100000 <= damageDict.get(key) && damageDict.get(key) < 250000){
+                    cityIndexVal += 15;
+                }else{
+                    cityIndexVal += 25;
+                } 
+            }
+
+            else if (currentEvent.contains("Snow") || currentEvent.contains("Bliz")){
+                if (deathDict.get(key) > 0){
+                    cityIndexVal += 15;
+                }
+
+                if (injuryDict.get(key) < 10){
+                    cityIndexVal += 5;
+                }
+                else if (injuryDict.get(key) >= 10){
+                    cityIndexVal += 15;
+                }
+                
+                if (damageDict.get(key) < 10000.0){
+                    cityIndexVal += 5;
+                }
+                else if (100000 <= damageDict.get(key) && damageDict.get(key) < 250000){
+                    cityIndexVal += 10;
+                }else{
+                    cityIndexVal += 15;
+                } 
+
+            }
+
+            else if (currentEvent.contains("Flood")){
+               if (deathDict.get(key) > 0){
+                    cityIndexVal += 20;
+                }
+
+                if (injuryDict.get(key) < 25){
+                    cityIndexVal += 5;
+                }
+                else if (injuryDict.get(key) >= 25){
+                    cityIndexVal += 10;
+                }
+                
+                if (damageDict.get(key) < 10000.0){
+                    cityIndexVal += 5;
+                }
+                else if (100000 <= damageDict.get(key) && damageDict.get(key) < 30000){
+                    cityIndexVal += 15;
+                }else{
+                    cityIndexVal += 25;
+                } 
+            }
+
+            else{
+               if (deathDict.get(key) > 0){
+                    cityIndexVal += 20;
+                }
+
+                if (injuryDict.get(key) < 10){
+                    cityIndexVal += 5;
+                }
+                else if (injuryDict.get(key) >= 10){
+                    cityIndexVal += 10;
+                }
+                
+                if (damageDict.get(key) < 10000.0){
+                    cityIndexVal += 5;
+                }
+                else if (100000 <= damageDict.get(key) && damageDict.get(key) < 250000){
+                    cityIndexVal += 10;
+                }else{
+                    cityIndexVal += 20;
+                } 
+        
+            }
+
+            listOfAllCitiesHash.put(currentEvent,cityIndexVal);
+
          }
-         
 
- 
-
-
-
+        listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));  
     }
+    
     public static void main(String[] args) throws IOException{
-        /*
+        /* 
         String[][] data1 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv",15,19);
         String[][] data2 = ReadCSV.readFile("../Data_Sets/stormdata_2012.csv",15,19);
         String[][] data3 = ReadCSV.readFile("../Data_Sets/stormdata_2011.csv",15,19);
@@ -262,16 +391,21 @@ public class DangerRating{
         data7 = null;
         data8 = null;
         newData = null;
-        
+        */
         String[][] data9 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv",15,19);
         String[][] data10 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv",15,19);
-        String[][] data11 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv",15,19);
+        String[][] data11 = ReadCSV.readFile("../Data_Sets/stormdata_2003.csv",15,19);
         String[][][] newData1 = {data9,data10,data11};
         findDangerStatsStormData(15,12,20,22,24,newData1);
-        */
+        
+        determineDangerRatingStormRelated();
 
+        String temp = "123456";
+        System.out.println(temp.contains("123456"));
         String[][] data12 = ReadCSV.readFile("../Data_Sets/eqarchive-en.csv",1,6);
         findEarthQuakeData(4,6,data12); 
         determineDangerRatingEarthQuake();
+
+
     }
 }
