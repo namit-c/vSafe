@@ -349,12 +349,12 @@ public class DangerRating{
                 } 
         
             }
-
-            listOfAllCitiesHash.put(currentEvent,cityIndexVal);
+            
+            listOfAllCitiesHash.put(currentCity,cityIndexVal);
 
          }
 
-        listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));  
+        //listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));  
     }
     
     public static void main(String[] args) throws IOException{
@@ -406,6 +406,7 @@ public class DangerRating{
         findEarthQuakeData(4,6,data12); 
         determineDangerRatingEarthQuake();
 
+        listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));
 
     }
 }
