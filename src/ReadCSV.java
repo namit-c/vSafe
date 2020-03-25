@@ -41,7 +41,7 @@ import java.io.FileWriter;
         }
         csvReader.close();
         String[][] data = convertArrayListToStringArr(dataSet);
-
+        MergeSort.sort(data,dateCol);
         long startTime = System.currentTimeMillis();
         MergeSort.sort(data,cityCol);
         long endTime = System.currentTimeMillis();
