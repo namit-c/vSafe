@@ -157,4 +157,109 @@ public class vProb {
 		for(String keys: probCDD.keySet())
 			System.out.println(keys + " " + probCDD.get(keys));
 	}
+
+    	//Calculates probability for the eqarchive data set (contains earthquakes in north america, mostly canada)
+	//Does not include foreshocks and aftershocks as they are part of the same earthquake
+	public static void probEq() throws IOException {
+		
+		//column numbers of the city and date
+		int cityCol = 6;
+		int dateCol = 0;
+		
+		double probability;	//temp variable for probability of each data point
+		int totalData = 2019-1985; 	//Finish - start dates of the data; total years of data in eqarchive data set
+		int occurrences = 0; 	//Occurrences is the total occurrences of that event in the specified city in the specified month
+		
+		//Reading the data into a 2d array, specifying city(4) and event(2) columns for sorting
+		String[][] eqData = ReadCSV.readFile("../Data_Sets/eqarchive-en.csv", cityCol, dateCol);	
+
+		//The data set contains specific locations of the earthquakes, this means it gives distance from cities nearby
+		//This array contains the city name and month of the earthquake
+		//This array will be used to make the hash map with the probability
+		String[][] necessaryData = new String[eqData.length][2];  
+		
+		//column numbers for the necessary data array
+		int cityCol1 = 0;
+		int dateCol1 = 1;
+		
+		//Adding only the month of the earthquake to the array
+		int startMonth = 5;  	//index at which the month starts
+		int finishMonth = 6; 	//index at which the month ends
+		
+		int start = 0; 		//variables needed for finding the city name
+		int dataIndex = 0;  //to keep track of the row in the dataset
+		
+		//Stores the city and month
+		for(int i = 0; dataIndex < eqData.length; i++, dataIndex++) {
+			
+			//adding month without any preceding zeros
+			if(eqData[dataIndex][dateCol].substring(startMonth-1, startMonth+1).equals("-0"))
+				necessaryData[i][dateCol1] = eqData[dataIndex][dateCol].substring(startMonth+1, finishMonth+1);
+			else
+				necessaryData[i][dateCol1] = eqData[dataIndex][dateCol].substring(startMonth, finishMonth+1);
+			
+			//getting the name
+			start = eqData[dataIndex][cityCol].indexOf("from"); //the city appears after the word from
+			
+			//adding only the city name, different formats with city names
+			if(start == -1) {
+				start = eqData[dataIndex][cityCol].indexOf("of  ");
+				if(start == -1) {
+					start = eqData[dataIndex][cityCol].indexOf("of ");
+					if(start == -1)
+						necessaryData[i][cityCol1] = eqData[dataIndex][cityCol];
+					else
+						necessaryData[i][cityCol1] = eqData[dataIndex][cityCol].substring(start+3);
+				}
+				else
+					necessaryData[i][cityCol1] = eqData[dataIndex][cityCol].substring(start+4); //4 bc "of" is 2 plus the 3 spaces afterwards
+			}
+			else
+				necessaryData[i][cityCol1] = eqData[dataIndex][cityCol].substring(start+5); //5 because from is 4 plus the space afterwards
+		}
+		
+		//Need to sort the array so the same month and cities are beside each other
+		MergeSort.sort(necessaryData, dateCol1);
+		MergeSort.sort(necessaryData, cityCol1);
+		
+		//for(int i = 0; i < 550; i++)
+		//	System.out.println(necessaryData[i][cityCol1] + ": " + necessaryData[i][dateCol1]);
+		
+		//Creating a HashMap
+		//Details: Hash map contains a string and a value; the string contains the city name, date, and event name
+		//The value is the probability of that event happening 
+		HashMap<String, Integer> probEq = new HashMap<>();
+		String key; 
+		
+		for(int i = 0; i < necessaryData.length - 1; i++) {
+			
+			//do not count aftershocks and foreshocks as they are part of the same earthquake
+			if(!(necessaryData[i][cityCol1].toUpperCase().contains("AFTERSHOCK") || 
+					necessaryData[i][cityCol1].toUpperCase().contains("FORESHOCK"))) {
+				key = necessaryData[i][cityCol1] + " " +  necessaryData[i][dateCol1] + " Earthquake";
+				occurrences++;
+				
+				while(necessaryData[i][cityCol1].equals(necessaryData[i+1][cityCol1]) && necessaryData[i][dateCol1].equals(necessaryData[i+1][dateCol1])) {
+					occurrences++;	//increment each time the city and month is the same
+					i++;	//don't need multiple occurrences of the same city and month
+				}
+				
+				//calculating the probability
+				probability = ((double)occurrences/(double)totalData)*100;
+				
+				//if the probability is over 100 (more occurrences than years of data)
+				if(probability > 100)
+					probability = 100.0;
+				
+				//adding the data to the hash map
+				probEq.put(key, (int)probability);
+				
+				//resetting the occurrences
+				occurrences = 0;
+			}
+		}
+		
+		//for (String keys : probEq.keySet())
+		//	System.out.println(keys + ": " + probEq.get(keys));
+	}
 }
