@@ -71,7 +71,7 @@ public class vProb {
         //Brief: Calculating probability for CDD data set, country: Canada 
 	//Details: uses the formula (total occurrences in specified month)/(total years of data) * 100 
 	//to calculate probability of each event in each city for each  month
-	public static void probCDD() throws IOException {
+	public static Map<String, Integer> probCDD() throws IOException {
 		
 		//Column numbers of city, date, and event name in the CDD data set
 		int cityCol = 4;
@@ -174,15 +174,12 @@ public class vProb {
 			key = necessaryData[i][cityCol1] + " " +  necessaryData[i][dateCol1] + " " +  necessaryData[i][eventCol1];
 			probCDD.put(key, Integer.parseInt(necessaryData[i][probCol]));
 		}
-		
-		System.out.println("\n\n");
-		for (String keys : probCDD.keySet())
-			System.out.println(keys + ": " + probCDD.get(keys));
+		return probCDD;
 	}
 
     	//Calculates probability for the eqarchive data set (contains earthquakes in north america, mostly canada)
 	//Does not include foreshocks and aftershocks as they are part of the same earthquake
-	public static void probEq() throws IOException {
+	public static Map<String, Integer> probEq() throws IOException {
 		
 		//column numbers of the city and date
 		int cityCol = 6;
@@ -279,5 +276,6 @@ public class vProb {
 				occurrences = 0;
 			}
 		}
+		return probEq;
 	}
 }
