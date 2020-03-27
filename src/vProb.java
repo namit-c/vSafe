@@ -198,7 +198,7 @@ public class vProb {
 		//The data set contains specific locations of the earthquakes, this means it gives distance from cities nearby
 		//This array contains the city name and month of the earthquake
 		//This array will be used to make the hash map with the probability
-		String[][] necessaryData = new String[eqData.length][2];  
+		String[][] necessaryData = new String[eqData.length][2];  //so the last row is null; needed for comparing next rows
 		
 		//column numbers for the necessary data array
 		int cityCol1 = 0;
@@ -244,16 +244,13 @@ public class vProb {
 		MergeSort.sort(necessaryData, dateCol1);
 		MergeSort.sort(necessaryData, cityCol1);
 		
-		//for(int i = 0; i < 550; i++)
-		//	System.out.println(necessaryData[i][cityCol1] + ": " + necessaryData[i][dateCol1]);
-		
 		//Creating a HashMap
 		//Details: Hash map contains a string and a value; the string contains the city name, date, and event name
 		//The value is the probability of that event happening 
 		HashMap<String, Integer> probEq = new HashMap<>();
 		String key; 
 		
-		for(int i = 0; i < necessaryData.length - 1; i++) {
+		for(int i = 0; i < necessaryData.length; i++) {
 			
 			//do not count aftershocks and foreshocks as they are part of the same earthquake
 			if(!(necessaryData[i][cityCol1].toUpperCase().contains("AFTERSHOCK") || 
@@ -261,11 +258,13 @@ public class vProb {
 				key = necessaryData[i][cityCol1] + " " +  necessaryData[i][dateCol1] + " Earthquake";
 				occurrences++;
 				
-				while(necessaryData[i][cityCol1].equals(necessaryData[i+1][cityCol1]) && necessaryData[i][dateCol1].equals(necessaryData[i+1][dateCol1])) {
-					occurrences++;	//increment each time the city and month is the same
-					i++;	//don't need multiple occurrences of the same city and month
+				//only check for multiple occurrences if it is not the last element
+				if(i < necessaryData.length - 1) {
+					while(necessaryData[i][cityCol1].equals(necessaryData[i+1][cityCol1]) && necessaryData[i][dateCol1].equals(necessaryData[i+1][dateCol1])) {
+						occurrences++;	//increment each time the city and month is the same
+						i++;	//don't need multiple occurrences of the same city and month
+					}
 				}
-				
 				//calculating the probability
 				probability = ((double)occurrences/(double)totalData)*100;
 				
@@ -280,8 +279,5 @@ public class vProb {
 				occurrences = 0;
 			}
 		}
-		
-		//for (String keys : probEq.keySet())
-		//	System.out.println(keys + ": " + probEq.get(keys));
 	}
 }
