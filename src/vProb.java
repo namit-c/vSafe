@@ -67,28 +67,31 @@ public class vProb {
 
 		scanner.close();
 	}
+    
         //Brief: Calculating probability for CDD data set, country: Canada 
 	//Details: uses the formula (total occurrences in specified month)/(total years of data) * 100 
 	//to calculate probability of each event in each city for each  month
-        public static void probCDD() throws IOException {
+	public static void probCDD() throws IOException {
 		
 		//Column numbers of city, date, and event name in the CDD data set
 		int cityCol = 4;
 		int dateCol = 5;
 		int eventCol = 3;
 		int totalData = 2016-1900; //Finish - start dates of the data; total years of data in cdd data set
-		int occurrences = 0; //Occurrences is the occurrence of the event in the last year of the data
+		int occurrences = 0; //Occurrences is the total occurrences of that event in the specified city in the specified month
 		
-		
-		//Reading the data into a 2d array, specifying city(4) and event(2) columns for sorting
+		//Reading the data into a 2d array, specifying city(4) and event(3) columns for sorting
 		String[][] cddData = ReadCSV.readFile("../Data_Sets/CDD_csv.csv", cityCol, eventCol);
+		
+		//for(int i = 0; i < cddData.length; i++)
+		//	System.out.println(cddData[i][cityCol] + " " + cddData[i][eventCol] + " " + cddData[i][dateCol]);
 		
 		//Before creating the hash map, make an array with city, date, event and probability; 4 columns needed
 		String[][] necessaryData = new String[cddData.length][4];  
 		
 		//Need to track the month of the date to calculate probability
-		int start = 0;
-		int finish = 0;
+		int start = 0;	//doesn't change as the month starts from index 0
+		int finish;
 		String month;
 		String monthNext;
 		
@@ -104,49 +107,67 @@ public class vProb {
 				
 		//Copying all the necessary data into the array; probability not yet done
 		//The date column will only contain months as years and day do not matter in calculating probability
-		for(int i = 0; dataIndex < cddData.length - 1; i++, dataIndex++) {
-			necessaryData[i][cityCol1] = cddData[dataIndex][cityCol];  //city name
-			necessaryData[i][eventCol1] = cddData[dataIndex][eventCol];  //event 
+		//As the data is not sorted by date, need to do extra steps to get all occurrences of the event in the same month
+		for(int i = 0; dataIndex < cddData.length; i++, dataIndex++) {
 			
-			//Need to know whether the month the row after is the same as the current row for the probability
-			start = cddData[dataIndex+1][dateCol].indexOf("/");  //Gets the index of the where the month is in the date string
-			finish = cddData[dataIndex+1][dateCol].indexOf("/", start+1); //index of when the month ends
-			month = cddData[dataIndex+1][dateCol].substring(start+1, finish); //string of the month
-			
-			start = cddData[dataIndex+1][dateCol].indexOf("/"); //index of the month of the next row
-			finish = cddData[dataIndex+1][dateCol].indexOf("/", start+1);
-			monthNext = cddData[dataIndex+1][dateCol].substring(start+1, finish); //string of the month of the next row
-			
-			//Details: as the array has the same city next to one another, it is easy to check whether
-			//certain events happened more than once; cut string so only month is included
-			//Checking whether the next row also has the same city, event, and month
-			while(necessaryData[i][cityCol1].equals(cddData[dataIndex+1][cityCol]) && necessaryData[i][eventCol1].equals(cddData[dataIndex+1][eventCol])
-					&& month.equals(monthNext)) {
+			//city name that are null have already been counted
+			if(!cddData[dataIndex][cityCol].equals("0")) {
+				necessaryData[i][cityCol1] = cddData[dataIndex][cityCol];  //city name
+				necessaryData[i][eventCol1] = cddData[dataIndex][eventCol];  //event 
 				
-				occurrences++;
-				dataIndex++; //Don't need to have multiple occurrences of the same event in the same city for the same month
+				//Need to know whether the month the row after is the same as the current row for the probability
+				finish = cddData[dataIndex][dateCol].indexOf("/");  //Gets the index of the where the month is in the date string
+				month = cddData[dataIndex][dateCol].substring(start, finish); //string of the month
+				
+				occurrences++; //occurs once
+				
+				int temp = dataIndex; //to keep track of the index in array; temp will be used in the loop to determine multiple occurrences
+				
+				//only go if it is not the last element
+				if(dataIndex < cddData.length -1) {
+					//Details: as the array has the same city next to one another, it is easy to check whether
+					//certain events happened more than once
+					//go through all the rows with same city and event, if the same month is encountered, increment the occurrences
+					//and replace the city name with "0" (so it is not counted again)
+					while(necessaryData[i][cityCol1].equals(cddData[temp+1][cityCol]) && 
+							necessaryData[i][eventCol1].equals(cddData[temp+1][eventCol])) {
+						
+						finish = cddData[temp+1][dateCol].indexOf("/"); //index of the month of the next row
+						monthNext = cddData[temp+1][dateCol].substring(start, finish); //string of the month of the next row
+						
+						if(month.equals(monthNext)) {
+							occurrences++;
+							cddData[temp+1][cityCol] = "0";		//for cities already counted
+						}
+						temp++; //Don't need to have multiple occurrences of the same event in the same city for the same month
+					}
+				}
+				necessaryData[i][dateCol1] = month;
+				
+				//to calculate the probability 
+				double probability = ((double)occurrences/(double)totalData)*100;
+				
+				if(necessaryData[i][cityCol1].equals("Edmonton AB")) {
+					System.out.println(necessaryData[i][eventCol1] + " " + necessaryData[i][dateCol1] + " " + occurrences);
+				}
+				
+				//if the probability is over 100 (occurrences more than years of data)
+				if(probability > 100)
+					probability = 100;
+				
+				//adding the probability to the corresponding event, city, and month
+				necessaryData[i][probCol] = Integer.toString((int)probability);
+				
+				//resetting the variables for the next 
+				occurrences = 0;
 			}
-			necessaryData[i][dateCol1] = month; //overriding date to only have month
-			
-			//to calculate the probability 
-			int probability = (occurrences/totalData)*100;
-			
-			//if the probability is somehow over 100, round down to 100
-			if(probability > 100)
-				probability = 100;
-			
-			//adding the probability to the corresponding event, city, and month
-			necessaryData[i][probCol] = Integer.toString(probability);
-			
-			//resetting the variables for the next 
-			occurrences = 0;
+			else
+				i--; //the index of the necessary row doesn't increment as there should be no missed rows
 		}
 		
 		//Creating a HashMap
-		/*
-		 * Details: Hash map contains a string and a value; the string contains the city name, date, and event name
-		 * The value is the probability of that event happening 
-		 */
+		//Details: Hash map contains a string and a value; the string contains the city name, date, and event name
+		//The value is the probability of that event happening 
 		HashMap<String, Integer> probCDD = new HashMap<>();
 		String key; 
 		for(int i = 0; necessaryData[i][cityCol1] != null; i++) {
@@ -154,8 +175,9 @@ public class vProb {
 			probCDD.put(key, Integer.parseInt(necessaryData[i][probCol]));
 		}
 		
-		for(String keys: probCDD.keySet())
-			System.out.println(keys + " " + probCDD.get(keys));
+		System.out.println("\n\n");
+		for (String keys : probCDD.keySet())
+			System.out.println(keys + ": " + probCDD.get(keys));
 	}
 
     	//Calculates probability for the eqarchive data set (contains earthquakes in north america, mostly canada)
