@@ -71,7 +71,7 @@ public class vProb {
         //Brief: Calculating probability for CDD data set, country: Canada 
 	//Details: uses the formula (total occurrences in specified month)/(total years of data) * 100 
 	//to calculate probability of each event in each city for each  month
-	public static Map<String, Integer> probCDD() throws IOException {
+	public static Map<String, Double> probCDD() throws IOException {
 		
 		//Column numbers of city, date, and event name in the CDD data set
 		int cityCol = 4;
@@ -82,9 +82,6 @@ public class vProb {
 		
 		//Reading the data into a 2d array, specifying city(4) and event(3) columns for sorting
 		String[][] cddData = ReadCSV.readFile("../Data_Sets/CDD_csv.csv", cityCol, eventCol);
-		
-		//for(int i = 0; i < cddData.length; i++)
-		//	System.out.println(cddData[i][cityCol] + " " + cddData[i][eventCol] + " " + cddData[i][dateCol]);
 		
 		//Before creating the hash map, make an array with city, date, event and probability; 4 columns needed
 		String[][] necessaryData = new String[cddData.length][4];  
@@ -147,16 +144,12 @@ public class vProb {
 				//to calculate the probability 
 				double probability = ((double)occurrences/(double)totalData)*100;
 				
-				if(necessaryData[i][cityCol1].equals("Edmonton AB")) {
-					System.out.println(necessaryData[i][eventCol1] + " " + necessaryData[i][dateCol1] + " " + occurrences);
-				}
-				
 				//if the probability is over 100 (occurrences more than years of data)
 				if(probability > 100)
 					probability = 100;
 				
 				//adding the probability to the corresponding event, city, and month
-				necessaryData[i][probCol] = Integer.toString((int)probability);
+				necessaryData[i][probCol] = Double.toString(probability);
 				
 				//resetting the variables for the next 
 				occurrences = 0;
@@ -168,18 +161,19 @@ public class vProb {
 		//Creating a HashMap
 		//Details: Hash map contains a string and a value; the string contains the city name, date, and event name
 		//The value is the probability of that event happening 
-		HashMap<String, Integer> probCDD = new HashMap<>();
+		HashMap<String, Double> probCDD = new HashMap<>();
 		String key; 
 		for(int i = 0; necessaryData[i][cityCol1] != null; i++) {
 			key = necessaryData[i][cityCol1] + " " +  necessaryData[i][dateCol1] + " " +  necessaryData[i][eventCol1];
-			probCDD.put(key, Integer.parseInt(necessaryData[i][probCol]));
+			probCDD.put(key, Double.parseDouble(necessaryData[i][probCol]));
 		}
+		
 		return probCDD;
 	}
 
     	//Calculates probability for the eqarchive data set (contains earthquakes in north america, mostly canada)
 	//Does not include foreshocks and aftershocks as they are part of the same earthquake
-	public static Map<String, Integer> probEq() throws IOException {
+	public static Map<String, Double> probEq() throws IOException {
 		
 		//column numbers of the city and date
 		int cityCol = 6;
@@ -244,7 +238,7 @@ public class vProb {
 		//Creating a HashMap
 		//Details: Hash map contains a string and a value; the string contains the city name, date, and event name
 		//The value is the probability of that event happening 
-		HashMap<String, Integer> probEq = new HashMap<>();
+		HashMap<String, Double> probEq = new HashMap<>();
 		String key; 
 		
 		for(int i = 0; i < necessaryData.length; i++) {
@@ -270,12 +264,13 @@ public class vProb {
 					probability = 100.0;
 				
 				//adding the data to the hash map
-				probEq.put(key, (int)probability);
+				probEq.put(key, probability);
 				
 				//resetting the occurrences
 				occurrences = 0;
 			}
 		}
+		
 		return probEq;
 	}
 }
