@@ -11,13 +11,31 @@ public class vProb {
 		// calling the next module
 		probCDD();
 
+		Map<String, Double> set = probSD(); // Stormdata
+		// City in CAPS
+		String location = "TEXAS";
+
+		// Date: mm/dd
+		int month = 12;
+		int date = 1;
+
+		// Event
+		String event = "Drought";
+
+		System.out.println(location + " " + month + "/" + date + " " + event);
+		String request = location + ' ' + month + "/" + date + ' ' + event;
+		System.out.println(set.get(request));
+
 		System.out.println("Done----------------");// just to know when it finishes
 
+	}
+
+	public static Map<String, Double> probSD() throws IOException {
+
 		// Set variables for hash keys
-		String location;
-		String event;
-		int date;
-		int month;
+		int firstMonth = 2003;
+		int finalMonth = 2013;
+		int numYears = finalMonth - firstMonth;
 
 		// Load Stormdata datasets (2003 - 2013)
 		String[][] array0 = ReadCSV.readFile("../Data_Sets/stormdata_2003.csv", 8, 19);
@@ -35,7 +53,7 @@ public class vProb {
 				array9, array10 };
 
 		// Creates HashMap
-		HashMap<String, Integer> set = new HashMap<>();
+		HashMap<String, Double> set = new HashMap<>();
 		String key;
 		for (int i = 0; i < dataSet0.length; i++) {
 			for (int j = 1; j < dataSet0[i].length; j++) {
@@ -46,44 +64,22 @@ public class vProb {
 					key = dataSet0[i][j][8] + ' ' + String.valueOf(input.charAt(4)) + String.valueOf(input.charAt(5))
 							+ "/" + dataSet0[i][j][1] + ' ' + dataSet0[i][j][12]; // Input
 					if (!set.containsKey(key)) {
-						set.put(key, 1);
+						set.put(key, (double) 1 / numYears);
 					} else {
-						set.replace(key, set.get(key) + 1);
+						set.replace(key, ((set.get(key) * numYears) + 1) / numYears);
 					}
 				}
 
 			}
 		}
-
-		for (String keys : set.keySet()) {
+		
+		// Uncomment this if you want to see what the keys look like for this hashmap
+	    /*for (String keys : set.keySet()) {
 			System.out.println(keys + " : " + set.get(keys));
-		}
+		}*/
 
-		// User inputs
-		// City in CAPS
-		location = "ILLINOIS";
 
-		// Date: mm/dd
-		month = 12;
-		date = 1;
-
-		// Event
-		event = "Drought";
-
-		System.out.println(location + " " + month + " " + date);
-		String request = location + ' ' + month + "/" + date + ' ' + event;
-		// Return probability based off of specific user input
-		double probability;
-		if (set.get(request) != null) {
-			probability = ((double) (set.get(request)) / (double) (2013 - 2003)) * 100;
-			if (probability > 100.0) {
-				probability = 100.0;
-			}
-			System.out.println((double) (set.get(request)));
-		} else {
-			probability = 0;
-		}
-		System.out.println("Probability = " + probability);
+		return set;
 	}
 
 	// Brief: Calculating probability for CDD data set, country: Canada
