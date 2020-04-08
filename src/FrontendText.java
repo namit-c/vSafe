@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class FrontendText {
 	
@@ -9,14 +11,20 @@ public class FrontendText {
 	//ONLY TO BE USED as a prototype and testing back end modules
 	
 	//This module takes care of everything after the input
-	public static void frontend(String cityname, String vacationDate) {
+	public static void frontend(String cityname, String vacationDate) throws IOException{
 		
 		//call the searching module
 				
 		//assign danger rating
 		
-		//graph construction 
-		
+		//graph construction
+		Hashtable<String, ArrayList<String>> CAN = GraphConstruction.CloseCitiesHashTable("Canada_Cities.csv", "", 0, 0, 2, 1, 200);
+    	Hashtable<String, ArrayList<String>> US = GraphConstruction.CloseCitiesHashTable("uscities.csv", "stormdata_2013.csv", 8, 1, 9, 8, 500);
+    	
+    	// Example usage of hashtables
+    	// System.out.println(US.get("WYOMING"));
+    	// System.out.println(CAN.get("TORONTO"));
+    	
 		
 		//print danger rating
 		
