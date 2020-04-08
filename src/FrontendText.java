@@ -11,7 +11,7 @@ public class FrontendText {
 	//ONLY TO BE USED as a prototype and testing back end modules
 	
 	//This module takes care of everything after the input
-	public static void frontend(String cityname, String vacationDate) throws IOException{
+	public static void frontend(String cityname, String vacationDate, String month) throws IOException{
 		
 		//call the searching module
 				
@@ -26,7 +26,8 @@ public class FrontendText {
     	// System.out.println(CAN.get("TORONTO"));
     	
 		
-		//print danger rating
+		//print danger rating (key is cities, value is danger rating value)
+        HashTable<String,Double> dangerRatingHash = DangerRating.loadAllDangerRating(month); //wouldn't matter if month is 01 or 1
 		
 	}
 	
