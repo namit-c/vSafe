@@ -11,10 +11,10 @@ public class vProb {
 		// calling the next module
 		probCDD();
 
-		Map<String, Double> set = probSD(); // Stormdata
+		Map<String, Double> set = determineAllProbSD(); // Stormdata
 		// City in CAPS
-		String location = "TEXAS";
-
+		//String location = "TEXAS";
+        String location = "DALE";
 		// Date: mm/dd
 		int month = 12;
 		int date = 1;
@@ -30,7 +30,57 @@ public class vProb {
 
 	}
 
-	public static Map<String, Double> probSD() throws IOException {
+    public static HashMap<String, Double> determineAllProbSD() throws IOException{
+        HashMap<String, Double> set = new HashMap<String, Double>();
+         
+       	String[][] array0 = ReadCSV.readFile("../Data_Sets/stormdata_2003.csv", 15, 19);
+		String[][] array1 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv", 15, 19);
+		String[][] array2 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv", 15, 19);
+        String[][][] dataSet0 = {array0,array1,array2};
+
+        probSD(dataSet0, set);
+
+        array0 = null;
+        array1 = null;
+        array2 = null;
+        dataSet0 = null;
+
+
+       	String[][] array3 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv", 15, 19);
+		String[][] array4 = ReadCSV.readFile("../Data_Sets/stormdata_2007.csv", 15, 19);
+		String[][] array5 = ReadCSV.readFile("../Data_Sets/stormdata_2008.csv", 15, 19);
+        String[][][] dataSet1 = {array3,array4,array5};
+
+        probSD(dataSet1,set);
+        array3 = null;
+        array4 = null;
+        array5 = null;
+        dataSet1 = null;
+        String[][] array6 = ReadCSV.readFile("../Data_Sets/stormdata_2009.csv", 15, 19);
+        String[][] array7 = ReadCSV.readFile("../Data_Sets/stormdata_2010.csv", 15, 19);
+        String[][] array8 = ReadCSV.readFile("../Data_Sets/stormdata_2011.csv", 15, 19);
+        String[][][] dataSet2 = {array6,array7,array8};
+
+        probSD(dataSet2,set);
+        array6 = null;
+        array7 = null;
+        array8 = null;
+        dataSet2 = null;
+        String[][] array9 = ReadCSV.readFile("../Data_Sets/stormdata_2012.csv", 15, 19);
+		String[][] array10 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv", 15, 19);
+        String[][][] dataSet3 = {array9,array10};
+
+        
+        probSD(dataSet3,set);
+        array9 = null;
+        array10 = null;
+        dataSet3 = null;
+
+
+        return set;
+    }
+
+	private static void probSD(String[][][] dataSet0, HashMap<String, Double> set) throws IOException {
 
 		// Set variables for hash keys
 		int firstMonth = 2003;
@@ -38,22 +88,22 @@ public class vProb {
 		int numYears = finalMonth - firstMonth;
 
 		// Load Stormdata datasets (2003 - 2013)
-		String[][] array0 = ReadCSV.readFile("../Data_Sets/stormdata_2003.csv", 8, 19);
-		String[][] array1 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv", 8, 19);
-		String[][] array2 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv", 8, 19);
-		String[][] array3 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv", 8, 19);
-		String[][] array4 = ReadCSV.readFile("../Data_Sets/stormdata_2007.csv", 8, 19);
-		String[][] array5 = ReadCSV.readFile("../Data_Sets/stormdata_2008.csv", 8, 19);
-		String[][] array6 = ReadCSV.readFile("../Data_Sets/stormdata_2009.csv", 8, 19);
-		String[][] array7 = ReadCSV.readFile("../Data_Sets/stormdata_2010.csv", 8, 19);
-		String[][] array8 = ReadCSV.readFile("../Data_Sets/stormdata_2011.csv", 8, 19);
-		String[][] array9 = ReadCSV.readFile("../Data_Sets/stormdata_2012.csv", 8, 19);
-		String[][] array10 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv", 8, 19);
-		String[][][] dataSet0 = new String[][][] { array1, array2, array3, array4, array5, array6, array7, array8,
-				array9, array10 };
+		//String[][] array0 = ReadCSV.readFile("../Data_Sets/stormdata_2003.csv", 8, 19);
+		//String[][] array1 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv", 8, 19);
+		//String[][] array2 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv", 8, 19);
+		//String[][] array3 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv", 8, 19);
+		//String[][] array4 = ReadCSV.readFile("../Data_Sets/stormdata_2007.csv", 8, 19);
+		//String[][] array5 = ReadCSV.readFile("../Data_Sets/stormdata_2008.csv", 8, 19);
+		//String[][] array6 = ReadCSV.readFile("../Data_Sets/stormdata_2009.csv", 8, 19);
+		//String[][] array7 = ReadCSV.readFile("../Data_Sets/stormdata_2010.csv", 8, 19);
+		//String[][] array8 = ReadCSV.readFile("../Data_Sets/stormdata_2011.csv", 8, 19);
+		//String[][] array9 = ReadCSV.readFile("../Data_Sets/stormdata_2012.csv", 8, 19);
+		//String[][] array10 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv", 8, 19);
+		//String[][][] dataSet0 = new String[][][] { array1, array2, array3, array4, array5, array6, array7, array8,
+		//		array9, array10 };
 
 		// Creates HashMap
-		HashMap<String, Double> set = new HashMap<>();
+		//HashMap<String, Double> set = new HashMap<>();
 		String key;
 		for (int i = 0; i < dataSet0.length; i++) {
 			for (int j = 1; j < dataSet0[i].length; j++) {
@@ -61,8 +111,12 @@ public class vProb {
 				if (input.length() > 5) {
 					// key = State (Col 9) + Begin Month (Col 4) + Begin Day (Col 1) + Event (Col
 					// 13)
-					key = dataSet0[i][j][8] + ' ' + String.valueOf(input.charAt(4)) + String.valueOf(input.charAt(5))
-							+ "/" + dataSet0[i][j][1] + ' ' + dataSet0[i][j][12]; // Input
+                    String month = dataSet0[i][j][0].substring(4);
+                    if (month.startsWith("0")){
+                        month = month.substring(1);
+                    }
+					key = dataSet0[i][j][15] + ' ' + month
+							+ ' ' + dataSet0[i][j][12]; // Input
 					if (!set.containsKey(key)) {
 						set.put(key, (double) 1 / numYears);
 					} else {
@@ -79,14 +133,14 @@ public class vProb {
 		}*/
 
 
-		return set;
+		//return set;
 	}
 
 	// Brief: Calculating probability for CDD data set, country: Canada
 	// Details: uses the formula (total occurrences in specified month)/(total years
 	// of data) * 100
 	// to calculate probability of each event in each city for each month
-	public static Map<String, Double> probCDD() throws IOException {
+	public static HashMap<String, Double> probCDD() throws IOException {
 
 		// Column numbers of city, date, and event name in the CDD data set
 		int cityCol = 4;
@@ -204,7 +258,7 @@ public class vProb {
 	// north america, mostly canada)
 	// Does not include foreshocks and aftershocks as they are part of the same
 	// earthquake
-	public static Map<String, Double> probEq() throws IOException {
+	public static HashMap<String, Double> probEq() throws IOException {
 
 		// column numbers of the city and date
 		int cityCol = 6;
