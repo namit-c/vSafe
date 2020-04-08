@@ -128,9 +128,9 @@ public class vProb {
 		}
 		
 		// Uncomment this if you want to see what the keys look like for this hashmap
-	    for (String keys : set.keySet()) {
-			System.out.println(keys + " : " + set.get(keys));
-		}
+	    //for (String keys : set.keySet()) {
+		//	System.out.println(keys + " : " + set.get(keys));
+		//}
 
 
 		//return set;
