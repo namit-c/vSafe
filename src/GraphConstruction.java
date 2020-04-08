@@ -3,12 +3,31 @@ import java.util.*;
 import java.lang.Math;
 
 public class GraphConstruction {
-	public static Hashtable<String, ArrayList<String>> CloseCitiesHashTable() throws IOException{
+	
+	// Creates a hashtable with all fileName's cities as keys, and values being that city's nearby cities.
+	// Note: Only examines cities that are in the data set, sampleName
+	public static Hashtable<String, ArrayList<String>> CloseCitiesHashTable(String fileName, String sampleName, int sampleCityCol, int cityCol, int lonCol, int latCol, int range) throws IOException{
 		
-		String[][] data = ReadCSV.readFile("../Data_Sets/Canada_Cities.csv",0,1);
+		String[][] data = ReadCSV.readFile("../Data_Sets/" + fileName, 0, 1);
+		boolean ignore = true; // ignore is true if ignore irrelevant cities (not in a data set), else, false
+		
+		ArrayList<String> citiesToInclude = new ArrayList<String>();
+		if (sampleName.length() > 0) { // If want only cities in a given data set...
+			String[][] sampleData = ReadCSV.readFile("../Data_Sets/" + sampleName, sampleCityCol, 1);
+			
+			for (int i = 1 ; i < sampleData.length; i++) {
+				if (!citiesToInclude.contains(sampleData[i][sampleCityCol].toUpperCase().replace("\"", ""))) {
+					citiesToInclude.add(sampleData[i][sampleCityCol].toUpperCase().replace("\"", ""));
+					System.out.println(sampleData[i][sampleCityCol].toUpperCase().replace("\"", "")); // Prints cities to include from data set
+				}
+			}
+		}
+		else {
+			ignore = false;
+		}
         
         // Now data has all rows of cities sorted by alphabetical order.
-        
+      
         /*for (int i = 0; i < data.length; i++) {
         	System.out.println(data[i][0]);
         }*/
@@ -20,27 +39,34 @@ public class GraphConstruction {
         // Create hash key, value, for all cities
         for (int i = 0; i < data.length; i++) {
         	//System.out.println("Examining: " + data[i][0] + "Lon: " + data[i][1] + "Lat:" + data[i][2]);
-        	
-        	// Check all cities to see if nearby
-        	for (int j = 0; j < data.length; j++) {
-        		if (i != j) { // If not at same row as the one being examined
-        			distance = distance(Double.parseDouble(data[i][2]), Double.parseDouble(data[i][1]),
-        					Double.parseDouble(data[j][2]), Double.parseDouble(data[j][1]));
-        			//System.out.println(data[i][0] + " to " + data[j][0] + distance);
-        			
-        			// ADJUST DEFINITION OF "CLOSE" HERE
-        			if (distance <= 200) { // If this city is "close", add to array list
-        				close.add(data[j][0]);
-        				//System.out.println(close);
-        			}
-        			
-        		}
+        	//System.out.println("hey" + data[i][cityCol].toUpperCase());
+        	if (citiesToInclude.contains(data[i][cityCol].toUpperCase()) || ignore == false) {
+        		for (int j = 0; j < data.length; j++) {
+            		if (i != j && !data[j][cityCol].trim().equals("") && !data[i][cityCol].trim().equals("")) { // If not at same row as the one being examined
+            			
+            			
+            			distance = distance(Double.parseDouble(data[i][lonCol]), Double.parseDouble(data[i][latCol]),
+            					Double.parseDouble(data[j][lonCol]), Double.parseDouble(data[j][latCol]));
+            			//System.out.println(data[i][0] + " to " + data[j][0] + distance);
+            			
+            			// ADJUST DEFINITION OF "CLOSE" HERE
+            			if (distance <= range && !close.contains(data[j][cityCol]) && (citiesToInclude.contains(data[j][cityCol].toUpperCase()) || ignore == false)) { // If this city is "close", add to array list
+            				close.add(data[j][cityCol]);
+            				//System.out.println(close);
+            			}
+            			
+            		}
+            	}
+        		// Check all cities to see if nearby
+        		closeCities.put(data[i][cityCol].toUpperCase(), close); // Adds the current examined city to hashtable + its nearby cities
+            	close= new ArrayList<String>(); // Clear "close" cities to initialize for next check
+            	
         	}
-        	
-        	closeCities.put(data[i][0], close); // Adds the current examined city to hashtable + its nearby cities
-        	close= new ArrayList<String>(); // Clear "close" cities to initialize for next check
+
         }
         
+        // Prints all cities and their nearby cities
+        /*
         int count = 0;
         ArrayList<String> empty = new ArrayList<String>();
         for (int i = 0; i < closeCities.size(); i++) {
@@ -52,6 +78,7 @@ public class GraphConstruction {
         }
         System.out.println(empty);
         System.out.println(count);
+        */
 
         return closeCities;
 	}
@@ -73,7 +100,10 @@ public class GraphConstruction {
 	}
 	
     public static void main(String[] args) throws IOException{
-        CloseCitiesHashTable();
+    	Hashtable<String, ArrayList<String>> CAN = CloseCitiesHashTable("Canada_Cities.csv", "", 0, 0, 2, 1, 200);
+    	Hashtable<String, ArrayList<String>> US = CloseCitiesHashTable("uscities.csv", "stormdata_2013.csv", 8, 1, 9, 8, 500);
+    	System.out.println(US.get("WYOMING"));
+    	System.out.println(CAN.get("TORONTO"));
 
     }
 }
