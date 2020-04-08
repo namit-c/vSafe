@@ -115,7 +115,7 @@ public class vProb {
                     if (month.startsWith("0")){
                         month = month.substring(1);
                     }
-					key = dataSet0[i][j][15] + ' ' + month
+					key = dataSet0[i][j][15].toUpperCase() + ' ' + month
 							+ ' ' + dataSet0[i][j][12]; // Input
 					if (!set.containsKey(key)) {
 						set.put(key, (double) 1 / numYears);
@@ -128,9 +128,9 @@ public class vProb {
 		}
 		
 		// Uncomment this if you want to see what the keys look like for this hashmap
-	    /*for (String keys : set.keySet()) {
+	    for (String keys : set.keySet()) {
 			System.out.println(keys + " : " + set.get(keys));
-		}*/
+		}
 
 
 		//return set;
@@ -247,7 +247,7 @@ public class vProb {
 		HashMap<String, Double> probCDD = new HashMap<>();
 		String key;
 		for (int i = 0; necessaryData[i][cityCol1] != null; i++) {
-			key = necessaryData[i][cityCol1] + " " + necessaryData[i][dateCol1] + " " + necessaryData[i][eventCol1];
+			key = necessaryData[i][cityCol1].toUpperCase() + " " + necessaryData[i][dateCol1] + " " + necessaryData[i][eventCol1];
 			probCDD.put(key, Double.parseDouble(necessaryData[i][probCol]));
 		}
 
@@ -339,7 +339,7 @@ public class vProb {
 			// earthquake
 			if (!(necessaryData[i][cityCol1].toUpperCase().contains("AFTERSHOCK")
 					|| necessaryData[i][cityCol1].toUpperCase().contains("FORESHOCK"))) {
-				key = necessaryData[i][cityCol1] + " " + necessaryData[i][dateCol1] + " Earthquake";
+				key = necessaryData[i][cityCol1].toUpperCase() + " " + necessaryData[i][dateCol1] + " Earthquake";
 				occurrences++;
 
 				// only check for multiple occurrences if it is not the last element

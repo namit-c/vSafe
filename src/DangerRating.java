@@ -31,7 +31,7 @@ public class DangerRating{
                 //the dates in eqarchives are listed as yyyy-mm-dd ; from index 5 to 6, will give the month value
                 if (dataSet[z][cityCol].contains("from") && dataSet[z][dateIndex].substring(5,7).equals(month)){ 
                     //usually each city will have "DISTANCE km from CITYNAME", so below will be taking the substring to obtain the cityName
-                    String cityName = dataSet[z][cityCol].substring(dataSet[z][cityCol].indexOf("f") + 5); 
+                    String cityName = dataSet[z][cityCol].substring(dataSet[z][cityCol].indexOf("f") + 5).toUpperCase(); 
                     earthquakeDict.put(cityName, 0.0); 
                     listOfAllCitiesHash.put(cityName,0.0);
                 }
@@ -41,7 +41,7 @@ public class DangerRating{
 
         for (int z = 0; z < dataSet.length; z++){
             try{
-                String cityName = dataSet[z][cityCol].substring(dataSet[z][cityCol].indexOf("f") + 5);  
+                String cityName = dataSet[z][cityCol].substring(dataSet[z][cityCol].indexOf("f") + 5).toUpperCase();  
                 double currentCityMag = earthquakeDict.get(cityName);
                 currentCityMag += Double.parseDouble(dataSet[z][magIndex]);
                 earthquakeDict.put(cityName, currentCityMag);
@@ -85,11 +85,11 @@ public class DangerRating{
                     continue;
                 }
                 if (currentMonth == intOfMonth){
-                    city_set.add(dataSet[z][i][cityIndex]);
-                    listOfAllCitiesHash.put(dataSet[z][i][cityIndex],0.0);
-                    injuryDict.put(dataSet[z][i][cityIndex]+"-"+dataSet[z][i][eventIndex], 0.0);
-                    deathDict.put(dataSet[z][i][cityIndex]+"-"+dataSet[z][i][eventIndex], 0.0);
-                    damageDict.put(dataSet[z][i][cityIndex]+"-"+dataSet[z][i][eventIndex], 0.0);
+                    city_set.add(dataSet[z][i][cityIndex].toUpperCase());
+                    listOfAllCitiesHash.put(dataSet[z][i][cityIndex].toUpperCase(),0.0);
+                    injuryDict.put(dataSet[z][i][cityIndex].toUpperCase()+"-"+dataSet[z][i][eventIndex], 0.0);
+                    deathDict.put(dataSet[z][i][cityIndex].toUpperCase()+"-"+dataSet[z][i][eventIndex], 0.0);
+                    damageDict.put(dataSet[z][i][cityIndex].toUpperCase()+"-"+dataSet[z][i][eventIndex], 0.0);
                 }
             }
         }
@@ -111,7 +111,7 @@ public class DangerRating{
                     if (index >=0 ){ //Current City is found
                         
                             
-                        String tempStr = dataSet[z][index][cityIndex]+"-"+dataSet[z][index][eventIndex]; //string would be "SOUTH CAROLINA-Heavy Rain"
+                        String tempStr = dataSet[z][index][cityIndex].toUpperCase()+"-"+dataSet[z][index][eventIndex]; //string would be "SOUTH CAROLINA-Heavy Rain"
                         
                         double injury_counter = 0.0;
                         double death_counter = 0.0;      
@@ -186,7 +186,7 @@ public class DangerRating{
         return convert;
     }
 
-    private static void determineDangerRatingEarthuake(String month) throws IOException{
+    private static void determineDangerRatingEarthquake(String month) throws IOException{
         HashMap<String, Double> earthquakeProb = vProb.probEq();
         for (Map.Entry mapElement : earthquakeDict.entrySet()) { 
             String key = (String)mapElement.getKey(); 
@@ -211,6 +211,8 @@ public class DangerRating{
             if (currentIndexRating > 100){
                 currentIndexRating = 100;
             }
+
+            currentIndexRating = Math.round(currentIndexRating);
             listOfAllCitiesHash.put(key,currentIndexRating);
             //int value = ((int)mapElement.getValue() + 10);  
             //System.out.println(key + " : " + value); 
@@ -438,6 +440,7 @@ public class DangerRating{
             if (cityIndexVal > 100){
                 cityIndexVal = 100;
             }
+            cityIndexVal = Math.round(cityIndexVal);
             listOfAllCitiesHash.put(currentCity,cityIndexVal);
 
          }
@@ -445,7 +448,7 @@ public class DangerRating{
         //listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));  
     }
 
-    public static void loadAllDangerRating(String month) throws IOException{
+    public static HashMap<String, Double> loadAllDangerRating(String month) throws IOException{
         
         String[][] data1 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv",15,19);
         String[][] data2 = ReadCSV.readFile("../Data_Sets/stormdata_2012.csv",15,19);
@@ -507,7 +510,7 @@ public class DangerRating{
         
         data12 = null;
         
-        determineDangerRatingEarthuake(month);
+        determineDangerRatingEarthquake(month);
         
         String[][] data13 = ReadCSV.readFile("../Data_Sets/CDD_csv.csv",4,1);
         String[][][] newData2 = {data13};
@@ -519,13 +522,9 @@ public class DangerRating{
         dateCol = 12;
         findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,month,newData2);
 
-
+        return listOfAllCitiesHash;
     }
    
-    public static HashMap<String, Double> getDangerRatingHashMap(){
-          return listOfAllCitiesHash;
-        
-    }
 
        public static void main(String[] args) throws IOException{
         System.out.println("/");
