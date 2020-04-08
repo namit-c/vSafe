@@ -80,7 +80,7 @@ public class vProb {
         return set;
     }
 
-	private static void probSD(String[][][] dataSet0, HashMap<String, Double> set) throws IOException {
+	public static void probSD(String[][][] dataSet0, HashMap<String, Double> set) throws IOException {
 
 		// Set variables for hash keys
 		int firstMonth = 2003;
