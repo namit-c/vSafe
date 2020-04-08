@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.Map;
 import java.util.Iterator;
+
+
+
 public class DangerRating{
    private static  HashMap<String,Double > injuryDict = new HashMap<String, Double>();
    private static HashMap<String,Double> deathDict = new HashMap<String,Double>();
@@ -19,11 +22,14 @@ public class DangerRating{
 
   
    //Calculating the average magintude per city from 2019 to 1985
-   public static void findEarthQuakeData(int magIndex, int cityCol, String[][] dataSet){ 
+   public static void findEarthQuakeData(int magIndex, int cityCol, int dateIndex, String month, String[][] dataSet){ 
+       //int monthCol = 0; //in the 0 col for earthquake csv file
        for (int z = 0; z < dataSet.length; z++){
             try{
                 //System.out.println(dataSet[z][cityCol]);
-                if (dataSet[z][cityCol].contains("from")){
+                //
+                //the dates in eqarchives are listed as yyyy-mm-dd ; from index 5 to 6, will give the month value
+                if (dataSet[z][cityCol].contains("from") && dataSet[z][dateIndex].substring(5,7).equals(month)){ 
                     //usually each city will have "DISTANCE km from CITYNAME", so below will be taking the substring to obtain the cityName
                     String cityName = dataSet[z][cityCol].substring(dataSet[z][cityCol].indexOf("f") + 5); 
                     earthquakeDict.put(cityName, 0.0); 
@@ -61,16 +67,30 @@ public class DangerRating{
    }
 
    //Sum up all injuries, deaths and damage values that occur for each city and it's corresponding event for data over 10 years
-   public static void findDangerStatsOfDataSets(int cityIndex, int eventIndex, int injuryIndex, int deathIndex, int damageIndex, String[][][] dataSet ){
+   public static void findDangerStatsOfDataSets(int cityIndex, int eventIndex, int injuryIndex, int deathIndex, int damageIndex, int dateIndex, String month, String[][][] dataSet ){
         //Set<String> city_set = new HashSet<String>(); //city_set contains all unique cities in the csv file
+       // int monthCol = 0;
+        int intOfMonth = Integer.parseInt(month);
         for (int z = 0; z < dataSet.length; z++){
 
             for (int i = 0; i < dataSet[z].length; i++){ //collecting all unique city-event and setting the key values to 0.0
-                city_set.add(dataSet[z][i][cityIndex]);
-                listOfAllCitiesHash.put(dataSet[z][i][cityIndex],0.0);
-                injuryDict.put(dataSet[z][i][cityIndex]+"-"+dataSet[z][i][eventIndex], 0.0);
-                deathDict.put(dataSet[z][i][cityIndex]+"-"+dataSet[z][i][eventIndex], 0.0);
-                damageDict.put(dataSet[z][i][cityIndex]+"-"+dataSet[z][i][eventIndex], 0.0);
+                int gettingMonthEndIndex = dataSet[z][i][dateIndex].indexOf("/");
+                int currentMonth = 0;
+                try{
+                    currentMonth = Integer.parseInt(dataSet[z][i][dateIndex].substring(0, gettingMonthEndIndex));
+                    
+                }catch(StringIndexOutOfBoundsException e){
+                    continue;
+                }catch(NumberFormatException e){
+                    continue;
+                }
+                if (currentMonth == intOfMonth){
+                    city_set.add(dataSet[z][i][cityIndex]);
+                    listOfAllCitiesHash.put(dataSet[z][i][cityIndex],0.0);
+                    injuryDict.put(dataSet[z][i][cityIndex]+"-"+dataSet[z][i][eventIndex], 0.0);
+                    deathDict.put(dataSet[z][i][cityIndex]+"-"+dataSet[z][i][eventIndex], 0.0);
+                    damageDict.put(dataSet[z][i][cityIndex]+"-"+dataSet[z][i][eventIndex], 0.0);
+                }
             }
         }
         
@@ -85,9 +105,12 @@ public class DangerRating{
             ArrayList<String[]> listArr = convertTwoDToArrayList(dataSet[z]);
             for (int i = 0; i < cityLst.length; i++){ //itterating through all cities
                 while (index >= 0){
-                    index = BinarySearch.binarySearch(listArr,cityLst[i],cityIndex); 
-                    if (index >=0){ //Current City is found
+                    index = BinarySearch.binarySearch(listArr,cityLst[i],cityIndex);
+                    
+
+                    if (index >=0 ){ //Current City is found
                         
+                            
                         String tempStr = dataSet[z][index][cityIndex]+"-"+dataSet[z][index][eventIndex]; //string would be "SOUTH CAROLINA-Heavy Rain"
                         
                         double injury_counter = 0.0;
@@ -163,7 +186,8 @@ public class DangerRating{
         return convert;
     }
 
-    private static void determineDangerRatingEarthuake(){
+    private static void determineDangerRatingEarthuake(String month) throws IOException{
+        HashMap<String, Double> earthquakeProb = vProb.probEq();
         for (Map.Entry mapElement : earthquakeDict.entrySet()) { 
             String key = (String)mapElement.getKey(); 
             
@@ -178,8 +202,15 @@ public class DangerRating{
                 currentIndexRating += 10;
             }else{
                currentIndexRating += 50;
-            } 
+            }
 
+            
+            if (earthquakeProb.containsKey(key + " " + month + " " + "Earthquake")){
+                currentIndexRating *= earthquakeProb.get(key + " " + month + " " + "Earthquake")/100;
+            }
+            if (currentIndexRating > 100){
+                currentIndexRating = 100;
+            }
             listOfAllCitiesHash.put(key,currentIndexRating);
             //int value = ((int)mapElement.getValue() + 10);  
             //System.out.println(key + " : " + value); 
@@ -189,11 +220,16 @@ public class DangerRating{
          
     }
 
-    public static void determineDangerRatingStormRelated(){
+    public static void determineDangerRatingStormRelated(String month) throws IOException{
          int index = 0;
          Iterator<Map.Entry<String, Double>> injury = injuryDict.entrySet().iterator(); 
          Iterator<Map.Entry<String, Double>> death = deathDict.entrySet().iterator();
          Iterator<Map.Entry<String, Double>> damage = damageDict.entrySet().iterator();
+         
+         
+         HashMap<String,Double> stormDataProb = vProb.determineAllProbSD();
+         //HashMap<String, Double> earthquakeProb = vProb.probEq();
+         HashMap<String, Double> canadaNaturalDis = vProb.probCDD();
 
          while(injury.hasNext() && death.hasNext() && damage.hasNext()){
             //Iterator<Map.Entry<String, String>> index = injuryDict.entrySet().iterator();
@@ -204,7 +240,7 @@ public class DangerRating{
             String key = (String)entryInj.getKey();     
             String currentEvent = (String)entryInj.getKey().substring(((String)entryInj.getKey()).indexOf("-") + 1);
             String currentCity = (String)entryInj.getKey().substring(0,((String)entryInj.getKey()).indexOf("-") );
-            
+             
             //System.out.println(currentCity);
             double cityIndexVal = 0.0; 
             try{
@@ -213,6 +249,7 @@ public class DangerRating{
             }
             
             if (currentEvent.contains("Heat") || currentEvent.contains("Drought")){
+                
                 //deaths
                 if (deathDict.get(key) > 5.0){
                     cityIndexVal += 20;
@@ -226,8 +263,13 @@ public class DangerRating{
                 }else{
                     cityIndexVal += 50;
                 }
+                if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
+                }
+                else if (canadaNaturalDis.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= canadaNaturalDis.get(currentCity + " " + month + " " + currentEvent)/100;
+                }
             }
-
             else if (currentEvent.contains("Avalach")){
                 if (deathDict.get(key) > 5.0){
                     cityIndexVal += 20;
@@ -239,10 +281,16 @@ public class DangerRating{
                 else if (injuryDict.get(key) >= 10.0){
                     cityIndexVal += 10;
                 }
+                if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
+                cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
+                }
+                else if (canadaNaturalDis.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= canadaNaturalDis.get(currentCity + " " + month + " " + currentEvent)/100;
+                } 
 
             }
 
-            else if (currentEvent.contains("Torn")){
+            else if (currentEvent.contains("Tornado")){
                 if (deathDict.get(key) > 0){
                     cityIndexVal += 20;
                 }
@@ -262,9 +310,15 @@ public class DangerRating{
                 }else{
                     cityIndexVal += 20;
                 }
+                if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
+                }
+                else if (canadaNaturalDis.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= canadaNaturalDis.get(currentCity + " " + month + " " + currentEvent)/100;
+                }  
             }
 
-            else if (currentEvent.contains("Wild")){
+            else if (currentEvent.contains("Wildfire")){
                if (deathDict.get(key) > 0){
                     cityIndexVal += 25;
                 }
@@ -283,10 +337,17 @@ public class DangerRating{
                     cityIndexVal += 15;
                 }else{
                     cityIndexVal += 25;
+                }
+
+                if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
+                }
+                else if (canadaNaturalDis.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= canadaNaturalDis.get(currentCity + " " + month + " " + currentEvent)/100;
                 } 
             }
 
-            else if (currentEvent.contains("Snow") || currentEvent.contains("Bliz")){
+            else if (currentEvent.contains("Heavy Snow") || currentEvent.contains("Blizzard") || currentEvent.contains("Winter Storm")){
                 if (deathDict.get(key) > 0){
                     cityIndexVal += 15;
                 }
@@ -305,11 +366,18 @@ public class DangerRating{
                     cityIndexVal += 10;
                 }else{
                     cityIndexVal += 15;
+                }
+
+                if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
+                }
+                else if (canadaNaturalDis.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= canadaNaturalDis.get(currentCity + " " + month + " " + currentEvent)/100;
                 } 
 
             }
 
-            else if (currentEvent.contains("Flood")){
+            else if (currentEvent.contains("Flood") || currentEvent.contains("Flash Flood")){
                if (deathDict.get(key) > 0){
                     cityIndexVal += 20;
                 }
@@ -328,7 +396,14 @@ public class DangerRating{
                     cityIndexVal += 15;
                 }else{
                     cityIndexVal += 25;
-                } 
+                }
+
+                 if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
+                }
+                else if (canadaNaturalDis.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= canadaNaturalDis.get(currentCity + " " + month + " " + currentEvent)/100;
+                }
             }
 
             else{
@@ -350,18 +425,27 @@ public class DangerRating{
                     cityIndexVal += 10;
                 }else{
                     cityIndexVal += 20;
+                }
+
+               if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
+                }
+                else if (canadaNaturalDis.containsKey(currentCity + " " + month + " " + currentEvent)){
+                    cityIndexVal *= canadaNaturalDis.get(currentCity + " " + month + " " + currentEvent)/100;
                 } 
         
             }
-            
+            if (cityIndexVal > 100){
+                cityIndexVal = 100;
+            }
             listOfAllCitiesHash.put(currentCity,cityIndexVal);
 
          }
 
         //listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));  
     }
-    
-    public static void main(String[] args) throws IOException{
+
+    public static void loadAllDangerRating(String month) throws IOException{
         
         String[][] data1 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv",15,19);
         String[][] data2 = ReadCSV.readFile("../Data_Sets/stormdata_2012.csv",15,19);
@@ -375,7 +459,15 @@ public class DangerRating{
         //String[][] data10 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv",15,19);
         //String[][] data11= ReadCSV.readFile("../Data_Sets/stormdata_2003.csv",15,19);
         String[][][] allDataSets = {data1,data2,data3,data4};
-        findDangerStatsOfDataSets(15,12,20,22,24,allDataSets);
+        
+        int cityCol = 15;
+        int eventCol = 12;
+        int injuryCol = 20;
+        int deathCol = 22;
+        int damageCol = 24;
+        int dateCol = 17;
+        
+        findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,month,allDataSets);
         data1 = null;
         data2 = null;
         data3 = null;
@@ -388,7 +480,7 @@ public class DangerRating{
         String[][] data7 = ReadCSV.readFile("../Data_Sets/stormdata_2007.csv",15,19);
         String[][] data8 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv",15,19);
         String[][][] newData = {data5,data6,data7,data8};
-        findDangerStatsOfDataSets(15,12,20,22,24,newData);
+        findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,month,newData);
 
         data5 = null;
         data6 = null;
@@ -401,28 +493,52 @@ public class DangerRating{
         String[][] data10 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv",15,19);
         String[][] data11 = ReadCSV.readFile("../Data_Sets/stormdata_2003.csv",15,19);
         String[][][] newData1 = {data9,data10,data11};
-        findDangerStatsOfDataSets(15,12,20,22,24,newData1);
+        findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,month,newData1);
         
-        determineDangerRatingStormRelated();
+        determineDangerRatingStormRelated(month);
         
         data9 = null;
         data10 = null;
         data11 = null;
         newData1 = null;
         
-        String temp = "123456";
-        System.out.println(temp.contains("123456"));
         String[][] data12 = ReadCSV.readFile("../Data_Sets/eqarchive-en.csv",1,6);
-        findEarthQuakeData(4,6,data12); 
+        findEarthQuakeData(4,6,0,month,data12); 
         
         data12 = null;
         
-        determineDangerRatingEarthuake();
+        determineDangerRatingEarthuake(month);
         
         String[][] data13 = ReadCSV.readFile("../Data_Sets/CDD_csv.csv",4,1);
         String[][][] newData2 = {data13};
-        findDangerStatsOfDataSets(4,1,8,7,10,newData2);
-        listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));
+        cityCol = 4;
+        eventCol = 1;
+        injuryCol = 8;
+        deathCol = 7;
+        damageCol = 10;
+        dateCol = 12;
+        findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,month,newData2);
 
+
+    }
+   
+    public static HashMap<String, Double> getDangerRatingHashMap(){
+          return listOfAllCitiesHash;
+        
+    }
+
+       public static void main(String[] args) throws IOException{
+        System.out.println("/");
+        loadAllDangerRating("6");
+        //multiplyDangerRatingWithProb();
+        listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));
+        /*
+        String[][] test = ReadCSV.readFile("../Data_Sets/uscities.csv",1,8); 
+        for (int i = 0; i < test.length; i++){
+            if (test[i][9].contains("Monroe") || test[i][8].contains("Monroe")){
+                System.out.println(test[i][1] + " Lat:" + test[i][8] + " Lon:" + test[i][9]);
+            }
+        }
+        */
     }
 }
