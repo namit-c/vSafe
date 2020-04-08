@@ -3,7 +3,7 @@ import java.util.*;
 import java.lang.Math;
 
 public class GraphConstruction {
-	public static Hashtable<String, ArrayList<String>> CloseCitiesHashTable(String fileName, int cityCol, int lonCol, int latCol) throws IOException{
+	public static Hashtable<String, ArrayList<String>> CloseCitiesHashTable(String fileName, int cityCol, int lonCol, int latCol, int range) throws IOException{
 		
 		String[][] data = ReadCSV.readFile("../Data_Sets/" + fileName, 0, 1);
         
@@ -29,7 +29,7 @@ public class GraphConstruction {
         			//System.out.println(data[i][0] + " to " + data[j][0] + distance);
         			
         			// ADJUST DEFINITION OF "CLOSE" HERE
-        			if (distance <= 200) { // If this city is "close", add to array list
+        			if (distance <= range) { // If this city is "close", add to array list
         				close.add(data[j][cityCol]);
         				//System.out.println(close);
         			}
@@ -73,8 +73,8 @@ public class GraphConstruction {
 	}
 	
     public static void main(String[] args) throws IOException{
-        CloseCitiesHashTable("Canada_Cities.csv", 0, 2, 1);
-        CloseCitiesHashTable("uscities.csv", 1, 9, 8);
+        CloseCitiesHashTable("Canada_Cities.csv", 0, 2, 1, 200);
+        CloseCitiesHashTable("uscities.csv", 1, 9, 8, 200);
 
     }
 }
