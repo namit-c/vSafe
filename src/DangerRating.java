@@ -222,15 +222,16 @@ public class DangerRating{
          
     }
 
-    public static void determineDangerRatingStormRelated(String month) throws IOException{
+    public static void determineDangerRatingStormRelated(String month, HashMap<String, Double> stormData) throws IOException{
          int index = 0;
          Iterator<Map.Entry<String, Double>> injury = injuryDict.entrySet().iterator(); 
          Iterator<Map.Entry<String, Double>> death = deathDict.entrySet().iterator();
          Iterator<Map.Entry<String, Double>> damage = damageDict.entrySet().iterator();
          
          
-         HashMap<String,Double> stormDataProb = vProb.determineAllProbSD();
+         HashMap<String,Double> stormDataProb = stormData;
          //HashMap<String, Double> earthquakeProb = vProb.probEq();
+         
          HashMap<String, Double> canadaNaturalDis = vProb.probCDD();
 
          while(injury.hasNext() && death.hasNext() && damage.hasNext()){
@@ -449,7 +450,7 @@ public class DangerRating{
     }
 
     public static HashMap<String, Double> loadAllDangerRating(String month) throws IOException{
-        
+        HashMap<String, Double> stormDataProb = new HashMap<String, Double>(); 
         String[][] data1 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv",15,19);
         String[][] data2 = ReadCSV.readFile("../Data_Sets/stormdata_2012.csv",15,19);
         String[][] data3 = ReadCSV.readFile("../Data_Sets/stormdata_2011.csv",15,19);
@@ -471,6 +472,7 @@ public class DangerRating{
         int dateCol = 17;
         
         findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,month,allDataSets);
+        vProb.probSD(allDataSets,stormDataProb);
         data1 = null;
         data2 = null;
         data3 = null;
@@ -484,7 +486,7 @@ public class DangerRating{
         String[][] data8 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv",15,19);
         String[][][] newData = {data5,data6,data7,data8};
         findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,month,newData);
-
+        vProb.probSD(newData,stormDataProb);
         data5 = null;
         data6 = null;
         data7 = null;
@@ -497,8 +499,8 @@ public class DangerRating{
         String[][] data11 = ReadCSV.readFile("../Data_Sets/stormdata_2003.csv",15,19);
         String[][][] newData1 = {data9,data10,data11};
         findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,month,newData1);
-        
-        determineDangerRatingStormRelated(month);
+        vProb.probSD(newData1,stormDataProb);
+        determineDangerRatingStormRelated(month, stormDataProb);
         
         data9 = null;
         data10 = null;
@@ -528,16 +530,9 @@ public class DangerRating{
 
        public static void main(String[] args) throws IOException{
         System.out.println("/");
-        loadAllDangerRating("6");
+        loadAllDangerRating("06");
         //multiplyDangerRatingWithProb();
         listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));
-        /*
-        String[][] test = ReadCSV.readFile("../Data_Sets/uscities.csv",1,8); 
-        for (int i = 0; i < test.length; i++){
-            if (test[i][9].contains("Monroe") || test[i][8].contains("Monroe")){
-                System.out.println(test[i][1] + " Lat:" + test[i][8] + " Lon:" + test[i][9]);
-            }
-        }
-        */
+        System.out.println(listOfAllCitiesHash.size());
     }
 }
