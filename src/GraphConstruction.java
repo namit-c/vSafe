@@ -3,9 +3,9 @@ import java.util.*;
 import java.lang.Math;
 
 public class GraphConstruction {
-	public static Hashtable<String, ArrayList<String>> CloseCitiesHashTable() throws IOException{
+	public static Hashtable<String, ArrayList<String>> CloseCitiesHashTable(String fileName, int cityCol, int lonCol, int latCol) throws IOException{
 		
-		String[][] data = ReadCSV.readFile("../Data_Sets/Canada_Cities.csv",0,1);
+		String[][] data = ReadCSV.readFile("../Data_Sets/" + fileName, 0, 1);
         
         // Now data has all rows of cities sorted by alphabetical order.
         
@@ -23,21 +23,21 @@ public class GraphConstruction {
         	
         	// Check all cities to see if nearby
         	for (int j = 0; j < data.length; j++) {
-        		if (i != j) { // If not at same row as the one being examined
-        			distance = distance(Double.parseDouble(data[i][2]), Double.parseDouble(data[i][1]),
-        					Double.parseDouble(data[j][2]), Double.parseDouble(data[j][1]));
+        		if (i != j && !data[j][cityCol].trim().equals("") && !data[i][cityCol].trim().equals("")) { // If not at same row as the one being examined
+        			distance = distance(Double.parseDouble(data[i][lonCol]), Double.parseDouble(data[i][latCol]),
+        					Double.parseDouble(data[j][lonCol]), Double.parseDouble(data[j][latCol]));
         			//System.out.println(data[i][0] + " to " + data[j][0] + distance);
         			
         			// ADJUST DEFINITION OF "CLOSE" HERE
         			if (distance <= 200) { // If this city is "close", add to array list
-        				close.add(data[j][0]);
+        				close.add(data[j][cityCol]);
         				//System.out.println(close);
         			}
         			
         		}
         	}
         	
-        	closeCities.put(data[i][0], close); // Adds the current examined city to hashtable + its nearby cities
+        	closeCities.put(data[i][cityCol], close); // Adds the current examined city to hashtable + its nearby cities
         	close= new ArrayList<String>(); // Clear "close" cities to initialize for next check
         }
         
@@ -73,7 +73,8 @@ public class GraphConstruction {
 	}
 	
     public static void main(String[] args) throws IOException{
-        CloseCitiesHashTable();
+        CloseCitiesHashTable("Canada_Cities.csv", 0, 2, 1);
+        CloseCitiesHashTable("uscities.csv", 1, 9, 8);
 
     }
 }
