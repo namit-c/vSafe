@@ -10,33 +10,32 @@ public class FrontendText {
 	
 	//This module takes care of everything after the input
 	public static void frontend(String cityname, String vacationDate) {
-		//call the sorting module
 		
 		//call the searching module
-		
-		//calculate possibilities
-		
+				
 		//assign danger rating
 		
 		//graph construction 
 		
-		//heat map
+		
+		//print danger rating
 		
 	}
 	
 	public static void main(String[] args) throws IOException {
 		
 		System.out.println("Loading..");
+		
 		//Sorting the data set
-		ReadCSV.main(null);
+		//sort here
+		
 		System.out.println("Loading complete.\n");
 		
 		String flag = "y";
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
 		//Loop so multiple cities can be entered
 		while(flag.equals("y")) {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	
 			System.out.println("Enter the city name and date(mm/dd/yyyy) separated by a space. ");
 			//Reading the input information, city and date
 			String inputString = reader.readLine();
@@ -52,7 +51,7 @@ public class FrontendText {
 			System.out.println("Enter y to enter a new city, n otherwise: ");
 			flag = reader.readLine();
 		}
-		
+		reader.close();
 		
 	}
 }
