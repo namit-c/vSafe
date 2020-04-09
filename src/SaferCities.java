@@ -4,6 +4,15 @@ import java.util.Hashtable;
 import java.io.*;
 
 public class SaferCities {
+	/**
+	 * @brief Calculates which neighbouring cities of the input city are
+	 * safe, as per the calculated danger rating
+	 * @param closeCitiesHashtable of type Hashtable<String, ArrayList<String>> representing a hashtable with keys are cities and values as
+	 * a list of cities that are "close" to that city/key
+	 * @param source of type String representing the city to check. (check its neighbouring cities).
+	 * @param month of type String representing the month to calculate the danger rating for.
+	 * @return safe of type ArrayList<String> such that all members are the names of safe, neighbouring cities
+	 */
 	public static ArrayList<String> saferCities(Hashtable<String, ArrayList<String>> closeCitiesHashtable, String source, String month) throws IOException{
 		
 		Digraph cityGraph = new Digraph(closeCitiesHashtable.size(), closeCitiesHashtable);

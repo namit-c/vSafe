@@ -4,8 +4,20 @@ import java.lang.Math;
 
 public class GraphConstruction {
 	
-	// Creates a hashtable with all fileName's cities as keys, and values being that city's nearby cities.
-	// Note: Only examines cities that are in the data set, sampleName
+	/**
+	 * @brief Creates a hashtable with all fileName's cities as keys, and values being that city's nearby cities.
+	 * Only examines cities that are in the data set, sampleName (or examines all cities if no data set given)
+	 * @param fileName of type String representing the data set containing city information
+	 * @param sampleName of type String representing the data set being used. Essentially uses this to filter out irrelevant cities.
+	 * If empty string input, no filter used.
+	 * @param sampleCityCol of type int representing the city column for data set sampleName
+	 * @param cityCol of type int representing the city column for data set fileName
+	 * @param lonCol of type int representing the longitude column for data set fileName
+	 * @param latCol of type int representing the latitude column for data set fileName
+	 * @param range of type int representing the range of distance to be considered "close"
+	 * @return closeCities of type Hashtable<String, ArrayList<String>> such that keys are cities and the values are ArrayList<String>
+	 * such that all members are "close" to that city/key
+	 */
 	public static Hashtable<String, ArrayList<String>> CloseCitiesHashTable(String fileName, String sampleName, int sampleCityCol, int cityCol, int lonCol, int latCol, int range) throws IOException{
 		
 		String[][] data = ReadCSV.readFile("../Data_Sets/" + fileName, 0, 1);
