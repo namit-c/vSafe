@@ -9,6 +9,13 @@ import java.util.Map;
 import java.util.Iterator;
 
 
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 
 public class DangerRating{
    private static  HashMap<String,Double > injuryDict = new HashMap<String, Double>();
@@ -526,11 +533,62 @@ public class DangerRating{
 
         return listOfAllCitiesHash;
     }
+    public static void writeDangerRateTxt() throws IOException{
+        String[][] US = ReadCSV.readFile("../Data_Sets/uscities.csv",1,1);
+
+        String[][] CAD = ReadCSV.readFile("../Data_Sets/Canada_Cities.csv",0,0);
+
+            
+
+        ArrayList<String> USList = new ArrayList<String>();
+        ArrayList<String> CADList = new ArrayList<String>();
+
+        for (int i = 0; i < US.length; i++){
+            USList.add(US[i][1].toUpperCase());
+        }
+        for (int i = 0; i < CAD.length; i++){
+            CADList.add(CAD[i][0].toUpperCase());
+        }
+
+        
+       OutputStream output = new FileOutputStream("DangerRatingOutput.txt");
+        PrintStream printstream = new PrintStream(output);
+        for (Map.Entry mapElement : listOfAllCitiesHash.entrySet()) { 
+            String key = (String)mapElement.getKey(); 
+            
+           
+            if (USList.indexOf(key) >= 0){
+                double currentDangerRating = 0.0;
+                if (listOfAllCitiesHash.get(key) != null){
+                   currentDangerRating = listOfAllCitiesHash.get(key);    
+                }
+                printstream.print(US[USList.indexOf(key)][8] + " " + US[USList.indexOf(key)][9] + " " + currentDangerRating+"\n");
+            }else if (USList.indexOf(key)  >= 0){
+
+                double currentDangerRating = 0.0;
+                if (listOfAllCitiesHash.get(key) != null){
+                   currentDangerRating = listOfAllCitiesHash.get(key);    
+                }
+                printstream.print(CAD[CADList.indexOf(key)][1] + " " + CAD[CADList.indexOf(key)][2] + " " + currentDangerRating+"\n");
+
+            }
+            //int value = ((int)mapElement.getValue() + 10);  
+            //System.out.println(key + " : " + value); 
+        } 
+
+       
+
+        //printstream.close();
+        //output.close();
+
+    }
    
 
        public static void main(String[] args) throws IOException{
         System.out.println("/");
+        //writeDangerRateTxt();
         loadAllDangerRating("06");
+        writeDangerRateTxt();
         //multiplyDangerRatingWithProb();
         listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));
         System.out.println(listOfAllCitiesHash.size());
