@@ -29,6 +29,7 @@ public class writeJSON {
       File file1 = new File("src/DangerRatingOutput.txt");
       Scanner scan1 = new Scanner(file1);
       
+      // Creates JSON objects to be written into output
       String[] input = new String[3];
       JSONArray features = new JSONArray();
       JSONObject geometry;
@@ -60,6 +61,7 @@ public class writeJSON {
       jsonArr.put("type", "FeatureCollection");
       jsonArr.put("features", features);
       
+      // Writes to output file
       try {
          FileWriter file2 = new FileWriter("src/output.json");
          file2.write("eqfeed_callback(");
