@@ -16,30 +16,31 @@ public class MergeSort{
         int i = low;
         int j = mid + 1;
         for (int k = low; k <= hi; k++){
-            for (int col = 0; col < a[0].length; col++){
-
-                aux[k][col] = a[k][col];
-            }
+            aux[k] = a[k].clone();
         }
         for (int k = low; k <= hi; k++){
             if (i > mid){
                 //a[k][index] = aux[j++][index];
-                insertRow(a,aux,k,j);
+                //insertRow(a,aux,k,j);
+                a[k] = aux[j].clone();
                 j++;
             }
             else if (j > hi){
                 //a[k][index] = aux[i++][index];
-                insertRow(a,aux,k,i);
+                //insertRow(a,aux,k,i);
+                a[k] = aux[i].clone();
                 i++;
             }
             else if (aux[j][index].compareTo(aux[i][index]) < 0){
                 //a[k][index] = aux[j++][index];
-                insertRow(a,aux,k,j);
+                //insertRow(a,aux,k,j);
+                a[k] = aux[j].clone();
                 j++;
             }
             else{
                 //a[k][index] = aux[i++][index];
-                insertRow(a,aux,k,i);
+                //insertRow(a,aux,k,i);
+                a[k] = aux[i].clone();
                 i+=1;
             }
         }
