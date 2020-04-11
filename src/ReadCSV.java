@@ -22,10 +22,10 @@ import java.io.FileWriter;
 
     /**
      * @param pathToCSV path to CSV file
-     * @param cityCol column index for city
-     * @param dateCol column index for date
+     * @param col1 column index for city
+     * @param col2 column index for date
      */
-    public static String[][] readFile(String pathToCSV, int cityCol, int dateCol) throws IOException{
+    public static String[][] readFile(String pathToCSV, int col1, int col2) throws IOException{
         BufferedReader csvReader = new BufferedReader(new FileReader(pathToCSV));
         String row = "";
         int count = 0;
@@ -41,16 +41,16 @@ import java.io.FileWriter;
         }
         csvReader.close();
         String[][] data = convertArrayListToStringArr(dataSet);
-        MergeSort.sort(data,dateCol);
+        MergeSort.sort(data,col2);
         long startTime = System.currentTimeMillis();
-        MergeSort.sort(data,cityCol);
+        MergeSort.sort(data,col1);
         long endTime = System.currentTimeMillis();
 
         System.out.println("SORTING LOCATION TAKES : " + (endTime - startTime) + " ms");
         
        
         startTime = System.currentTimeMillis();
-        //MergeSort.sort(data,dateCol);
+        //MergeSort.sort(data,col2);
         endTime = System.currentTimeMillis();
 
         System.out.println(pathToCSV + " = " +data.length);
@@ -67,11 +67,7 @@ import java.io.FileWriter;
                 if (arr.get(i)[j].length() == 0){
                     newArr[i][j] = " ";
                 }else{
-                    if (arr.get(i)[j].startsWith("\"")){
-                        newArr[i][j] = arr.get(i)[j].substring(1,arr.get(i)[j].length());
-                    }else{
-                        newArr[i][j] = arr.get(i)[j];
-                    }
+                    newArr[i][j] = arr.get(i)[j].replaceAll("\"",""); 
                 }
             }
             while (j < arr.get(0).length){
@@ -82,36 +78,6 @@ import java.io.FileWriter;
         return newArr;
     }
 
-    public static String[] parseStartEndDates(String[] row, int startYr, int startMth, int startDy, int endYr, int endMth, int endDy){
-        //For stormData_yyyy.csv : row[0] = yyyymm (start), row[1] = d (start), row[3] = yyyymm (end), row[4] = d (end)
-        String startYear = row[startYr].substring(0,4);
-        String startMonth = row[startMth].substring(3,5);
-        String startDay = row[startDy];
-
-        String endYear = row[endYr].substring(0,4);
-        String endMonth = row[endMth].substring(3,5);
-        String endDay = row[endDy];
-
-        String[] dateArray = {startYear,startMonth,startDay,endYear,endMonth,endDay};
-        return dateArray;
-       // System.out.println("Start: " + startYear+ "//"+ startMonth+"//"+ startDay+ " - End: " + endYear + "//" + endMonth + "//" + endDay);
-    }
-    public static String[] parseDate(String[] row, int col){
-        String[] dateArray = row[col].substring(0,11).split("/"); //splits from dd/mm/yyyy
-        return dateArray; 
-    }
-
-    
-    public static String parseLocationsByStateOrProvince(String[] row,int location){
-        return new String(row[location]);
-    }
-
-    public static String parseDisasterName(String[] row, int index){
-        return new String(row[index]);
-    }
-    public static String parseDamageCol(String[] row, int index){
-        return new String(row[index]);
-    }
  
 
     public static void  main(String[] args) throws IOException{
