@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+* @brief Module for creating HashMaps of event based data sets
+*/
 public class vProb {
 
 	public static void main(String[] args) throws IOException {
@@ -30,6 +33,9 @@ public class vProb {
 
 	}
 
+	/**
+	* @brief Method for reading in CSV's and creating HashMaps for all stormdata data sets 2003 - 2010
+	*/
     public static HashMap<String, Double> determineAllProbSD() throws IOException{
         HashMap<String, Double> set = new HashMap<String, Double>();
          
@@ -80,6 +86,11 @@ public class vProb {
         return set;
     }
 
+    /**
+	* @brief Method for generating HashMap of storm data probabilities from stormdata data set
+	* @Param dataSet0 Sequence of matrices containing data set from stormdata 
+	* @Param set HashMap for storing probability values to respective city based events
+	*/
 	public static void probSD(String[][][] dataSet0, HashMap<String, Double> set) throws IOException {
 
 		// Set variables for hash keys
@@ -140,6 +151,9 @@ public class vProb {
 	// Details: uses the formula (total occurrences in specified month)/(total years
 	// of data) * 100
 	// to calculate probability of each event in each city for each month
+    /**
+	* @brief Method for reading in and generating HashMap of CDD data set, country: Canada
+	*/
 	public static HashMap<String, Double> probCDD() throws IOException {
 
 		// Column numbers of city, date, and event name in the CDD data set
@@ -258,6 +272,9 @@ public class vProb {
 	// north america, mostly canada)
 	// Does not include foreshocks and aftershocks as they are part of the same
 	// earthquake
+    /**
+	* @brief Method for reading in eqarchive and generating HashMap of probabilities of earthquake data set in North America
+	*/
 	public static HashMap<String, Double> probEq() throws IOException {
 
 		// column numbers of the city and date
