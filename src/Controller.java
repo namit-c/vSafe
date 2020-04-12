@@ -56,7 +56,7 @@ public class Controller {
 				sampleCityCol, cityCol, lonCol, latCol, range);
 		
 		//changing variables for the us graph
-		sampleCityCol = 8;
+		sampleCityCol = 15;
 		cityCol = 1;
 		lonCol = 9;
 		latCol = 8;
