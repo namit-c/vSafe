@@ -13,7 +13,7 @@ public class FrontendText {
 	 */
 	public static void printDangerRating(String cityname, String month, double dangerRating){
     	        
-        System.out.print("\nThe danger rating of " + cityname + " in: ");
+        System.out.print("\nThe danger rating of " + cityname + " in ");
         
         switch(month) {
         	case "1":
@@ -57,7 +57,7 @@ public class FrontendText {
        			return;
         }
         
-        System.out.print(" is " + dangerRating + "\n");
+        System.out.print(" is: " + dangerRating + "\n");
 	}
 
 	/**
