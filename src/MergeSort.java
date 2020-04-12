@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Arrays;
 public class MergeSort{
     
@@ -7,11 +8,25 @@ public class MergeSort{
     */
 
     private static String[][] aux;
+    
+    /**
+ 	 * @brief sort the 2D string array in lexiographic order by sorting in a specific column of the array such that it wil sort the rows based on this comparison
+ 	 * @param a is the 2D string array to be sorted
+ 	 * @param index is the index to compare elements in a specificed column 
+ 	 */
     public static void sort(String[][] a,int index){
         aux = new String[a.length][a[0].length];
         sort(a,0,a.length -1,index);
     }
     
+    /**
+ 	 * @brief merge the current array by using the aux array to make a current copy of the merged array to merge elements back in order 
+ 	 * @param a 2D string array
+ 	 * @param low representing the pointer to beginning of the array
+ 	 * @param mid representing the pointer to middle of the array
+ 	 * @param hi representing the pointer to the end of the array
+ 	 * @param index representing the column to specifically compare elements by
+ 	 */
     private static void merge(String[][] a, int low, int mid, int hi,int index){
         int i = low;
         int j = mid + 1;
@@ -47,6 +62,7 @@ public class MergeSort{
 
     }
 
+    /*
     //The following does a shallow copy of the contents of row in the second matrix and stores it in the firstMatrix
     //Previously in the merge function, if a[k] = aux[j++] for example, this would lose pointers to the previous rows and be lossed
     //lossed in memory. This solution prevents it from happening, however this heavily impacts performance.
@@ -58,6 +74,15 @@ public class MergeSort{
             firstMatrix[firstRow][i] = temp;
         }
     }
+    */
+    
+    /**
+ 	 * @brief Recursively call back until you have subarrays of size 1, then merge those subarrays in order
+	 * @param a 2D string array
+ 	 * @param low representing the pointer to beginning of the array
+ 	 * @param hi representing the pointer to the end of the array
+ 	 * @param index representing the column to specifically compare elements by
+ 	 */
     private static void sort(String[][] a, int low, int hi,int index){
         if (hi <= low){
             return;
@@ -67,12 +92,6 @@ public class MergeSort{
         sort(a,mid+1,hi,index);
         merge(a,low,mid,hi,index);
     }
-    
-    public static void main(String[] args){
-       String[] unsortedArr = {"E","Z","F","A","B","D"};
-       //sort(unsortedArr);
-       //System.out.println(Arrays.toString(unsortedArr));
-
-    }
+ 
 
 }

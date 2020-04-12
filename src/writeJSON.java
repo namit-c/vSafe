@@ -69,7 +69,7 @@ public class writeJSON {
 
 		// Writes to output file
 		try {
-			FileWriter file2 = new FileWriter("src/output.json");
+			FileWriter file2 = new FileWriter("src/map.geojson");
 			file2.write("eqfeed_callback(");
 			file2.write(jsonArr.toString());
 			file2.write(");");

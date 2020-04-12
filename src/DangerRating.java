@@ -16,7 +16,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-
+/**
+ * @brief Class computes the danger rating for all cities from the data sets obtained. It will go through each city and assign a specific danger rating based on our interpretation
+ */
 public class DangerRating{
    private static  HashMap<String,Double > injuryDict = new HashMap<String, Double>();
    private static HashMap<String,Double> deathDict = new HashMap<String,Double>();
@@ -29,25 +31,36 @@ public class DangerRating{
 
   
    //Calculating the average magintude per city from 2019 to 1985
+   
+   /**
+	 * @brief Finds adds up all the magnitudes for each city in a specific month and store it in earthquakeDict , then it will update the earthquakeDict to compute the avereage which will divide the total by (2019 - 1985)
+	 * @param magIndex magnitude column in the dataset
+	 * @param cityCol city column in the dataset
+	 * @param dateIndex starting date column of the natural disaster in the dataset
+	 * @param dataSet is the 2D string array containing information about the CSV file
+	 */
    private static void findEarthQuakeData(int magIndex, int cityCol, int dateIndex, String[][] dataSet){ 
-       //int monthCol = 0; //in the 0 col for earthquake csv file
+     
+	   //adding the intial cityNames to the earthquakeDict, listOfAllCitiesHash and also including the month number
        for (int z = 0; z < dataSet.length; z++){
             try{
-                //System.out.println(dataSet[z][cityCol]);
-                //
+                
+            	//usually each city will have "DISTANCE km from CITYNAME", so below will be taking the substring to obtain the cityName
                 //the dates in eqarchives are listed as yyyy-mm-dd ; from index 5 to 6, will give the month value
                 if (dataSet[z][cityCol].contains("from") ){ 
-                    //usually each city will have "DISTANCE km from CITYNAME", so below will be taking the substring to obtain the cityName
+                    
                     String cityName = dataSet[z][cityCol].substring(dataSet[z][cityCol].indexOf("f") + 5).toUpperCase(); 
                     earthquakeDict.put(cityName + "-" + dataSet[z][dateIndex].substring(5,7), 0.0); 
                     listOfAllCitiesHash.put(cityName + "-" + dataSet[z][dateIndex].substring(5,7) ,0.0);
                 }
-            }catch(StringIndexOutOfBoundsException e){
+            }catch(StringIndexOutOfBoundsException e){ //some strings may not contain the "from" phrase which can be ignored as they wont have a specific city
             }
         }
 
+       	//adding up the total magnitudes for each city in a specific month
         for (int z = 0; z < dataSet.length; z++){
             try{
+            	//cityName will take the substring of the intial dataset by substringing after the word "from " (the addiotnal space) and including the month number in the index
                 String cityName = dataSet[z][cityCol].substring(dataSet[z][cityCol].indexOf("f") + 5).toUpperCase()+"-"+dataSet[z][dateIndex].substring(5,7);  
                 double currentCityMag = earthquakeDict.get(cityName);
                 currentCityMag += Double.parseDouble(dataSet[z][magIndex]);
@@ -60,8 +73,7 @@ public class DangerRating{
         
         }
         
-        //earthquakeDict.forEach((key, value) -> System.out.println(key + ": " + value));
-        //
+        //updating the earthquakeDict to update each city in a specific month to maintain the average earthquake magintude
         for (Map.Entry mapElement : earthquakeDict.entrySet()){
             String key = (String)mapElement.getKey();  
             double value = ((double)mapElement.getValue()/(2019.0-1985.0));
@@ -69,16 +81,24 @@ public class DangerRating{
             earthquakeDict.put(key,value); 
                         
         }
-        System.out.println(earthquakeDict.size());
+        //System.out.println(earthquakeDict.size());
 
    }
 
-   //Sum up all injuries, deaths and damage values that occur for each city and it's corresponding event for data over 10 years
+   /**
+  	 * @brief Compute the sum up all injuries, deaths and damage values that occur for each city for all months avaiable
+  	 * @param cityIndex city column in the dataset
+  	 * @param eventIndex event column in the dataset
+  	 * @param injuryIndex injury column in the dataset
+  	 * @param deathIndex death column in the dataSet
+  	 * @param damageIndex property damage index in the dataset
+  	 * @param dateIndex starting date column in the index
+  	 * @param dataSet is the 3D string array containing information about the CSV file (each row will be pointing to a 2D string array of a csv file)
+  	 */
    private static void findDangerStatsOfDataSets(int cityIndex, int eventIndex, int injuryIndex, int deathIndex, int damageIndex, int dateIndex, String[][][] dataSet ){
-        //Set<String> city_set = new HashSet<String>(); //city_set contains all unique cities in the csv file
-       // int monthCol = 0;
+	   
+	   //adding the intial cityNames to the city_set, injuryDict, deathDict, damageDict , listOfAllCitiesHash and also including the month number (and the dict will include the event name)
         for (int z = 0; z < dataSet.length; z++){
-
             for (int i = 0; i < dataSet[z].length; i++){ //collecting all unique city-event and setting the key values to 0.0
                 int gettingMonthEndIndex = dataSet[z][i][dateIndex].indexOf("/");
                 int currentMonth = 0;
@@ -92,17 +112,15 @@ public class DangerRating{
                 }
                     city_set.add(dataSet[z][i][cityIndex]);
                     listOfAllCitiesHash.put(dataSet[z][i][cityIndex].toUpperCase()+"-"+currentMonth,0.0);
-                    injuryDict.put(dataSet[z][i][cityIndex].toUpperCase()+"-"+dataSet[z][i][eventIndex], 0.0);
-                    deathDict.put(dataSet[z][i][cityIndex].toUpperCase()+"-"+dataSet[z][i][eventIndex], 0.0);
-                    damageDict.put(dataSet[z][i][cityIndex].toUpperCase()+"-"+dataSet[z][i][eventIndex], 0.0);
+                    injuryDict.put(dataSet[z][i][cityIndex].toUpperCase()+"-"+currentMonth+"-"+dataSet[z][i][eventIndex], 0.0);
+                    deathDict.put(dataSet[z][i][cityIndex].toUpperCase()+"-"+currentMonth+"-"+dataSet[z][i][eventIndex], 0.0);
+                    damageDict.put(dataSet[z][i][cityIndex].toUpperCase()+"-"+currentMonth+"-"+dataSet[z][i][eventIndex], 0.0);
             }
         }
         
         String[] cityLst = new String[city_set.size()]; //converting the city_set into an array
         city_set.toArray(cityLst);
-        //listOfAllCities.addAll(Arrays.asList(cityLst));
 
-        //System.out.println(city_set);
 
         int index = 0;
         for (int z = 0; z < dataSet.length; z++){
@@ -120,16 +138,19 @@ public class DangerRating{
                             currentMonth = Integer.parseInt(dataSet[z][i][dateIndex].substring(0, gettingMonthEndIndex));
                             
                         }catch(StringIndexOutOfBoundsException e){
-                            //ontinue;
+                 
                         }catch(NumberFormatException e){
-                            //continue;
+                    
                         }
-
-                        String tempStr = dataSet[z][index][cityIndex].toUpperCase()+"-"+currentMonth+"-"+dataSet[z][index][eventIndex]; //string would be "SOUTH CAROLINA-Heavy Rain"
+                       
+                        //tempstr will be the key to access the injuryDict, deathDict, damageDict values in the format of "CITY-monthNumber-EventName"
+                        String tempStr = dataSet[z][index][cityIndex].toUpperCase()+"-"+currentMonth+"-"+dataSet[z][index][eventIndex]; 
                         
                         double injury_counter = 0.0;
                         double death_counter = 0.0;      
                         double damage_counter = 0.0;
+                        
+                        //collecting the current value in the hashtable from the key 
                         try{
 
                            injury_counter = injuryDict.get(tempStr);
@@ -139,17 +160,18 @@ public class DangerRating{
                         }
                         
                        
+                        //sum up  the current value with the previous counter stored in the hasmap
                         if (dataSet[z][index][injuryIndex].length() != 0 && dataSet[z][index][deathIndex].length() != 0 && dataSet[z][index][damageIndex].length() != 0){
                             try{
 
-                                injury_counter += Double.parseDouble(dataSet[z][index][injuryIndex]) ;
+                                injury_counter += Double.parseDouble(dataSet[z][index][injuryIndex]); 
                                 death_counter += Double.parseDouble(dataSet[z][index][deathIndex]) ;
                                 
                                 //the following conditions are use to consider cells that have either "K" or "M"
-                                if (dataSet[z][index][damageIndex].contains("K")){ //if the cell contains a K
+                                if (dataSet[z][index][damageIndex].contains("K")){ //if the cell contains a K - thousand
                                     damage_counter += Double.parseDouble(dataSet[z][index][damageIndex].substring(0,dataSet[z][index][damageIndex].indexOf("K"))) *1000;
                                 
-                                }else if (dataSet[z][index][damageIndex].contains("M")){ //if the cecll contains M
+                                }else if (dataSet[z][index][damageIndex].contains("M")){ //if the cecll contains M - million
                                     damage_counter += Double.parseDouble(dataSet[z][index][damageIndex].substring(0,dataSet[z][index][damageIndex].indexOf("M"))) *1000000;
                                 
                                 }else{
@@ -160,6 +182,8 @@ public class DangerRating{
                             }
 
                         }
+                        
+                        //update the values back in the diconaries
                         injuryDict.put(tempStr,injury_counter);
                         deathDict.put(tempStr,death_counter);
                         damageDict.put(tempStr,damage_counter);
@@ -171,26 +195,30 @@ public class DangerRating{
                     
                 }
                 index =0;
-                //System.out.println(cityLst[i] + " " +average);
+             
             }
         }
 
-        //System.out.println(Arrays.asList(damageDict));
+   
         dataSet = null;
         System.gc();
         //damageDict.forEach((key, value) -> System.out.println(key + ": " + value));
-        System.out.println(damageDict.size());
-        System.out.println(injuryDict.size());
-        System.out.println(deathDict.size());
+    
    }
 
+   /**
+ 	 * @brief Convert a 2D String array into an ArrayList with each row containing the a single 1D String array (making it easier to delete rows)
+ 	 * @param dataSet is the 2D string array containing information about the CSV file 
+ 	 * @return returns the ArrayList<String[]> representing the same information in the CSV file while exlcuding some qutotiaotns that may appear in certain cells
+ 	 */
     private static ArrayList<String[]> convertTwoDToArrayList (String[][] arr){
         ArrayList<String[]> convert = new ArrayList<String[]>();
+        
         for (int i = 0; i < arr.length; i ++){
             String[] temp = new String[arr[i].length];
             for (int j = 0; j < temp.length; j++){
                 
-                if (arr[i][j].startsWith("\"")){
+                if (arr[i][j].startsWith("\"")){	//removing any unncessary quotations in the strings
                     temp[j] = arr[i][j].substring(1,arr[i][j].length());
                 }else{
                     temp[j] = arr[i][j];
@@ -202,14 +230,19 @@ public class DangerRating{
         return convert;
     }
 
+    /**
+ 	 * @brief Take the current earthquakeDict and using vProb.probEq() to determine danger rating for all cities in the data set for a given month
+ 	 * @throws IOException
+ 	 */
     private static void determineDangerRatingEarthquake() throws IOException{
         HashMap<String, Double> earthquakeProb = vProb.probEq();
         for (Map.Entry mapElement : earthquakeDict.entrySet()) { 
             String key = (String)mapElement.getKey(); 
             
             double getCurrentMag = earthquakeDict.get(key);
-            //System.out.println(getCurrentMag);
+     
             double currentIndexRating = 0.0;
+            
             if (getCurrentMag < 2.5){
                 currentIndexRating += 0.0;
             } else if (2.5 < getCurrentMag && getCurrentMag < 4.9){
@@ -220,10 +253,13 @@ public class DangerRating{
                currentIndexRating += 50;
             }
 
+            //collecting specific cityname and month number
             String city = key.substring(0,key.indexOf("-")); 
             String monthNum = key.substring(key.indexOf("-")+1);
+            
+            //determining if there is a probability value to multiply with the current indexrating
             if (earthquakeProb.containsKey(city + " " + monthNum + " " + "Earthquake")){
-                currentIndexRating *= earthquakeProb.get(city + " " + monthNum + " " + "Earthquake")/100;
+                currentIndexRating *= earthquakeProb.get(city + " " + monthNum + " " + "Earthquake")/100; //mutlplying the percentage value with the current indexrating
             }
             if (currentIndexRating > 100){
                 currentIndexRating = 100;
@@ -231,47 +267,57 @@ public class DangerRating{
 
             currentIndexRating = Math.round(currentIndexRating);
             listOfAllCitiesHash.put(key,currentIndexRating);
-            //int value = ((int)mapElement.getValue() + 10);  
-            //System.out.println(key + " : " + value); 
+         
         } 
 
         //listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value)); 
          
     }
 
+    /**
+ 	 * @brief Take the current injuryDict, deathDict and DamageDict and using vProb.probEq() to accumulate various danger rating values that different from natural disasters
+ 	 * @throws IOException
+ 	 */
     private static void determineDangerRatingStormRelated(HashMap<String, Double> stormData) throws IOException{
-         int index = 0;
+         
          Iterator<Map.Entry<String, Double>> injury = injuryDict.entrySet().iterator(); 
          Iterator<Map.Entry<String, Double>> death = deathDict.entrySet().iterator();
          Iterator<Map.Entry<String, Double>> damage = damageDict.entrySet().iterator();
          
          
-         HashMap<String,Double> stormDataProb = stormData;
-         //HashMap<String, Double> earthquakeProb = vProb.probEq();
-         
+         HashMap<String,Double> stormDataProb = stormData;      
          HashMap<String, Double> canadaNaturalDis = vProb.probCDD();
 
          while(injury.hasNext() && death.hasNext() && damage.hasNext()){
-            //Iterator<Map.Entry<String, String>> index = injuryDict.entrySet().iterator();
-            Map.Entry<String, Double> entryInj = injury.next();
+      
+        	//the following entries will be used to update map to go to the next item in the dictionary
+            Map.Entry<String, Double> entryInj = injury.next(); 
             Map.Entry<String, Double> entryDeat = death.next();
             Map.Entry<String, Double> entryDamg = damage.next();
             
-            String key = (String)entryInj.getKey();
-            int firstDashIndex = ((String)entryInj.getKey()).indexOf("-");
+            String key = (String)entryInj.getKey(); //all keys in the injuryDict, deathDict and damageDict will be the same
+            
+            //since the format of the keys are cityName-monthNum-eventName
+            int firstDashIndex = ((String)entryInj.getKey()).indexOf("-");	
             int secondDashIndex = ((String)entryInj.getKey()).indexOf("-", firstDashIndex + 1); 
-             String currentEvent = (String)entryInj.getKey().substring(secondDashIndex + 1);
+            
+            
+            String currentEvent = (String)entryInj.getKey().substring(secondDashIndex + 1);
             String currentCity = (String)entryInj.getKey().substring(0,((String)entryInj.getKey()).indexOf("-") );
             String month = "";
-            if (firstDashIndex >= 0 && secondDashIndex >= 0){
+            
+            if (firstDashIndex >= 0 && secondDashIndex >= 0){ //some cities may not have a dash
                 month = key.substring(firstDashIndex + 1, secondDashIndex);
+                if (month.startsWith("0")) {
+                	month = month.substring(1);
+                }
             }
              
-            //System.out.println(listOfAllCitiesHash.get(key.substring(0,secondDashIndex)));
+            
             double cityIndexVal = 0.0; 
             try{
                 cityIndexVal = listOfAllCitiesHash.get(key.substring(0,secondDashIndex)) ;
-
+               
             }catch(NullPointerException e){
             }
             catch(StringIndexOutOfBoundsException e){
@@ -279,7 +325,7 @@ public class DangerRating{
             
             if (currentEvent.contains("Heat") || currentEvent.contains("Drought")){
                 
-                //deaths
+               
                 if (deathDict.get(key) > 5.0){
                     cityIndexVal += 20;
 
@@ -292,6 +338,8 @@ public class DangerRating{
                 }else{
                     cityIndexVal += 50;
                 }
+                
+                //multiply the probability that is avaiable from the stormdata hashMap or candaNaturalDis hasmap)
                 if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
                     cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
                 }
@@ -310,6 +358,8 @@ public class DangerRating{
                 else if (injuryDict.get(key) >= 10.0){
                     cityIndexVal += 10;
                 }
+                
+              //multiply the probability that is avaiable from the stormdata hashMap or candaNaturalDis hasmap)
                 if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
                 cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
                 }
@@ -339,6 +389,8 @@ public class DangerRating{
                 }else{
                     cityIndexVal += 20;
                 }
+                
+              //multiply the probability that is avaiable from the stormdata hashMap or candaNaturalDis hasmap)
                 if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
                     cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
                 }
@@ -368,6 +420,7 @@ public class DangerRating{
                     cityIndexVal += 25;
                 }
 
+              //multiply the probability that is avaiable from the stormdata hashMap or candaNaturalDis hasmap)
                 if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
                     cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
                 }
@@ -397,6 +450,7 @@ public class DangerRating{
                     cityIndexVal += 15;
                 }
 
+              //multiply the probability that is avaiable from the stormdata hashMap or candaNaturalDis hasmap)
                 if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
                     cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
                 }
@@ -426,7 +480,8 @@ public class DangerRating{
                 }else{
                     cityIndexVal += 25;
                 }
-
+                
+              //multiply the probability that is avaiable from the stormdata hashMap or candaNaturalDis hasmap)
                  if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
                     cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
                 }
@@ -456,6 +511,7 @@ public class DangerRating{
                     cityIndexVal += 20;
                 }
 
+              //multiply the probability that is avaiable from the stormdata hashMap or candaNaturalDis hasmap)
                if (stormDataProb.containsKey(currentCity + " " + month + " " + currentEvent)){
                     cityIndexVal *= stormDataProb.get(currentCity + " " + month + " " + currentEvent)/100;
                 }
@@ -464,12 +520,15 @@ public class DangerRating{
                 } 
         
             }
+            
+            //cap the maximum rating  to be 100
             if (cityIndexVal > 100){
                 cityIndexVal = 100;
             }
-            cityIndexVal = Math.round(cityIndexVal);
+            cityIndexVal = Math.round(cityIndexVal); //rooudning the current indexrating
+            
             try{
-                listOfAllCitiesHash.put(key.substring(0,secondDashIndex),cityIndexVal);
+                listOfAllCitiesHash.put(currentCity+"-"+month ,cityIndexVal); //updating the hasmap
             }catch(StringIndexOutOfBoundsException e){
             }
 
@@ -478,6 +537,12 @@ public class DangerRating{
         //listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));  
     }
 
+
+    /**
+ 	 * @brief load all the data sets we have to find the danger stats first, then calling determinDangerRating for both storm data and earthquakes
+ 	 * @return returns the listOfCitiesHashMap
+ 	 * @throws IOException
+ 	 */
     public static HashMap<String, Double> loadAllDangerRating() throws IOException{
         HashMap<String, Double> stormDataProb = new HashMap<String, Double>(); 
         int cityCol = 15;
@@ -491,7 +556,7 @@ public class DangerRating{
         findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,loadData0);
         vProb.probSD(loadData0,stormDataProb);
 
-        data1 = null;
+        data1 = null;	//setting the string[] arrays to null will help with reducing overhead (“java.lang.OutOfMemoryError: GC overhead limit exceeded error”.)
         loadData0 = null;
 
         String[][] data2 = ReadCSV.readFile("Data_Sets/stormdata_2012.csv",15,19);
@@ -519,7 +584,7 @@ public class DangerRating{
          data4 = null;
         loadData3 = null;
         
-        //String[][][] allDataSets = {data1,data2,data3,data4};
+      
         
       
         System.gc(); //calling system gargbage collector *Doesnt always free memory
@@ -607,6 +672,11 @@ public class DangerRating{
 
         return listOfAllCitiesHash;
     }
+    
+    /**
+  	 * @brief takes the current listOfCitiesHash and prdoduces a txt file for a specific month where each row has the cities for latidude and longitude and its associated danger rating 
+  	 * @throws IOException
+  	 */
     public static void writeDangerRateTxt(String month) throws IOException{
         String[][] US = ReadCSV.readFile("Data_Sets/uscities.csv",1,1);
 
@@ -617,6 +687,8 @@ public class DangerRating{
         ArrayList<String> USList = new ArrayList<String>();
         ArrayList<String> CADList = new ArrayList<String>();
 
+        //BinarySearch cannot be used here because there are some cases where cities have mixed special characters to find
+        //so 
         for (int i = 0; i < US.length; i++){
             USList.add(US[i][1].toUpperCase());
         }
@@ -624,37 +696,32 @@ public class DangerRating{
             CADList.add(CAD[i][0].toUpperCase());
         }
 
-        
-       OutputStream output = new FileOutputStream("DangerRatingOutput.txt");
+        //setting up to write to the DangerRatingOutput.txt file
+        OutputStream output = new FileOutputStream("src/DangerRatingOutput.txt");
         PrintStream printstream = new PrintStream(output);
+        
+        //Iterate through all the hashmaps and if there is a city that exist in the US, get the coordinates of lattidue and longitude and output those with the cities danger rating. If it isn't in the US
+        //also check to see if its in list belonging to cities in Canada
         for (Map.Entry mapElement : listOfAllCitiesHash.entrySet()) { 
             String key = (String)mapElement.getKey(); 
             String currentMonth = key.substring(key.indexOf("-")+1); 
-            key = key.substring(0,key.indexOf("-")); 
+            String currentCity = key.substring(0,key.indexOf("-")); 
            
-            if (USList.indexOf(key) >= 0 && currentMonth.equals(month)){
-                double currentDangerRating = 0.0;
-                if (listOfAllCitiesHash.get(key) != null){
-                   currentDangerRating = listOfAllCitiesHash.get(key);    
-                }
-                printstream.print(US[USList.indexOf(key)][8] + " " + US[USList.indexOf(key)][9] + " " + currentDangerRating+"\n");
-            }else if (CADList.indexOf(key)  >= 0 && currentMonth.equals(month)){
+            double currentDangerRating = listOfAllCitiesHash.get(key);
+            
+            if (USList.indexOf(currentCity) >= 0 && currentMonth.equals(month)){
+               
+               //Latitude col of US is index 8, Longitude col of us is index 9
+                printstream.print(US[USList.indexOf(currentCity)][8] + " " + US[USList.indexOf(currentCity)][9] + " " + currentDangerRating+"\n");
+            }else if (CADList.indexOf(currentCity)  >= 0 && currentMonth.equals(month)){
 
-                double currentDangerRating = 0.0;
-                if (listOfAllCitiesHash.get(key) != null){
-                   currentDangerRating = listOfAllCitiesHash.get(key);    
-                }
-                printstream.print(CAD[CADList.indexOf(key)][1] + " " + CAD[CADList.indexOf(key)][2] + " " + currentDangerRating+"\n");
+            	 //Latitude col of CAD is index 1, Longitude CAD of us is index 2
+                printstream.print(CAD[CADList.indexOf(currentCity)][1] + " " + CAD[CADList.indexOf(currentCity)][2] + " " + currentDangerRating+"\n");
 
             }
-            //int value = ((int)mapElement.getValue() + 10);  
-            //System.out.println(key + " : " + value); 
+     
         } 
 
-       
-
-        //printstream.close();
-        //output.close();
 
     }
    
@@ -663,7 +730,7 @@ public class DangerRating{
         System.out.println("/");
         //writeDangerRateTxt();
         loadAllDangerRating();
-        writeDangerRateTxt("06"); 
+        writeDangerRateTxt("1"); 
         //multiplyDangerRatingWithProb();
         listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));
         System.out.println(listOfAllCitiesHash.size());
