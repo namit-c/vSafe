@@ -25,12 +25,12 @@ public class GraphConstruction {
 		
 		ArrayList<String> citiesToInclude = new ArrayList<String>();
 		if (sampleName.length() > 0) { // If want only cities in a given data set...
-			String[][] sampleData = ReadCSV.readFile("Data_Sets/" + sampleName, sampleCityCol, 1);
-			
+			String[][] sampleData = ReadCSV.readFile("Data_Sets/" + sampleName, sampleCityCol, sampleCityCol);
+
 			for (int i = 1 ; i < sampleData.length; i++) {
 				if (!citiesToInclude.contains(sampleData[i][sampleCityCol].toUpperCase().replace("\"", ""))) {
 					citiesToInclude.add(sampleData[i][sampleCityCol].toUpperCase().replace("\"", ""));
-					System.out.println(sampleData[i][sampleCityCol].toUpperCase().replace("\"", "")); // Prints cities to include from data set
+					//System.out.println(sampleData[i][sampleCityCol].toUpperCase().replace("\"", "")); // Prints cities to include from data set
 				}
 			}
 		}
@@ -113,8 +113,8 @@ public class GraphConstruction {
 	
     public static void main(String[] args) throws IOException{
     	Hashtable<String, ArrayList<String>> CAN = CloseCitiesHashTable("Canada_Cities.csv", "", 0, 0, 2, 1, 200);
-    	Hashtable<String, ArrayList<String>> US = CloseCitiesHashTable("uscities.csv", "stormdata_2013.csv", 8, 1, 9, 8, 500);
-    	System.out.println(US.get("WYOMING"));
+    	Hashtable<String, ArrayList<String>> US = CloseCitiesHashTable("uscities.csv", "stormdata_2013.csv", 15, 1, 9, 8, 500);
+    	System.out.println(US.get("KENEDY"));
     	System.out.println(CAN.get("TORONTO"));
 
     }
