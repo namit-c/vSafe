@@ -294,7 +294,7 @@ public class vProb {
 		// gives distance from cities nearby
 		// This array contains the city name and month of the earthquake
 		// This array will be used to make the hash map with the probability
-		String[][] necessaryData = new String[eqData.length][2]; // so the last row is null; needed for comparing next
+		String[][] necessaryData = new String[eqData.length][1]; // so the last row is null; needed for comparing next
 																	// rows
 
 		// column numbers for the necessary data array
