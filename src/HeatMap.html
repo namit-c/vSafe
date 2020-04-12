@@ -43,16 +43,19 @@
           var latLng = new google.maps.LatLng(coords[1], coords[0]);
           var rating = results.features[i].rating;
           var weights = 0;
-            if (rating < 25){
-                weights = 0.1;
-            }else if (25 <= rating && rating < 50){
-                weights =  50;
-            }else{
-                weights = 75;
+            if (rating >= 25){
+                //weights = 0.1;
+
+                 
+                if (25 <= rating && rating < 50){
+                    weights =  1;
+                }else{
+                    weights = 5;
+                }
+                heatmapData.push({location: latLng,weight: weights});
             }
 
-
-            heatmapData.push({location: latLng,weight: weights});
+            
         }
 
         var heatmap = new google.maps.visualization.HeatmapLayer({
