@@ -29,13 +29,14 @@ public class Controller {
 		}
 		
 		//checking whether the specified city is in the data set
-		if(dangerRatingHash.containsKey(cityname.toUpperCase())) {
-			System.out.println(cityname + " is not in the dataset.");
-			return;
-		}
-		
-		//call the print danger rating module
-		FrontendText.printDangerRating(cityname, month, dangerRatingHash.get(cityname.toUpperCase()));
+		//checking whether the specified city is in the data set
+				if(!dangerRatingHash.containsKey(cityname.toUpperCase() + "-" + month)) {
+					System.out.println(cityname + " is not in the dataset.");
+					return;
+				}
+				
+				//call the print danger rating module
+				FrontendText.printDangerRating(cityname, month, dangerRatingHash.get(cityname.toUpperCase() + "-" + month));
 		
 		//graph construction
 		int sampleCityCol = 0;
