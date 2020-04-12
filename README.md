@@ -9,7 +9,7 @@
 
 ## Installation
 
- Clone the following [github](https://gitlab.cas.mcmaster.ca/choprn9/final-project.git) to install vSafe and import into eclipse. Then configure the class path to include the include the external JAR file "jar-files/json-20140107.jar". Then run the controller module.  
+ Clone this repo [github](https://gitlab.cas.mcmaster.ca/choprn9/final-project.git) to install vSafe and import into eclipse. Then configure the class path to include the include the external JAR file "jar-files/json-20140107.jar". Then run the controller module.  
 
  ```bash
  git clone https://gitlab.cas.mcmaster.ca/choprn9/final-project.git
