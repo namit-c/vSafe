@@ -29,10 +29,10 @@ public class SaferCities {
 		for (String vertex : vertices) { // Iterate through all sources neighbours and check if safe
 			vertex = vertex.toUpperCase();
 			
-			System.out.println(vertex + "-" + monthNum + ":" + dangerRatingHash.containsKey(vertex + "-" + monthNum));
+			/*System.out.println(vertex + "-" + monthNum + ":" + dangerRatingHash.containsKey(vertex + "-" + monthNum));
 			if (dangerRatingHash.containsKey(vertex + "-" + monthNum)) {
 				System.out.println(dangerRatingHash.get(vertex + "-" + monthNum));
-			}
+			}*/
 			
 			// Only suggest neighbouring city if it is safe
 			if (saferCities.hasPathTo(vertex) && dangerRatingHash.containsKey(vertex + "-" + monthNum) && dangerRatingHash.get(vertex + "-" + monthNum) < 25) {
