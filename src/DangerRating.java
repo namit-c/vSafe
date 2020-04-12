@@ -638,7 +638,7 @@ public class DangerRating{
                    currentDangerRating = listOfAllCitiesHash.get(key);    
                 }
                 printstream.print(US[USList.indexOf(key)][8] + " " + US[USList.indexOf(key)][9] + " " + currentDangerRating+"\n");
-            }else if (USList.indexOf(key)  >= 0 && currentMonth.equals(month)){
+            }else if (CADList.indexOf(key)  >= 0 && currentMonth.equals(month)){
 
                 double currentDangerRating = 0.0;
                 if (listOfAllCitiesHash.get(key) != null){
