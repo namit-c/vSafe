@@ -9,7 +9,7 @@
 
 ## Installation
 
- Clone the following [github](https://gitlab.cas.mcmaster.ca/choprn9/final-project.git) to install vSafe.
+ Clone the following [github](https://gitlab.cas.mcmaster.ca/choprn9/final-project.git) to install vSafe and import into eclipse. Then configure the class path to include the include the external JAR file "jar-files/json-20140107.jar". Then run the controller module.  
 
  ```bash
  git clone https://gitlab.cas.mcmaster.ca/choprn9/final-project.git
@@ -26,5 +26,5 @@
 ### Graphing Algorithms - map out danger ratings to a map
 * Graph Coloring Algorithm
     * Using heatmaps
-* Using Depth-First Search (DFS)
+* Using Breadth-First Search (BFS)
 * Graph construction
