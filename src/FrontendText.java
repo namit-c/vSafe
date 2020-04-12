@@ -1,102 +1,81 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 
+/**
+ * @brief The view module that prints the necessary information to the console
+ *
+ */
 public class FrontendText {
 	
-	//This module uses all the back-end modules and makes the application
-	//with a text interface
-	//ONLY TO BE USED as a prototype and testing back end modules
-	
-	//This module takes care of everything after the input
-	public static void frontend(String cityname, String month) throws IOException{
-		
-		int flag = 0;
-		if(Integer.parseInt(month) < 0 && Integer.parseInt(month) > 13) {
-			System.out.println("\nInvalid Month");
-			return;
-		}
-		
-		//graph construction
-		Hashtable<String, ArrayList<String>> CAN = GraphConstruction.CloseCitiesHashTable("Canada_Cities.csv", "", 0, 0, 2, 1, 200);
-    	Hashtable<String, ArrayList<String>> US = GraphConstruction.CloseCitiesHashTable("uscities.csv", "stormdata_2013.csv", 8, 1, 9, 8, 500);
-    	
-    	// Example usage of hashtables
-    	// System.out.println(US.get("WYOMING"));
-    	// System.out.println(CAN.get("TORONTO"));
-    	
-		
-		//print danger rating (key is cities, value is danger rating value)
-        HashMap<String,Double> dangerRatingHash = DangerRating.loadAllDangerRating(month); //wouldn't matter if month is 01 or 1
-		
-        //printing the results
-        
+	/**
+	 * @brief Prints the danger rating of the specified month and city
+	 * @param cityname is the name of the city for which danger rating is required
+	 * @param month is the number of the month for which danger rating is required
+	 */
+	public static void printDangerRating(String cityname, String month, double dangerRating){
+    	        
         System.out.print("\nThe danger rating of " + cityname + " in: ");
         
         switch(month) {
         	case "1":
         		System.out.print("January");
+        		break;
         	case "2":
         		System.out.print("February");
+        		break;
         	case "3":
         		System.out.print("March");
+        		break;
         	case "4":
         		System.out.print("April");
+        		break;
         	case "5":
         		System.out.print("May");
+        		break;
         	case "6":
         		System.out.print("June");
+        		break;
         	case "7":
         		System.out.print("July");
+        		break;
         	case "8":
         		System.out.print("August");
+        		break;
         	case "9":
         		System.out.print("September");
+        		break;
         	case "10":
         		System.out.print("October");
+        		break;
         	case "11":
         		System.out.print("November");
+        		break;
         	case "12":
         		System.out.print("December");
+        		break;
+       		default:
+       			System.out.println("Invalid Month");
+       			return;
         }
         
-        System.out.print(" is" + dangerRatingHash.get(cityname.toUpperCase()));
-        System.out.println("\nNeighbouring cities are: " + CAN.get(cityname.toUpperCase()));
+        System.out.print(" is " + dangerRating + "\n");
 	}
-	
-	public static void main(String[] args) throws IOException {
+
+	/**
+	 * @brief Prints all the neighboring safe cities of the specified city 
+	 * @param safeCities is an ArrayList of strings that contains all the
+	 * neighboring safe cities
+	 */
+	public static void printSafeCities(ArrayList<String> safeCities) {
+		System.out.println("Other safe cities nearby: ");
 		
-		System.out.println("Loading..");
-		
-		//Sorting the data set
-		//sort here
-		
-		System.out.println("Loading complete.\n");
-		
-		String flag = "y";
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		
-		//Loop so multiple cities can be entered
-		while(flag.equals("y")) {
-			System.out.print("Enter the city name and month number separated by a space: ");
-			//Reading the input information, city and date
-			String inputString = reader.readLine();
+		//printing the arraylist with all the nearby safe cities
+		for(int i = 0, max = safeCities.size(); i < max; i++) {
 			
-			//Reading the string with city and date and splitting the city and date
-			//Index 0 there is the city name
-			String[] input = inputString.split(" ");
-			
-			//calling the rest of the front end stuff to display information
-			frontend(input[0], input[1]);
-			
-			//Flag to trigger the loop to enter multiple cities
-			System.out.print("Enter y to enter a new city, n otherwise: ");
-			flag = reader.readLine();
+			//only do this if it is not the last element, for comma purposes
+			if(i != max-1)
+				System.out.print(safeCities.get(i) + ", ");
+			else
+				System.out.print(safeCities.get(i) + ".");
 		}
-		reader.close();
-		System.out.println("\nDone.");
 	}
 }
