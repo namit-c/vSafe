@@ -13,6 +13,13 @@ import java.util.Hashtable;
  */
 public class Controller {
 
+	/**
+	 * @brief Calls the necessary methods to compute and display the danger rating and nearby safe cities of the specified city and month
+	 * @param cityname is the input city name for which danger rating is required
+	 * @param month is the input month for which the danger rating is required
+	 * @param dangerRatingHash is a hash table with city, month and the corresponding danger rating
+	 * @throws IOException
+	 */
 	public static void infoAndDisplay(String cityname, String month, HashMap<String,Double> dangerRatingHash) throws IOException {
 		
 		System.out.println("Entering method");
@@ -60,10 +67,10 @@ public class Controller {
 		//call the safer cities method
     	ArrayList<String> safeCities;
     	if(canGraph.contains(cityname.toUpperCase())) {
-    		safeCities = SaferCities.saferCities(canGraph, dangerRatingHash, cityname.toUpperCase());
+    		safeCities = SaferCities.saferCities(canGraph, dangerRatingHash, cityname.toUpperCase(), Integer.parseInt(month));
     	}
     	else {
-    		safeCities = SaferCities.saferCities(usGraph, dangerRatingHash, cityname.toUpperCase());
+    		safeCities = SaferCities.saferCities(usGraph, dangerRatingHash, cityname.toUpperCase(), Integer.parseInt(month));
     	}
     	
 		
@@ -76,7 +83,13 @@ public class Controller {
 		System.out.println("\nRedirecting to another window...");
 		
 	}
-	
+
+	/**
+	 * @brief The main method calls the necessary methods to display the necessary information and takes user inputs
+	 * @details Reads the user inputs and calls methods that print the necessary information until the user is done
+	 * @param args are arguments from command line, not used
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
 		
 		System.out.println("Loading..");
