@@ -16,13 +16,10 @@ public class SaferCities {
 	 * @return safe of type ArrayList<String> such that all members are the names of safe, neighbouring cities
 	 */
 	public static ArrayList<String> saferCities(Hashtable<String, ArrayList<String>> closeCitiesHashtable, HashMap<String,Double> dangerRatingHash, String source, int monthNum) throws IOException{
-		System.out.println(closeCitiesHashtable.size());
+
 		Digraph cityGraph = new Digraph(closeCitiesHashtable.size(), closeCitiesHashtable);
-		System.out.println(cityGraph.toString());
-		System.out.println(closeCitiesHashtable.get("KENEDY"));
+
 		BreadthFirstPaths saferCities = new BreadthFirstPaths(cityGraph, source);
-		
-		System.out.println(cityGraph.toString());
 
 		ArrayList<String> vertices = closeCitiesHashtable.get(source); // Check all neighbours of source
 		String output_text = new String();
@@ -48,7 +45,7 @@ public class SaferCities {
 
 	public static void main(String[] args) throws IOException {
 		Hashtable<String, ArrayList<String>> CAN = GraphConstruction.CloseCitiesHashTable("Canada_Cities.csv", "", 0, 0, 2, 1, 200);
-		Hashtable<String, ArrayList<String>> US = GraphConstruction.CloseCitiesHashTable("uscities.csv", "stormdata_2013.csv", 8, 1, 9, 8, 500);
+		Hashtable<String, ArrayList<String>> US = GraphConstruction.CloseCitiesHashTable("uscities.csv", "stormdata_2013.csv", 15, 1, 9, 8, 500);
 		HashMap<String, Double> dangerRatings = DangerRating.loadAllDangerRating();
 		ArrayList<String> test = saferCities(US, dangerRatings, "KENEDY", 6);
 		System.out.println(test);
