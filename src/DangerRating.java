@@ -265,13 +265,16 @@ public class DangerRating{
             String month = "";
             if (firstDashIndex >= 0 && secondDashIndex >= 0){
                 month = key.substring(firstDashIndex + 1, secondDashIndex);
+                if (month.startsWith("0")) {
+                	month = month.substring(1);
+                }
             }
              
             //System.out.println(listOfAllCitiesHash.get(key.substring(0,secondDashIndex)));
             double cityIndexVal = 0.0; 
             try{
                 cityIndexVal = listOfAllCitiesHash.get(key.substring(0,secondDashIndex)) ;
-
+               
             }catch(NullPointerException e){
             }
             catch(StringIndexOutOfBoundsException e){
@@ -469,7 +472,7 @@ public class DangerRating{
             }
             cityIndexVal = Math.round(cityIndexVal);
             try{
-                listOfAllCitiesHash.put(key.substring(0,secondDashIndex),cityIndexVal);
+                listOfAllCitiesHash.put(currentCity+"-"+month ,cityIndexVal);
             }catch(StringIndexOutOfBoundsException e){
             }
 
@@ -625,26 +628,23 @@ public class DangerRating{
         }
 
         
-       OutputStream output = new FileOutputStream("DangerRatingOutput.txt");
+       OutputStream output = new FileOutputStream("src/DangerRatingOutput.txt");
         PrintStream printstream = new PrintStream(output);
         for (Map.Entry mapElement : listOfAllCitiesHash.entrySet()) { 
             String key = (String)mapElement.getKey(); 
             String currentMonth = key.substring(key.indexOf("-")+1); 
-            key = key.substring(0,key.indexOf("-")); 
+            String currentCity = key.substring(0,key.indexOf("-")); 
            
-            if (USList.indexOf(key) >= 0 && currentMonth.equals(month)){
-                double currentDangerRating = 0.0;
-                if (listOfAllCitiesHash.get(key) != null){
-                   currentDangerRating = listOfAllCitiesHash.get(key);    
-                }
-                printstream.print(US[USList.indexOf(key)][8] + " " + US[USList.indexOf(key)][9] + " " + currentDangerRating+"\n");
-            }else if (CADList.indexOf(key)  >= 0 && currentMonth.equals(month)){
+            double currentDangerRating = listOfAllCitiesHash.get(key);
+            
+            if (USList.indexOf(currentCity) >= 0 && currentMonth.equals(month)){
+               
+               //Latitude col of US is index 8, Longitude col of us is index 9
+                printstream.print(US[USList.indexOf(currentCity)][8] + " " + US[USList.indexOf(currentCity)][9] + " " + currentDangerRating+"\n");
+            }else if (CADList.indexOf(currentCity)  >= 0 && currentMonth.equals(month)){
 
-                double currentDangerRating = 0.0;
-                if (listOfAllCitiesHash.get(key) != null){
-                   currentDangerRating = listOfAllCitiesHash.get(key);    
-                }
-                printstream.print(CAD[CADList.indexOf(key)][1] + " " + CAD[CADList.indexOf(key)][2] + " " + currentDangerRating+"\n");
+            	 //Latitude col of CAD is index 1, Longitude CAD of us is index 2
+                printstream.print(CAD[CADList.indexOf(currentCity)][1] + " " + CAD[CADList.indexOf(currentCity)][2] + " " + currentDangerRating+"\n");
 
             }
             //int value = ((int)mapElement.getValue() + 10);  
@@ -663,7 +663,7 @@ public class DangerRating{
         System.out.println("/");
         //writeDangerRateTxt();
         loadAllDangerRating();
-        writeDangerRateTxt("06"); 
+        writeDangerRateTxt("1"); 
         //multiplyDangerRatingWithProb();
         listOfAllCitiesHash.forEach((key, value) -> System.out.println(key + ": " + value));
         System.out.println(listOfAllCitiesHash.size());
