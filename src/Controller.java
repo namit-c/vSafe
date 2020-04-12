@@ -22,7 +22,6 @@ public class Controller {
 	 */
 	public static void infoAndDisplay(String cityname, String month, HashMap<String,Double> dangerRatingHash) throws IOException {
 		
-		System.out.println("Entering method");
 		
 		//if invalid month number is entered
 		try {
@@ -37,13 +36,13 @@ public class Controller {
 		
 		//checking whether the specified city is in the data set
 		//checking whether the specified city is in the data set
-				if(!dangerRatingHash.containsKey(cityname.toUpperCase() + "-" + month)) {
-					System.out.println(cityname + " is not in the dataset.");
-					return;
-				}
+		if(!dangerRatingHash.containsKey(cityname.toUpperCase() + "-" + month)) {
+			System.out.println(cityname + " is not in the dataset.");
+			return;
+		}
 				
-				//call the print danger rating module
-				FrontendText.printDangerRating(cityname, month, dangerRatingHash.get(cityname.toUpperCase() + "-" + month));
+		//call the print danger rating module
+		FrontendText.printDangerRating(cityname, month, dangerRatingHash.get(cityname.toUpperCase() + "-" + month));
 		
 		//graph construction
 		int sampleCityCol = 0;
@@ -75,13 +74,14 @@ public class Controller {
     	
 		
 		//call the print all the close cities that are safe
-	        DangerRating.writeDangerRateTxt(month);
-	        FrontendText.printSafeCities(safeCities);
+    	FrontendText.printSafeCities(safeCities);
     	
-		//make the heatmap
-		
+    	//make heatmap
+    	DangerRating.writeDangerRateTxt(month);
+    	writeJSON.createJSON();
+    			
 		//call the display heatmap method
-		System.out.println("\nRedirecting to another window...");
+		System.out.println("Open the heatmap by double clicking the \"HeatMap.html\" on th right\n");
 		
 	}
 
