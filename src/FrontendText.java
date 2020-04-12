@@ -57,8 +57,16 @@ public class FrontendText {
        			return;
         }
         
-        System.out.print(" is: " + dangerRating + "\n");
+        System.out.print(" is: " + dangerRating + " ");
+        
+        if(dangerRating > 50.0)
+        	System.out.println("(DANGEROUS)\n");
+        else if(dangerRating <= 50.0 && dangerRating > 25)
+        	System.out.println("(SEVERE)\n");
+        else
+        	System.out.print("(SAFE)\n");
 	}
+
 
 	/**
 	 * @brief Prints all the neighboring safe cities of the specified city 
