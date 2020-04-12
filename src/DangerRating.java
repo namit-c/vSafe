@@ -29,7 +29,7 @@ public class DangerRating{
 
   
    //Calculating the average magintude per city from 2019 to 1985
-   public static void findEarthQuakeData(int magIndex, int cityCol, int dateIndex, String[][] dataSet){ 
+   private static void findEarthQuakeData(int magIndex, int cityCol, int dateIndex, String[][] dataSet){ 
        //int monthCol = 0; //in the 0 col for earthquake csv file
        for (int z = 0; z < dataSet.length; z++){
             try{
@@ -74,7 +74,7 @@ public class DangerRating{
    }
 
    //Sum up all injuries, deaths and damage values that occur for each city and it's corresponding event for data over 10 years
-   public static void findDangerStatsOfDataSets(int cityIndex, int eventIndex, int injuryIndex, int deathIndex, int damageIndex, int dateIndex, String[][][] dataSet ){
+   private static void findDangerStatsOfDataSets(int cityIndex, int eventIndex, int injuryIndex, int deathIndex, int damageIndex, int dateIndex, String[][][] dataSet ){
         //Set<String> city_set = new HashSet<String>(); //city_set contains all unique cities in the csv file
        // int monthCol = 0;
         for (int z = 0; z < dataSet.length; z++){
@@ -239,7 +239,7 @@ public class DangerRating{
          
     }
 
-    public static void determineDangerRatingStormRelated(HashMap<String, Double> stormData) throws IOException{
+    private static void determineDangerRatingStormRelated(HashMap<String, Double> stormData) throws IOException{
          int index = 0;
          Iterator<Map.Entry<String, Double>> injury = injuryDict.entrySet().iterator(); 
          Iterator<Map.Entry<String, Double>> death = deathDict.entrySet().iterator();
