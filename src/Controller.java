@@ -75,7 +75,8 @@ public class Controller {
     	
 		
 		//call the print all the close cities that are safe
-		FrontendText.printSafeCities(safeCities);
+	        DangerRating.writeDangerRateTxt(month);
+	        FrontendText.printSafeCities(safeCities);
     	
 		//make the heatmap
 		
