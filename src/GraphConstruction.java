@@ -20,12 +20,12 @@ public class GraphConstruction {
 	 */
 	public static Hashtable<String, ArrayList<String>> CloseCitiesHashTable(String fileName, String sampleName, int sampleCityCol, int cityCol, int lonCol, int latCol, int range) throws IOException{
 		
-		String[][] data = ReadCSV.readFile("../Data_Sets/" + fileName, 0, 1);
+		String[][] data = ReadCSV.readFile("Data_Sets/" + fileName, 0, 1);
 		boolean ignore = true; // ignore is true if ignore irrelevant cities (not in a data set), else, false
 		
 		ArrayList<String> citiesToInclude = new ArrayList<String>();
 		if (sampleName.length() > 0) { // If want only cities in a given data set...
-			String[][] sampleData = ReadCSV.readFile("../Data_Sets/" + sampleName, sampleCityCol, 1);
+			String[][] sampleData = ReadCSV.readFile("Data_Sets/" + sampleName, sampleCityCol, 1);
 			
 			for (int i = 1 ; i < sampleData.length; i++) {
 				if (!citiesToInclude.contains(sampleData[i][sampleCityCol].toUpperCase().replace("\"", ""))) {
