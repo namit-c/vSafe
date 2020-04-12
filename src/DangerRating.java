@@ -486,7 +486,7 @@ public class DangerRating{
         int deathCol = 22;
         int damageCol = 24;
         int dateCol = 17;
-        String[][] data1 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv",15,19);
+        String[][] data1 = ReadCSV.readFile("Data_Sets/stormdata_2013.csv",15,19);
         String[][][] loadData0 = {data1};
         findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,loadData0);
         vProb.probSD(loadData0,stormDataProb);
@@ -494,7 +494,7 @@ public class DangerRating{
         data1 = null;
         loadData0 = null;
 
-        String[][] data2 = ReadCSV.readFile("../Data_Sets/stormdata_2012.csv",15,19);
+        String[][] data2 = ReadCSV.readFile("Data_Sets/stormdata_2012.csv",15,19);
         String[][][] loadData1 = {data2};
         findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,loadData1);
         vProb.probSD(loadData1,stormDataProb);
@@ -503,7 +503,7 @@ public class DangerRating{
         loadData1 = null;
 
        
-        String[][] data3 = ReadCSV.readFile("../Data_Sets/stormdata_2011.csv",15,19);
+        String[][] data3 = ReadCSV.readFile("Data_Sets/stormdata_2011.csv",15,19);
         String[][][] loadData2 = {data3};
          findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,loadData2);
         vProb.probSD(loadData2,stormDataProb);
@@ -511,7 +511,7 @@ public class DangerRating{
          data3 = null;
         loadData2 = null;
 
-        String[][] data4 = ReadCSV.readFile("../Data_Sets/stormdata_2010.csv",15,19);
+        String[][] data4 = ReadCSV.readFile("Data_Sets/stormdata_2010.csv",15,19);
         String[][][] loadData3 = {data4};
         findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,loadData3);
         vProb.probSD(loadData3,stormDataProb);
@@ -524,7 +524,7 @@ public class DangerRating{
       
         System.gc(); //calling system gargbage collector *Doesnt always free memory
                      //https://stackoverflow.com/questions/1567979/how-to-free-memory-in-java
-        String[][]data5 = ReadCSV.readFile("../Data_Sets/stormdata_2009.csv",15,19);
+        String[][]data5 = ReadCSV.readFile("Data_Sets/stormdata_2009.csv",15,19);
         String[][][] loadData4 = {data5};
           findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,loadData4);
         vProb.probSD(loadData4,stormDataProb);
@@ -532,7 +532,7 @@ public class DangerRating{
          data5 = null;
         loadData4 = null;
         
-        String[][] data6 = ReadCSV.readFile("../Data_Sets/stormdata_2008.csv",15,19);
+        String[][] data6 = ReadCSV.readFile("Data_Sets/stormdata_2008.csv",15,19);
         String[][][] loadData5 = {data6};
         findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,loadData5);
         vProb.probSD(loadData5,stormDataProb);
@@ -540,7 +540,7 @@ public class DangerRating{
          data6 = null;
         loadData5 = null;
 
-        String[][] data7 = ReadCSV.readFile("../Data_Sets/stormdata_2007.csv",15,19);
+        String[][] data7 = ReadCSV.readFile("Data_Sets/stormdata_2007.csv",15,19);
         String[][][] loadData6 = {data7};
         findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,loadData6);
         vProb.probSD(loadData6,stormDataProb);
@@ -548,7 +548,7 @@ public class DangerRating{
          data7 = null;
         loadData6 = null;
 
-        String[][] data8 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv",15,19);
+        String[][] data8 = ReadCSV.readFile("Data_Sets/stormdata_2006.csv",15,19);
         String[][][] loadData7 = {data8};
          findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,loadData7);
         vProb.probSD(loadData7,stormDataProb);
@@ -558,7 +558,7 @@ public class DangerRating{
 
         
         
-        String[][] data9 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv",15,19);
+        String[][] data9 = ReadCSV.readFile("Data_Sets/stormdata_2005.csv",15,19);
         String[][][] loadData8 = {data9};
          findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,loadData8);
         vProb.probSD(loadData8,stormDataProb);
@@ -566,7 +566,7 @@ public class DangerRating{
          data9 = null;
         loadData8 = null;
 
-        String[][] data10 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv",15,19);
+        String[][] data10 = ReadCSV.readFile("Data_Sets/stormdata_2004.csv",15,19);
         String[][][] loadData9 = {data10};
           findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,loadData9);
         vProb.probSD(loadData9,stormDataProb);
@@ -574,7 +574,7 @@ public class DangerRating{
          data10 = null;
         loadData9 = null;
 
-        String[][] data11 = ReadCSV.readFile("../Data_Sets/stormdata_2003.csv",15,19);
+        String[][] data11 = ReadCSV.readFile("Data_Sets/stormdata_2003.csv",15,19);
         String[][][] loadData10 = {data11};
          findDangerStatsOfDataSets(cityCol,eventCol,injuryCol,deathCol,damageCol,dateCol,loadData10);
         vProb.probSD(loadData10,stormDataProb);
@@ -588,14 +588,14 @@ public class DangerRating{
         
 
          
-        String[][] data12 = ReadCSV.readFile("../Data_Sets/eqarchive-en.csv",1,6);
+        String[][] data12 = ReadCSV.readFile("Data_Sets/eqarchive-en.csv",1,6);
         findEarthQuakeData(4,6,0,data12); 
         
         data12 = null;
         
         determineDangerRatingEarthquake();
         
-        String[][] data13 = ReadCSV.readFile("../Data_Sets/CDD_csv.csv",4,1);
+        String[][] data13 = ReadCSV.readFile("Data_Sets/CDD_csv.csv",4,1);
         String[][][] newData2 = {data13};
         cityCol = 4;
         eventCol = 1;
@@ -608,9 +608,9 @@ public class DangerRating{
         return listOfAllCitiesHash;
     }
     public static void writeDangerRateTxt(String month) throws IOException{
-        String[][] US = ReadCSV.readFile("../Data_Sets/uscities.csv",1,1);
+        String[][] US = ReadCSV.readFile("Data_Sets/uscities.csv",1,1);
 
-        String[][] CAD = ReadCSV.readFile("../Data_Sets/Canada_Cities.csv",0,0);
+        String[][] CAD = ReadCSV.readFile("Data_Sets/Canada_Cities.csv",0,0);
 
             
 

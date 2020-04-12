@@ -39,9 +39,9 @@ public class vProb {
     public static HashMap<String, Double> determineAllProbSD() throws IOException{
         HashMap<String, Double> set = new HashMap<String, Double>();
          
-       	String[][] array0 = ReadCSV.readFile("../Data_Sets/stormdata_2003.csv", 15, 19);
-		String[][] array1 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv", 15, 19);
-		String[][] array2 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv", 15, 19);
+       	String[][] array0 = ReadCSV.readFile("Data_Sets/stormdata_2003.csv", 15, 19);
+		String[][] array1 = ReadCSV.readFile("Data_Sets/stormdata_2004.csv", 15, 19);
+		String[][] array2 = ReadCSV.readFile("Data_Sets/stormdata_2005.csv", 15, 19);
         String[][][] dataSet0 = {array0,array1,array2};
 
         probSD(dataSet0, set);
@@ -52,9 +52,9 @@ public class vProb {
         dataSet0 = null;
 
 
-       	String[][] array3 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv", 15, 19);
-		String[][] array4 = ReadCSV.readFile("../Data_Sets/stormdata_2007.csv", 15, 19);
-		String[][] array5 = ReadCSV.readFile("../Data_Sets/stormdata_2008.csv", 15, 19);
+       	String[][] array3 = ReadCSV.readFile("Data_Sets/stormdata_2006.csv", 15, 19);
+		String[][] array4 = ReadCSV.readFile("Data_Sets/stormdata_2007.csv", 15, 19);
+		String[][] array5 = ReadCSV.readFile("Data_Sets/stormdata_2008.csv", 15, 19);
         String[][][] dataSet1 = {array3,array4,array5};
 
         probSD(dataSet1,set);
@@ -62,9 +62,9 @@ public class vProb {
         array4 = null;
         array5 = null;
         dataSet1 = null;
-        String[][] array6 = ReadCSV.readFile("../Data_Sets/stormdata_2009.csv", 15, 19);
-        String[][] array7 = ReadCSV.readFile("../Data_Sets/stormdata_2010.csv", 15, 19);
-        String[][] array8 = ReadCSV.readFile("../Data_Sets/stormdata_2011.csv", 15, 19);
+        String[][] array6 = ReadCSV.readFile("Data_Sets/stormdata_2009.csv", 15, 19);
+        String[][] array7 = ReadCSV.readFile("Data_Sets/stormdata_2010.csv", 15, 19);
+        String[][] array8 = ReadCSV.readFile("Data_Sets/stormdata_2011.csv", 15, 19);
         String[][][] dataSet2 = {array6,array7,array8};
 
         probSD(dataSet2,set);
@@ -72,8 +72,8 @@ public class vProb {
         array7 = null;
         array8 = null;
         dataSet2 = null;
-        String[][] array9 = ReadCSV.readFile("../Data_Sets/stormdata_2012.csv", 15, 19);
-		String[][] array10 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv", 15, 19);
+        String[][] array9 = ReadCSV.readFile("Data_Sets/stormdata_2012.csv", 15, 19);
+		String[][] array10 = ReadCSV.readFile("Data_Sets/stormdata_2013.csv", 15, 19);
         String[][][] dataSet3 = {array9,array10};
 
         
@@ -99,17 +99,17 @@ public class vProb {
 		int numYears = finalMonth - firstMonth;
 
 		// Load Stormdata datasets (2003 - 2013)
-		//String[][] array0 = ReadCSV.readFile("../Data_Sets/stormdata_2003.csv", 8, 19);
-		//String[][] array1 = ReadCSV.readFile("../Data_Sets/stormdata_2004.csv", 8, 19);
-		//String[][] array2 = ReadCSV.readFile("../Data_Sets/stormdata_2005.csv", 8, 19);
-		//String[][] array3 = ReadCSV.readFile("../Data_Sets/stormdata_2006.csv", 8, 19);
-		//String[][] array4 = ReadCSV.readFile("../Data_Sets/stormdata_2007.csv", 8, 19);
-		//String[][] array5 = ReadCSV.readFile("../Data_Sets/stormdata_2008.csv", 8, 19);
-		//String[][] array6 = ReadCSV.readFile("../Data_Sets/stormdata_2009.csv", 8, 19);
-		//String[][] array7 = ReadCSV.readFile("../Data_Sets/stormdata_2010.csv", 8, 19);
-		//String[][] array8 = ReadCSV.readFile("../Data_Sets/stormdata_2011.csv", 8, 19);
-		//String[][] array9 = ReadCSV.readFile("../Data_Sets/stormdata_2012.csv", 8, 19);
-		//String[][] array10 = ReadCSV.readFile("../Data_Sets/stormdata_2013.csv", 8, 19);
+		//String[][] array0 = ReadCSV.readFile("Data_Sets/stormdata_2003.csv", 8, 19);
+		//String[][] array1 = ReadCSV.readFile("Data_Sets/stormdata_2004.csv", 8, 19);
+		//String[][] array2 = ReadCSV.readFile("Data_Sets/stormdata_2005.csv", 8, 19);
+		//String[][] array3 = ReadCSV.readFile("Data_Sets/stormdata_2006.csv", 8, 19);
+		//String[][] array4 = ReadCSV.readFile("Data_Sets/stormdata_2007.csv", 8, 19);
+		//String[][] array5 = ReadCSV.readFile("Data_Sets/stormdata_2008.csv", 8, 19);
+		//String[][] array6 = ReadCSV.readFile("Data_Sets/stormdata_2009.csv", 8, 19);
+		//String[][] array7 = ReadCSV.readFile("Data_Sets/stormdata_2010.csv", 8, 19);
+		//String[][] array8 = ReadCSV.readFile("Data_Sets/stormdata_2011.csv", 8, 19);
+		//String[][] array9 = ReadCSV.readFile("Data_Sets/stormdata_2012.csv", 8, 19);
+		//String[][] array10 = ReadCSV.readFile("Data_Sets/stormdata_2013.csv", 8, 19);
 		//String[][][] dataSet0 = new String[][][] { array1, array2, array3, array4, array5, array6, array7, array8,
 		//		array9, array10 };
 
@@ -166,7 +166,7 @@ public class vProb {
 
 		// Reading the data into a 2d array, specifying city(4) and event(3) columns for
 		// sorting
-		String[][] cddData = ReadCSV.readFile("../Data_Sets/CDD_csv.csv", cityCol, eventCol);
+		String[][] cddData = ReadCSV.readFile("Data_Sets/CDD_csv.csv", cityCol, eventCol);
 
 		// Before creating the hash map, make an array with city, date, event and
 		// probability; 4 columns needed
@@ -288,7 +288,7 @@ public class vProb {
 
 		// Reading the data into a 2d array, specifying city(4) and event(2) columns for
 		// sorting
-		String[][] eqData = ReadCSV.readFile("../Data_Sets/eqarchive-en.csv", cityCol, dateCol);
+		String[][] eqData = ReadCSV.readFile("Data_Sets/eqarchive-en.csv", cityCol, dateCol);
 
 		// The data set contains specific locations of the earthquakes, this means it
 		// gives distance from cities nearby
