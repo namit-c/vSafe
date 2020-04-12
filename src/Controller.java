@@ -13,7 +13,7 @@ import java.util.Hashtable;
  */
 public class Controller {
 
-	public static void infoAndDisplay(String cityname, String month) throws IOException {
+	public static void infoAndDisplay(String cityname, String month, HashMap<String,Double> dangerRatingHash) throws IOException {
 		
 		System.out.println("Entering method");
 		
@@ -27,9 +27,6 @@ public class Controller {
 			System.out.println("Invalid Input! Make sure to enter the number of the month (1 to 12).");
 			return;
 		}
-		
-		//get the danger rating for the specified month and string
-		HashMap<String,Double> dangerRatingHash = DangerRating.loadAllDangerRating(month);
 		
 		//checking whether the specified city is in the data set
 		if(dangerRatingHash.containsKey(cityname.toUpperCase())) {
@@ -83,8 +80,8 @@ public class Controller {
 		
 		System.out.println("Loading..");
 		
-		//Sorting the data set
-		//sort here
+		//Loading in all the danger ratings
+		HashMap<String, Double> dangerRatings = DangerRating.loadAllDangerRating();
 		
 		System.out.println("Loading complete.\n");
 		
@@ -103,7 +100,7 @@ public class Controller {
 			String[] input = inputString.split(" ");
 			
 			//calling the rest of the front end stuff to display information
-			infoAndDisplay(input[0], input[1]);
+			infoAndDisplay(input[0], input[1], dangerRatings);
 			
 			//Flag to trigger the loop to enter multiple cities
 			System.out.print("\nEnter y or yes to enter a new city, anything else to quit: ");
