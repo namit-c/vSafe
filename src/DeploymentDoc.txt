@@ -1,0 +1,46 @@
+Deployment Document:
+
+
+WARNING: Due to manipulation of large data sets, it is STRONGLY RECOMMENDED this program is run on a machine with at least 6GB of ram.
+
+
+This instructions in this document assume that the eclipse project has been successfully opened and contains the following files and folders:
+	-src folder: 
+	
+		-default package: BinarySearch.java, BreadthFirstPaths.java, Controller, java, DangerRating.java, Digraph.java, FrontendText.java,
+				 GraphContruction.java, MergeSort.java, Queue.java, ReadCSV.java, SaferCities.java, Stack.java, vProb.java, writeJSON.java
+				 
+		-DangerRatingOutput.txt (will be overwritten if it available, new one made when the code is run if not available)
+		-HeatMap.html
+		-Makefile (if running on command line, to remove .class files)
+		-map.geojson
+		-output.json
+				 
+	
+	-Data_Sets folder: 
+		
+		-Canada_Cities.csv, CDD_csv.csv, eqarchive-en.csv, uscities.csv, stormdata_2003.csv-stormdata_2013.csv
+	
+
+HOW TO RUN THE PROGRAM:
+
+	1) To run the program, run the class named Controller.java. This may take a few seconds, as data is being loaded and manipulated.
+	
+	2) Once loading is complete, there will be a message asking for the inputs. The format of the inputs is specified in the message, it 
+		is the city name and month number for which danger rating needs to be found separated by a space. Failure to follow this format
+		will lead to wrong outputs. Ensure that the city entered is either in the US or Canada.
+		
+	3) After entering a valid city and month, the program will display the danger rating out 100 with the word stating the danger level
+		in brackets. It will also display neighbouring cities that are safe.
+		
+	4) A heatmap is also created for the specified month over the US and Canada on a World Map. To open the heatmap, double click the file
+		"HeatMap.html." The file will be opened in eclipse or the browser (depending on where it is being run). You may need to zoom out using
+		"-" button located bottom right. The heatmap displayed shows the dangerous areas in the US and Canda for the specified month.
+		
+
+WHAT DO THE COLOURS MEAN ON THE HEATMAP?
+	
+	-No colour overlay: SAFE zone
+	-Green overlay: 	LOW danger zone
+	-Yellow overlay:	MODERATE danger zone
+	-Red overlay:		HIGH danger zone
