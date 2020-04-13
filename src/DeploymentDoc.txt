@@ -34,8 +34,9 @@ HOW TO RUN THE PROGRAM:
 		in brackets. It will also display neighbouring cities that are safe.
 		
 	4) A heatmap is also created for the specified month over the US and Canada on a World Map. To open the heatmap, double click the file
-		"HeatMap.html." The file will be opened in eclipse or the browser (depending on where it is being run). You may need to zoom out using
-		"-" button located bottom right. The heatmap displayed shows the dangerous areas in the US and Canda for the specified month.
+		"HeatMap.html." If the file does not open in eclipse, right click on the HTML file and select "Open With" > "Web Browser. "The file 
+		will be opened in eclipse or the browser (depending on where it is being run). You may need to zoom out using"-" button located 
+		bottom right. The heatmap displayed shows the dangerous areas in the US and Canda for the specified month.
 		
 
 WHAT DO THE COLOURS MEAN ON THE HEATMAP?
