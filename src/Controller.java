@@ -43,6 +43,8 @@ public class Controller {
 				
 		//call the print danger rating module
 		FrontendText.printDangerRating(cityname, month, dangerRatingHash.get(cityname.toUpperCase() + "-" + month));
+
+		System.out.println("\nPlease wait a few minutes as we try to compute nearby safe cities for you...");
 		
 		//graph construction
 		int sampleCityCol = 0;
@@ -81,7 +83,7 @@ public class Controller {
     	writeJSON.createJSON();
     			
 		//call the display heatmap method
-		System.out.println("Open the heatmap by double clicking the \"HeatMap.html\" on th right\n");
+		System.out.println("Open the heatmap by double clicking the \"HeatMap.html\" on the right\n");
 		
 	}
 
