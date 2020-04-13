@@ -1,7 +1,7 @@
 Deployment Document:
 
 
-WARNING: Due to manipulation of large data sets, it is STRONGLY RECOMMENDED this program is run on a machine with at least 6GB of ram.
+WARNING: Due to manipulation of large data sets, it is STRONGLY RECOMMENDED this program is run on a machine with at least 8GB of ram.
 
 
 This instructions in this document assume that the eclipse project has been successfully opened and contains the following files and folders:
