@@ -153,6 +153,8 @@ public class vProb {
 	// to calculate probability of each event in each city for each month
     /**
 	* @brief Method for reading in and generating HashMap of CDD data set, country: Canada
+	* @details uses the formula (total occurrences in specified month)/(total years of data) * 100
+	* to calculate probability of each event in each city for each month
 	*/
 	public static HashMap<String, Double> probCDD() throws IOException {
 
@@ -268,12 +270,11 @@ public class vProb {
 		return probCDD;
 	}
 
-	// Calculates probability for the eqarchive data set (contains earthquakes in
-	// north america, mostly canada)
-	// Does not include foreshocks and aftershocks as they are part of the same
-	// earthquake
+
     /**
 	* @brief Method for reading in eqarchive and generating HashMap of probabilities of earthquake data set in North America
+	* @details Calculates probability for the eqarchive data set (contains earthquakes in north america, mostly canada)
+	* Does not include foreshocks and aftershocks as they are part of the same earthquake
 	*/
 	public static HashMap<String, Double> probEq() throws IOException {
 
@@ -294,7 +295,7 @@ public class vProb {
 		// gives distance from cities nearby
 		// This array contains the city name and month of the earthquake
 		// This array will be used to make the hash map with the probability
-		String[][] necessaryData = new String[eqData.length][1]; // so the last row is null; needed for comparing next
+		String[][] necessaryData = new String[eqData.length][2]; // so the last row is null; needed for comparing next
 																	// rows
 
 		// column numbers for the necessary data array
