@@ -1,8 +1,7 @@
 # vSafe
 
  vSafe is a software product designed to provide users with the means of planning a safe vacation. vSafe has been conceptualized to provide
- information about different areas of safety. vSafe provides statistics for different types of safety threats for the desired location. vSaf
- e uses datasets of a variety of safety concerns to determine the safety of the target location.
+ information about different areas of safety. vSafe provides statistics for different types of safety threats for the desired location. vSafe uses datasets of a variety of safety concerns to determine the safety of the target location.
 
 # Tasks
 [Tasks Link](https://docs.google.com/document/d/1UuQRNvHot9qUcUW73xj3seQ_x9bgf0hTRcsuqTb-cmk/edit)
